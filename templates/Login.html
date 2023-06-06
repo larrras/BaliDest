@@ -14,6 +14,9 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- css internal untuk mengatur design dari halaman -->
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body {
             background-image: url('https://www.expat.com/images/guide-cover/indonesia-hero_size-t1524808170.jpg');
@@ -32,7 +35,7 @@
             padding: 50px;
             width: 400px;
             height: 400px;
-            box-shadow: 0px 0px 25px 10px black;
+            box-shadow: 0px 0px 5px 3px rgb(106, 104, 104);
             border-radius: 15px;
         }
 
@@ -57,7 +60,7 @@
 
         .box-login input {
             width: 85%;
-            padding: 5px 0;
+            padding: 2px 0;
             background: none;
             border: none;
             outline: none;
@@ -66,13 +69,18 @@
         }
 
         .btn-login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 10px;
             margin-bottom: 20px;
-            background: none;
-            border: 1px solid white;
+            margin-top: 30px;
+            background: rgb(247, 125, 81);
+            border: 2px solid rgb(247, 125, 81);;
+            border-radius: 30px;
             width: 92.5%;
-            padding: 10px;
-            color: white;
+            padding: 9px;
+            color: black;
             font-size: 18px;
             letter-spacing: 3px;
             cursor: pointer;
@@ -81,14 +89,20 @@
         .btn-register {
             margin-left: 10px;
             margin-bottom: 20px;
-            background: none;
-            border: 1px solid white;
+            background: rgb(247, 125, 81);
+            border: 2px solid rgb(247, 125, 81);;
+            border-radius: 30px;
             width: 92.5%;
-            padding: 10px;
-            color: white;
+            padding: 9px;
+            color: black;
             font-size: 18px;
             letter-spacing: 3px;
             cursor: pointer;
+        }
+
+        ::placeholder {
+            color: white;
+            font-size: 16px;
         }
 
     </style>
@@ -99,20 +113,20 @@
 <body>
     <div class="login">
 
-        <h2>Login Form</h2>
+        <h2 style="font-size: 40px;"><b>Login</b></h2>
 
         <div class="box-login">
-            <label class="form-label fw-bold" style="color:white">ID</label>
-            <input type="text" id="id" placeholder="Id">
+            <label class="form-label fw-bold" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
+            <input type="text" id="email" placeholder="Email">
         </div>
 
         <div class="box-login">
-            <label class="form-label fw-bold" style="color:white">PW</label> 
+            <label class="form-label fw-bold" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label> 
             <input type="text" id="password" placeholder="Password">
         </div>
 
-        <button type="submit" class="btn-login">Login</button>
-        <button type="submit"  class="btn-register">Register</button>
+        <button type="submit" class="btn-login"><b>Login</b></button>
+        <button type="submit"  class="btn-register"><b>Register</b></button>
     </div>
 </body>
 
