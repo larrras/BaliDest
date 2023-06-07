@@ -13,9 +13,11 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- Link Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- css internal untuk mengatur design dari halaman -->
+    
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body {
             background-image: url('https://www.expat.com/images/guide-cover/indonesia-hero_size-t1524808170.jpg');
@@ -56,9 +58,10 @@
             padding: 8px 0;
         }
 
+
         .box-register input {
-            width: 75%;
-            padding: 5px 0;
+            width: 85%;
+            padding: 2px 0;
             background: none;
             border: none;
             outline: none;
@@ -66,13 +69,10 @@
             font-size: 18px;
         }
 
+
         .btn-register {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin-left: 10px;
             margin-bottom: 20px;
-            margin-top: 30px;
             background: rgb(247, 125, 81);
             border: 2px solid rgb(247, 125, 81);;
             border-radius: 30px;
@@ -89,12 +89,15 @@
             font-size: 16px;
         }
 
+
     </style>
+
 
 </head>
 
 <body>
     <div class="register">
+
         <h2 style="font-size: 40px;"><b>Register</b></h2>
 
         <div class="box-register">
@@ -103,15 +106,16 @@
         </div>
 
         <div class="box-register">
-            <label class="form-label fw-bold" style="color:white"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
+            <label class="form-label fw-bold" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
             <input type="text" id="email" placeholder="Email">
         </div>
 
         <div class="box-register">
-            <label class="form-label fw-bold" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label> 
+            <label class="form-label fw-bold" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label>
             <input type="text" id="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn-register"><b>Register</b></button>
+
+        <button type="submit"  class="btn-register"><b>Register</b></button>
     </div>
 </body>
 
