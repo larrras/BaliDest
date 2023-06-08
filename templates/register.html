@@ -17,80 +17,36 @@
     
     <!-- Link icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/styleregister.css">
 
-    <style>
-        body {
-            background-image: url('https://www.expat.com/images/guide-cover/indonesia-hero_size-t1524808170.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            height: 100vh;
+    <script>
+        // Pada fungsi ini, kita menggunakan id user,
+        // password, dan nickname, untuk mendaftarkan mereka
+        // ke database kita
+        function register() {
+            $.ajax({
+                type: "POST",
+                url: "/api/register",
+                data: {
+                    id_give: $("#userid").val(),
+                    pw_give: $("#userpw").val(),
+                    nickname_give: $("#usernick").val(),
+                },
+                success: function (response) {
+                    if (response["result"] === "success") {
+                        alert("User registration complete!");
+                        window.location.href = "/login";
+                    } else {
+                        alert(response.message);
+                        window.location.href = "/register";
+                    }
+                },
+            });
         }
-
-        .register {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(4, 29, 23, 0.5);
-            padding: 50px;
-            width: 400px;
-            height: 400px;
-            box-shadow: 0px 0px 5px 3px rgb(106, 104, 104);
-            border-radius: 15px;
+        function have_login() {
+            window.location.href = '/'
         }
-
-        .register h2 {
-            text-align: center;
-            color: white;
-            font-size: 30px;
-            font-family: sans-serif;
-            letter-spacing: 3px;
-            padding-top: 0;
-            margin-top: -20px;
-        }
-
-        .box-register {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px;
-            border-bottom: 2px solid white;
-            padding: 8px 0;
-        }
-
-
-        .box-register input {
-            width: 85%;
-            padding: 2px 0;
-            background: none;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 18px;
-        }
-
-
-        .btn-register {
-            margin-left: 10px;
-            margin-bottom: 20px;
-            background: rgb(247, 125, 81);
-            border: 2px solid rgb(247, 125, 81);;
-            border-radius: 30px;
-            width: 92.5%;
-            padding: 9px;
-            color: black;
-            font-size: 18px;
-            letter-spacing: 3px;
-            cursor: pointer;
-        }
-
-        ::placeholder {
-            color: white;
-            font-size: 16px;
-        }
-
-
-    </style>
+    </script>
 
 
 </head>
@@ -101,21 +57,21 @@
         <h2 style="font-size: 40px;"><b>Register</b></h2>
 
         <div class="box-register">
-            <label class="form-label fw-bold" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf406;</i></label>
-            <input type="text" id="name" placeholder="Nickname">
+            <label class="form-label fw-bold" for="usernick" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf406;</i></label>
+            <input type="text" id="usernick" placeholder="Nickname">
         </div>
 
         <div class="box-register">
-            <label class="form-label fw-bold" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
-            <input type="text" id="email" placeholder="Email">
+            <label class="form-label fw-bold" for="userid" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
+            <input type="text" id="userid" placeholder="ID">
         </div>
 
         <div class="box-register">
-            <label class="form-label fw-bold" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label>
-            <input type="text" id="password" placeholder="Password">
+            <label class="form-label fw-bold" for="userpw" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label>
+            <input type="password" id="userpw" placeholder="Password">
         </div>
 
-        <button type="submit"  class="btn-register"><b>Register</b></button>
+        <button type="submit"  class="btn-register" onclick="register()"><b>Register</b></button>
     </div>
 </body>
 

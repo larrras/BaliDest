@@ -13,100 +13,43 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
     <!-- css internal untuk mengatur design dari halaman -->
 
     <!-- Link icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/stylelogin.css">
 
-    <style>
-        body {
-            background-image: url('https://www.expat.com/images/guide-cover/indonesia-hero_size-t1524808170.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            height: 100vh;
+    <script>
+        {% if msg %}
+        alert("{{ msg }}")
+        {% endif %}
+
+        function login() {
+            $.ajax({
+                type: "POST",
+                url: "/api/login",
+                data: { id_give: $('#userid').val(), pw_give: $('#userpw').val() },
+                success: function (response) {
+                    if (response['result'] === 'success') {
+                        $.cookie('mytoken', response['token']);
+                        alert('Login complete!')
+                        window.location.href = '/'
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            })
         }
-
-        .login {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(4, 29, 23, 0.5);
-            padding: 50px;
-            width: 400px;
-            height: 400px;
-            box-shadow: 0px 0px 5px 3px rgb(106, 104, 104);
-            border-radius: 15px;
+        function new_register() {
+            window.location.href = '/register'
         }
-
-        .login h2 {
-            text-align: center;
-            color: white;
-            font-size: 30px;
-            font-family: sans-serif;
-            letter-spacing: 3px;
-            padding-top: 0;
-            margin-top: -20px;
-        }
-
-        .box-login {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px;
-            border-bottom: 2px solid white;
-            padding: 8px 0;
-        }
-
-
-        .box-login input {
-            width: 85%;
-            padding: 2px 0;
-            background: none;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 18px;
-        }
-
-        .btn-login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 10px;
-            margin-bottom: 20px;
-            margin-top: 30px;
-            background: rgb(247, 125, 81);
-            border: 2px solid rgb(247, 125, 81);;
-            border-radius: 30px;
-            width: 92.5%;
-            font-size: 18px;
-            letter-spacing: 3px;
-            cursor: pointer;
-        }
-
-        .btn-register {
-            margin-left: 10px;
-            margin-bottom: 20px;
-            background: rgb(247, 125, 81);
-            border: 2px solid rgb(247, 125, 81);
-            border-radius: 30px;
-            width: 92.5%;
-            padding: 9px;
-            color: black;
-            font-size: 18px;
-            letter-spacing: 3px;
-            cursor: pointer;
-        }
-
-        ::placeholder {
-            color: white;
-            font-size: 16px;
-        }
-
-
-    </style>
-
+    </script>
 
 </head>
 
@@ -116,19 +59,21 @@
         <h2 style="font-size: 40px;"><b>Login</b></h2>
 
         <div class="box-login">
-            <label class="form-label fw-bold" style="color:white; margin-top: 15px;"><i style='font-size:24px' class='fas'>&#xf2bd;</i></label>
-            <input type="text" id="email" placeholder="Email">
+            <label class="form-label fw-bold" for="userid" style="color:white; margin-top: 15px;"><i style='font-size:24px'
+                    class='fas'>&#xf2bd;</i></label>
+            <input type="text" id="userid" placeholder="ID">
         </div>
 
         <div class="box-login">
-            <label class="form-label fw-bold" style="color:white; font-size: 15px;"><i style='font-size:24px' class='fas'>&#xf023;</i></label>
-            <input type="text" id="password" placeholder="Password">
+            <label class="form-label fw-bold" for="userpw" style="color:white; font-size: 15px;"><i style='font-size:24px'
+                    class='fas'>&#xf023;</i></label>
+            <input type="password" id="userpw" placeholder="Password">
         </div>
 
-        <button type="submit" class="btn-login"><b>Login</b></button>
-        <button type="submit"  class="btn-register"><b>Register</b></button>
-        
-        
+        <button type="submit" class="btn-login" onclick="login()"><b>Login</b></button>
+        <button type="submit" class="btn-register" onclick="new_register()"><b>Register</b></button>
+
+
     </div>
 </body>
 
