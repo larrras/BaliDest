@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <style>
         .card-body {
             font-family: 'Bitter', serif;
@@ -29,18 +32,20 @@
             font-family: 'Tilt Neon', cursive;
         }
 
-        .mypicture {
-            width: 100%;
-            height: 380px;
+        .slides {
+            width: 80%;
+            height: 515px;
+            object-fit: cover;
+            color: rgb(247, 125, 81);
+            margin-left: 10%;
+            padding-top: 30px;
+        }
 
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1588625224664-a561c1f5f619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');
-            background-position: center;
-            background-size: cover;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .orange-button {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 9px 15px;
+            border-radius: 7px;
         }
     </style>
 </head>
@@ -51,22 +56,23 @@
     <div class="container-fluid px-0">
 
         <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow"
-            style="background-color: #9ed4ff; height: 72px;">
+            style="background-color: rgb(247, 125, 81); height: 72px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
                 </svg>
                 <span class="fs-4 text-nav fw-bold" style="font-family: 'Bitter', serif;
-                font-family: 'Shantell Sans', cursive; color: white;;">BaliDest</span>
+                font-family: 'Shantell Sans', cursive; color: darkblue;">BaliDest</span>
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link" style="color:white">Home</a></li>
-                <li class="nav-item"><a href="#headline" class="nav-link" style="color:white">Headline</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link" style="color:white">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" style="color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link" style="color:darkblue"><b>Headlines</b></a>
+                </li>
+                <li class="nav-item"><a href="#about" class="nav-link" style="color:darkblue"><b>About</b></a></li>
                 <span>
-                    <li class="nav-item"><a href="/login" class="nav-link" style="color:white"><i style='font-size:24px'
-                                class='fas'>&#xf2bd;</i></a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link" style="color:darkblue"><i
+                                style='font-size:24px' class='fas'>&#xf2bd;</i></a></li>
 
                 </span>
 
@@ -76,9 +82,42 @@
     </div>
 
     <!-- Home -->
-    <div class="mypicture" style="background-color: white;">
-        <h1>Destinasi Bali</h1>
+    <!-- <div class="mypicture"
+        style="background-color: white; font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+        <p style="font-size: 50px;">Destinasi Bali</p>
+    </div> -->
+
+    <div id="mySwiper" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1588625224664-a561c1f5f619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" class="slides" alt="Slide 1">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" class="slides" alt="Slide 2">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" class="slides" alt="Slide 3">
+            </div>
+        </div>
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('#mySwiper', {
+            // Configuration options
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            autoplay: {
+                delay: 1800,
+            },
+        });
+    </script>
+
+
 
 
     <!-- Headline -->
@@ -88,19 +127,22 @@
         <!-- headline -->
 
         <div class="container">
-            <h2 class="d-flex fw-bold justify-content-center" style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: black">HeadlineDest</h2>
+            <h2 class="d-flex fw-bold justify-content-center"
+                style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue;">HeadlineDest</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
                         <img src="https://images.unsplash.com/photo-1581164197999-99c7d65e8805?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=750&q=80"
-                            class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
                             <h5 class="card-title">BADUNG</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;">View More</a>
+                            <div>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
                     </div>
@@ -108,13 +150,15 @@
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
                         <img src="https://img.trvcdn.net/https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6a/e4/b4.jpg?imgeng=m_box/w_1418/h_946"
-                        class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
                             <h5 class="card-title">GIANYAR</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;">View More</a>
+                            <div>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
                     </div>
@@ -122,13 +166,15 @@
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
                         <img src="https://images.unsplash.com/photo-1680094513129-abe05d29eee1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
-                        class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
                             <h5 class="card-title">TABANAN</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;">View More</a>
+                            <div>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
                     </div>
@@ -136,42 +182,45 @@
 
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src=""
-                            class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                        <img src="https://images.unsplash.com/photo-1603377191540-0b6b101b8edd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">Title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src=""
-                            class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src=""
-                            class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Title</h5>
+                            <h5 class="card-title">BANGLI</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
                             <div>
-                                <a href="#" class="btn btn-warning" style="margin-left: 35%;" >View More</a>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm" style="border-radius: 35px;">
+                        <img src="https://a.cdn-hotels.com/gdcs/production96/d940/1f50e2d8-c41c-4ff5-a065-adf41f63b683.jpg?impolicy=fcrop&w=800&h=533&q=medium" class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                        <div class="card-body">
+                            <h5 class="card-title">KARANGASEM</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm" style="border-radius: 35px;">
+                        <img src="https://images.unsplash.com/photo-1532253240322-146d5987f692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" class="card-img-top"
+                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                        <div class="card-body">
+                            <h5 class="card-title">NUSA PENIDA</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div>
+                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                                <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
                     </div>
@@ -190,13 +239,16 @@
             <div class="container col-xxl-8 px-4 py-5 ">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h2 class="d-flex fw-bold " style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: #008B8B"> Bali</h2>
+                        <h2 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Bali</h2>
                         <h4
-                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
                             Indonesia</h4>
 
-                        <p class="justify-content-center">
+                        <p class="justify-content-center"
+                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
                             Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para wisatawan. </p>
 
                     </div>
