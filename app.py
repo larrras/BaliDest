@@ -30,14 +30,14 @@ SECRET_KEY = "BALIDEST"
 
 @app.route('/')
 def home():
-       token_receive = request.cookies.get('mytoken')
+    token_receive = request.cookies.get('mytoken')
     try:
         payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id':payload['id']})
         return render_template('home.html', nickname =user_info['nick'])
-    except jwt.ExpiredSignatureError: #jika tokennya kadaluarsa maka kita akan ke 
+    except jwt.ExpiredSignatureError :
         return redirect(url_for('login', msg="login sudah kadaluarsa"))
-    except jwt.exceptions.DecodeError:
+    except jwt.exceptions.DecodeError :
         return redirect(url_for('login', msg="login lah setelah sudah register!!"))
 
 # route ke login 
@@ -51,9 +51,8 @@ def login():
 def api_login():
     id_receive = request.form.get('id_give')
     pw_receive = request.form.get('pw_give')
-
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-    result = db.users.find_one({
+    result = db.user.find_one({
         'id' : id_receive,
         'pw' : pw_hash,
     })
@@ -61,7 +60,7 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
-            'exp':datetime.utcnow() + timedelta(seconds=60)
+            'exp': datetime.utcnow() + timedelta(seconds=5)
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
@@ -98,7 +97,7 @@ def api_valid():
         print(payload)
         userinfo = db.user.find_one({'id':payload('id')},{'_id':0})
         return jsonify({'result':'success', 'nickname': userinfo['nick']})
-    except jwt.ExpiredSignatureError: #jika tokennya kadaluarsa maka kita akan ke 
+    except jwt.ExpiredSignatureError: 
         msg="login sudah kadaluarsa"
         return jsonify({'result':'fail','msg':msg})
     except jwt.exceptions.DecodeError:
