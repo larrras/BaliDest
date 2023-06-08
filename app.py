@@ -80,7 +80,7 @@ def api_register():
     nickname_receive = request.form.get('nickname_give')
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     if db.user.find_one({'id' : id_receive,}):
-        return jsonify({'message': 'Username telah terdaftar!'}) 
+        return jsonify({'message': 'Maaf, ya. Username telah terdaftar!'}) 
     db.user.insert_one({
         'id' : id_receive,
         'pw' : pw_hash,
@@ -103,7 +103,31 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         msg="Login, yuk!"
         return jsonify({'result':'fail','msg':msg})
+    
 
+@app.route('/badung',methods=['GET','POST'])
+def badung():
+    return render_template('badung.html')
+
+@app.route('/gianyar',methods=['GET','POST'])
+def gianyar():
+    return render_template('gianyar.html')
+
+@app.route('/tabanan',methods=['GET','POST'])
+def tabanan():
+    return render_template('tabanan.html')
+
+@app.route('/bangli',methods=['GET','POST'])
+def bangli():
+    return render_template('bangli.html')
+
+@app.route('/karangasem',methods=['GET','POST'])
+def karangasem():
+    return render_template('karangasem.html')
+
+@app.route('/nusapenida',methods=['GET','POST'])
+def nusapenida():
+    return render_template('nusapenida.html')
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
