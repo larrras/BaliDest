@@ -3,7 +3,7 @@
 # from os.path import join, dirname
 # from dotenv import load_dotenv
 
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from pymongo import MongoClient
 import requests
 import jwt
@@ -36,9 +36,9 @@ def home():
         user_info = db.user.find_one({'id':payload['id']})
         return render_template('home.html', nickname =user_info['nick'])
     except jwt.ExpiredSignatureError :
-        return redirect(url_for('login', msg="login sudah kadaluarsa"))
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError :
-        return redirect(url_for('login', msg="login lah setelah sudah register!!"))
+        return redirect(url_for('login', msg="Login, yuk!"))
 
 # route ke login 
 @app.route('/login')
@@ -60,12 +60,12 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=5)
+            'exp': datetime.utcnow() + timedelta(seconds=180)
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
     else :
-        return jsonify({'result':'fail', 'msg': 'gunakan password atau email lain'})
+        return jsonify({'result':'fail', 'msg': 'Coba gunakan email/password lain, yuk!'})
 
 
 # route ke register
@@ -80,7 +80,7 @@ def api_register():
     nickname_receive = request.form.get('nickname_give')
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     if db.user.find_one({'id' : id_receive,}):
-        return jsonify({'message': 'Username sudah terdaftar!'}) 
+        return jsonify({'message': 'Username telah terdaftar!'}) 
     db.user.insert_one({
         'id' : id_receive,
         'pw' : pw_hash,
@@ -98,10 +98,10 @@ def api_valid():
         userinfo = db.user.find_one({'id':payload('id')},{'_id':0})
         return jsonify({'result':'success', 'nickname': userinfo['nick']})
     except jwt.ExpiredSignatureError: 
-        msg="login sudah kadaluarsa"
+        msg="Login Sudah Kadaluarsa"
         return jsonify({'result':'fail','msg':msg})
     except jwt.exceptions.DecodeError:
-        msg="login lah jika sudah registrasi!!"
+        msg="Login, yuk!"
         return jsonify({'result':'fail','msg':msg})
 
 
