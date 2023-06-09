@@ -3,7 +3,7 @@
 # from os.path import join, dirname
 # from dotenv import load_dotenv
 
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect,url_for
 from pymongo import MongoClient
 import requests
 import jwt
@@ -60,7 +60,7 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=5)
+            'exp': datetime.utcnow() + timedelta(seconds=60)
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
@@ -103,6 +103,12 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         msg="login lah jika sudah registrasi!!"
         return jsonify({'result':'fail','msg':msg})
+
+# login admin
+@app.route('/login_admin')
+def login_admin(): 
+    return render_template('loginadmin.html')
+
 
 
 if __name__ == '__main__':

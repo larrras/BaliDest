@@ -79,17 +79,20 @@
 
     <script>
         function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password");
-            var icon = document.getElementById("toggle-icon");
+            let passwordInput = document.getElementById("password-input");
+            let toggleIcon = document.getElementById("toggle-icon");
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                icon.className = "fas fa-eye-slash";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
             } else {
-                passwordInput.type = "pasword";
-                icon.className = "fas fa-eye"
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
             }
         }
+
     </script>
 
 
@@ -98,31 +101,22 @@
 <body>
     <div class="login">
 
-        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b></h2>
-        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as Administrator BaliDest</p>
+        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b>
+        </h2>
+        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as
+            Administrator BaliDest</p>
 
         <div class="box-email">
-            <p class="control has-icons-left is-warning">
-                <input class="input" type="email" placeholder="Email">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                </span>
-            </p>
+                <input type="text" class="adminid" placeholder="ID">
         </div>
         <div class="box-pw">
-            <p class="control has-icons-left has-icons-right">
-                <input class="input" type="password" id="password" placeholder="Password">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                </span>
-                <span class="icon is-small is-right">
-                    <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
-                </span>
-            </p>
+                <input type="password" id="password-input" placeholder="password">
+                <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+            
         </div>
 
         <button type="submit" class="btn-login"><b>Login</b></button>
-        
+
     </div>
 </body>
 
