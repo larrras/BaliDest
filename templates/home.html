@@ -25,6 +25,10 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
+    <link rel="stylesheet" href="path/to/fontawesome/css/all.min.css">
+    <script src="path/to/jquery.min.js"></script>
+
+
     <style>
         .card-body {
             font-family: 'Bitter', serif;
@@ -47,7 +51,45 @@
             padding: 9px 15px;
             border-radius: 7px;
         }
+
+        .log {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 7px 7px;
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            font-size: 15px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background-color: rgb(247, 125, 81)(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .arrow.prev {
+            left: 55px;
+        }
+
+        .arrow.next {
+            right: 55px;
+        }
+
+        .col {
+            background-color: transparent;
+            border-radius: 35px;
+            transition: box-shadow 0.2s;
+        }
+
+        .col:hover {
+            margin: auto;
+        }
     </style>
+
 </head>
 
 <body>
@@ -61,21 +103,28 @@
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
                 </svg>
-                <span class="fs-4 text-nav fw-bold" style="font-family: 'Bitter', serif;
-                font-family: 'Shantell Sans', cursive; color: darkblue;">BaliDest</span>
+                <span class="fs-4 text-nav fw-bold"
+                    style="font-family: 'Bitter', serif;
+                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
             </a>
 
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link" style="color:darkblue"><b>Home</b></a></li>
-                <li class="nav-item"><a href="#headline" class="nav-link" style="color:darkblue"><b>Headlines</b></a>
+            <ul class="nav nav-pills"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Headline</b></a>
                 </li>
-                <li class="nav-item"><a href="#about" class="nav-link" style="color:darkblue"><b>About</b></a></li>
+                <li class="nav-item"><a href="#about" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
                 <span>
-                    <li class="nav-item"><a href="/login" class="nav-link" style="color:darkblue"><i
-                                style='font-size:24px' class='fas'>&#xf2bd;</i></a></li>
-
+                    <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
+                        <a href="/login" class="log" style="font-size: 17px;">
+                            <i class='fas'>&#xf2bd;
+                            </i><b>  Login</b>
+                        </a>
+                    </li>
                 </span>
-
             </ul>
         </header>
 
@@ -90,18 +139,60 @@
     <div id="mySwiper" class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
+<<<<<<< HEAD
                 <img src="https://images.unsplash.com/photo-1588625224664-a561c1f5f619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                     class="slides" alt="Slide 1">
             </div>
             <div class="swiper-slide">
                 <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
                     class="slides" alt="Slide 2">
+=======
+                <img src=" https://images.unsplash.com/photo-1528265417219-1a288ae08573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    class="slides" alt="Slide 1">
+                <span class="arrow prev"><i class="fa fa-chevron-left"
+                        style="font-size:40px;color: darkblue"></i></span>
+                <span class="arrow next"><i class="fa fa-chevron-right"
+                        style="font-size:40px;color: darkblue"></i></i></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1585302397841-b42e837d0d81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
+                    class="slides" alt="Slide 2">
+                <span class="arrow prev"><i class="fa fa-chevron-left"
+                        style="font-size:40px;color: darkblue"></i></span>
+                <span class="arrow next"><i class="fa fa-chevron-right"
+                        style="font-size:40px;color: darkblue"></i></span>
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
             </div>
             <div class="swiper-slide">
                 <img src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
                     class="slides" alt="Slide 3">
+<<<<<<< HEAD
+=======
+                <span class="arrow prev"><i class="fa fa-chevron-left"
+                        style="font-size:40px;color: darkblue"></i></span>
+                <span class="arrow next"><i class="fa fa-chevron-right"
+                        style="font-size:40px;color: darkblue"></i></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1588625224664-a561c1f5f619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                    class="slides" alt="Slide 3">
+                <span class="arrow prev"><i class="fa fa-chevron-left"
+                        style="font-size:40px;color: darkblue"></i></span>
+                <span class="arrow next"><i class="fa fa-chevron-right"
+                        style="font-size:40px;color: darkblue"></i></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1542897730-eb9fff056519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1031&q=80"
+                    class="slides" alt="Slide 3">
+                <span class="arrow prev"><i class="fa fa-chevron-left"
+                        style="font-size:40px;color: darkblue"></i></span>
+                <span class="arrow next"><i class="fa fa-chevron-right"
+                        style="font-size:40px;color: darkblue"></i></span>
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
             </div>
         </div>
+
+
     </div>
 
     <!-- Swiper JS -->
@@ -115,13 +206,10 @@
             spaceBetween: 10,
             loop: true,
             autoplay: {
-                delay: 1800,
+                delay: 2000,
             },
         });
     </script>
-
-
-
 
     <!-- Headline -->
 
@@ -136,15 +224,15 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src="https://images.unsplash.com/photo-1581164197999-99c7d65e8805?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=750&q=80"
+                        <img src="https://images.unsplash.com/photo-1541739296801-2412947056ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">BADUNG</h5>
+                            <h4 class="card-title"><b>BADUNG</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/badung" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -152,15 +240,15 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src="https://img.trvcdn.net/https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6a/e4/b4.jpg?imgeng=m_box/w_1418/h_946"
+                        <img src="https://img.theculturetrip.com/wp-content/uploads/2021/07/rice-terraces-in-tegallalang.jpg"
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">GIANYAR</h5>
+                            <h4 class="card-title"><b>GIANYAR</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/gianyar" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -172,11 +260,11 @@
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">TABANAN</h5>
+                            <h4 class="card-title"><b>TABANAN</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/tabanan" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -189,11 +277,11 @@
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">BANGLI</h5>
+                            <h4 class="card-title"><b>BANGLI</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/bangli" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -205,11 +293,11 @@
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">KARANGASEM</h5>
+                            <h4 class="card-title"><b>KARANGASEM</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/karangasem" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -221,11 +309,11 @@
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
-                            <h5 class="card-title">NUSA PENIDA</h5>
+                            <h4 class="card-title"><b>NUSA PENIDA</b></h4>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p>
-                            <div>
-                                <a href="#destinasi" class="orange-button" style="margin-left: 35%;">View More</a>
+                            <div style="padding-top: 5px; padding-bottom: 8px;">
+                                <a href="/nusapenida" class="orange-button" style="margin-left: 35%;">View More</a>
                                 <!-- <button class="orange-button">View More</button> -->
                             </div>
                         </div>
@@ -267,13 +355,16 @@
     <!-- Footer -->
     <div class="container">
         <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Headline</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Login</a></li>
             </ul>
-            <p class="text-center text-body-secondary">© 2023 Balidest</p>
+            <p class="text-center text-body-secondary"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                © 2023 Balidest</p>
         </footer>
     </div>
 
