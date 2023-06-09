@@ -3,7 +3,11 @@
 # from os.path import join, dirname
 # from dotenv import load_dotenv
 
+<<<<<<< HEAD
+from flask import Flask, render_template, request, jsonify, redirect,url_for
+=======
 from flask import Flask, render_template, request, jsonify, redirect, url_for
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
 from pymongo import MongoClient
 import requests
 import jwt
@@ -60,7 +64,11 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
+<<<<<<< HEAD
+            'exp': datetime.utcnow() + timedelta(seconds=60)
+=======
             'exp': datetime.utcnow() + timedelta(seconds=180)
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
@@ -105,6 +113,14 @@ def api_valid():
         return jsonify({'result':'fail','msg':msg})
     
 
+<<<<<<< HEAD
+# login admin
+@app.route('/login_admin')
+def login_admin(): 
+    return render_template('loginadmin.html')
+
+
+=======
 @app.route('/badung',methods=['GET','POST'])
 def badung():
     return render_template('badung.html')
@@ -128,6 +144,7 @@ def karangasem():
 @app.route('/nusapenida',methods=['GET','POST'])
 def nusapenida():
     return render_template('nusapenida.html')
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
