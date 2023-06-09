@@ -1,12 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMINISTRATOR PAGE | Balidest</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <title>HOME | Balidest</title>
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 200px auto;
+        }
+
+        .sidebar {
+            height: 690px;
+            width: 250px;
+            margin-right: 100%;
+            padding: auto 30px;
+            min-height: 100vh
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+            color: darkblue;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle>button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: darkblue;
+
+            border-radius: 50px;
+            border: 2px solid darkblue;
+
+            margin-top: 10px;
+        }
+
+        .mytitle>button:hover {
+            border: 2px solid darkblue;
+        }
+
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: none;
+        }
+
+        .mybtns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .mybtns>button {
+            margin-right: 10px;
+        }
+    </style>
+
+    <script>
+        function open_box() {
+            $('#post-box').show()
+        }
+        function close_box() {
+            $('#post-box').hide()
+        }
+    </script>
 </head>
+
 <body>
-    
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi pe-none me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <!-- <span class="fs-4">Sidebar</span> -->
+                    <p style="font-size: 38px; font-weight: 600; color: rgb(247, 125, 81);">Sidebar</p>
+                </a>
+                <br>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;"><i
+                                class="fa fa-home" style="font-size: 28px;"></i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#home"></use>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#headline" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
+                                class='fas fa-stream' style='font-size: 25px'></i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Headline
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
+                                class='fas fa-info-circle' style='font-size: 24px'></i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            About
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#"
+                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="padding: 5px;">
+                        <img src="static/laras.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>estlaras</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                    <footer>
+                        <p class="text-center text-body-secondary"
+                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; padding-top: 25px;">
+                            © 2023 Balidest</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <!-- FORM INPUT -->
+            <section id="form-input">
+                <div class="mytitle">
+                    <h1>My Favorite Movies</h1>
+                    <button onclick="open_box()">Save movie</button>
+                </div>
+                <div class="mypost" id="post-box">
+                    <div class="form-floating mb-3">
+                        <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                        <label>Movie URL</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Rating</label>
+                        <select class="form-select" id="star">
+                            <option selected>-- Select a rating--</option>
+                            <option value="1">⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                        </select>
+                    </div>
+                    <div class="form-floating">
+                        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                        <label for="floatingTextarea2">Comment</label>
+                    </div>
+                    <div class="mybtns">
+                        <button onclick="posting()" type="button" class="btn btn-dark">Save</button>
+                        <button onclick="close_box()" type="button" class="btn btn-outline-dark">Close</button>
+                    </div>
+                </div>
+
+            </section>
+            <!-- HEADLINE -->
+            <section id="headline">
+                <h2 class="d-flex fw-bold justify-content-center"
+                    style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue;">HeadlineDest</h2>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://images.unsplash.com/photo-1541739296801-2412947056ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>BADUNG</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/badung" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://img.theculturetrip.com/wp-content/uploads/2021/07/rice-terraces-in-tegallalang.jpg"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>GIANYAR</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/gianyar" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://images.unsplash.com/photo-1680094513129-abe05d29eee1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>TABANAN</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/tabanan" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://images.unsplash.com/photo-1603377191540-0b6b101b8edd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>BANGLI</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/bangli" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://a.cdn-hotels.com/gdcs/production96/d940/1f50e2d8-c41c-4ff5-a065-adf41f63b683.jpg?impolicy=fcrop&w=800&h=533&q=medium"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>KARANGASEM</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/karangasem" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="https://images.unsplash.com/photo-1532253240322-146d5987f692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                                class="card-img-top"
+                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>NUSA PENIDA</b></h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/nusapenida" class="orange-button" style="margin-left: 35%;">View More</a>
+                                    <!-- <button class="orange-button">View More</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ABOUT -->
+            <section id="about">
+                <div class="container">
+                    <div class="container-fluid px-0">
+                        <div class="container col-xxl-8 px-4 py-5 ">
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                    <h2 class="d-flex fw-bold "
+                                        style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                                        Bali</h2>
+                                    <h4
+                                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
+                                        Indonesia</h4>
+
+                                    <p class="justify-content-center"
+                                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                                        Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
+                                        wisatawan.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </body>
+
 </html>

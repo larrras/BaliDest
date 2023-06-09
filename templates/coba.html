@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Content Beside Left Sidebar</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 200px auto;
+        }
+
+        .sidebar {
+            background-color: rgb(204, 223, 246);
+            padding: auto 30px;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <!-- Sidebar content goes here -->
+            <h2>Sidebar</h2>
+            <p>This is the sidebar content.</p>
+        </div>
+        <div class="main-content">
+            <!-- Main content goes here -->
+            <h1>Main Content</h1>
+            <p>This is the main content beside the sidebar.</p>
+            <p>In the example above, we define a container element with the class "container" that uses CSS grid to
+                create two columns:
+                a 200px wide sidebar and an automatically sized main content area. Inside the container, we have two
+                child divs, one
+                with the class "sidebar" and the other with the class "main-content". You can add your desired content
+                inside these
+                divs.
+
+                The CSS styles define the appearance of the sidebar and main content areas. Feel free to modify the
+                styles to match your
+                desired layout and design.
+
+                Remember to adjust the sizes, styles, and content to suit your specific needs.</p>
+        </div>
+    </div>
+</body>
+
+</html>
