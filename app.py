@@ -3,11 +3,7 @@
 # from os.path import join, dirname
 # from dotenv import load_dotenv
 
-<<<<<<< HEAD
 from flask import Flask, render_template, request, jsonify, redirect,url_for
-=======
-from flask import Flask, render_template, request, jsonify, redirect, url_for
->>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
 from pymongo import MongoClient
 import requests
 import jwt
@@ -30,15 +26,15 @@ db = client.dbbalidest
 app=Flask(__name__)
 
 SECRET_KEY = "BALIDEST"
-# route ke home
 
+# route ke home
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
         payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id':payload['id']})
-        return render_template('home.html', nickname =user_info['nick'])
+        return render_template('home.html', nickname = user_info['nick'])
     except jwt.ExpiredSignatureError :
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError :
@@ -64,16 +60,12 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
-<<<<<<< HEAD
             'exp': datetime.utcnow() + timedelta(seconds=60)
-=======
-            'exp': datetime.utcnow() + timedelta(seconds=180)
->>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
     else :
-        return jsonify({'result':'fail', 'msg': 'Coba gunakan email/password lain, yuk!'})
+        return jsonify({'result':'fail', 'msg': 'Coba gunakan ID yang lain, yuk!'})
 
 
 # route ke register
@@ -96,14 +88,13 @@ def api_register():
     })
     return jsonify({'result': 'success'})
 
-
 @app.route('/api/nick', methods=['GET'])
 def api_valid():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.encode(token_receive,SECRET_KEY,algorithms=['HS256'])
         print(payload)
-        userinfo = db.user.find_one({'id':payload('id')},{'_id':0})
+        user_info = db.user.find_one({'id':payload('id')},{'_id':0})
         return jsonify({'result':'success', 'nickname': userinfo['nick']})
     except jwt.ExpiredSignatureError: 
         msg="Login Sudah Kadaluarsa"
@@ -111,40 +102,38 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         msg="Login, yuk!"
         return jsonify({'result':'fail','msg':msg})
-    
 
-<<<<<<< HEAD
+# route home_admin
+@app.route('/home_admin')
+def home_admin():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        admin_info = db.admins.find_one({'id':payload['id']})
+        return render_template('homeadm.html')
+    except jwt.ExpiredSignatureError :
+        return redirect(url_for('login_admin', msg="admin login mu udah Kadaluarsa, login lagi yah..."))
+    except jwt.exceptions.DecodeError :
+        return redirect(url_for('login_admin', msg="haii admin, login yuk!"))
+ 
 # login admin
 @app.route('/login_admin')
 def login_admin(): 
+    msg = request.args.get('msg')
     return render_template('loginadmin.html')
 
+# login api admin
+@app.route('/api/admin', methods=['POST'])
+def api_admin():
+    id_admin = request.form.get('id_admin')
+    pw_admin = request.form.get('pw_admin')
+    pw_hash = hashlib.sha256(pw_admin.encode('utf-8')).hexdigest()
+    db.admins.insert_one({
+        'id' : id_admin,
+        'pw' : pw_hash,
+    })
+    return jsonify ({'msg': id_admin})
 
-=======
-@app.route('/badung',methods=['GET','POST'])
-def badung():
-    return render_template('badung.html')
-
-@app.route('/gianyar',methods=['GET','POST'])
-def gianyar():
-    return render_template('gianyar.html')
-
-@app.route('/tabanan',methods=['GET','POST'])
-def tabanan():
-    return render_template('tabanan.html')
-
-@app.route('/bangli',methods=['GET','POST'])
-def bangli():
-    return render_template('bangli.html')
-
-@app.route('/karangasem',methods=['GET','POST'])
-def karangasem():
-    return render_template('karangasem.html')
-
-@app.route('/nusapenida',methods=['GET','POST'])
-def nusapenida():
-    return render_template('nusapenida.html')
->>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD

@@ -13,6 +13,8 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- Link Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +90,31 @@
     </style>
 
     <script>
+        {% if msg %}
+        alert("{{ msg }}")
+        {% endif %}
+
+        function loginadmin(){
+            let id_admin = $('.adminid').val()
+            let pw_admin = $('.adminpw').val()
+            $.ajax({
+                type: "POST",
+                url: "/api/admin",
+                data: { id_admin:id_admin,
+                        pw_admin : pw_admin },
+                success: function (response) {
+                    if (response['result'] === 'success') {
+                        $.cookie('mytoken', response['token']);
+                        alert('Login Berhasil!')
+                        window.location.href = '/home_admin'
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            })
+        }
+
+        // fungsi icon pw
         function togglePasswordVisibility() {
             let passwordInput = document.getElementById("password-input");
             let toggleIcon = document.getElementById("toggle-icon");
@@ -104,6 +131,7 @@
         }
 
     </script>
+    
 
 
 </head>
@@ -111,28 +139,19 @@
 <body>
     <div class="login">
 
-<<<<<<< HEAD
-        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b>
-        </h2>
-        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as
-=======
-        <h2
-            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);">
-            <b>ADMINISTRATOR LOGIN</b></h2>
-        <p style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as
->>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
-            Administrator BaliDest</p>
+        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b></h2>
+        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as Administrator BaliDest</p>
 
         <div class="box-email">
                 <input type="text" class="adminid" placeholder="ID">
         </div>
         <div class="box-pw">
-                <input type="password" id="password-input" placeholder="password">
+                <input class='adminpw' type="password" id="password-input" placeholder="password">
                 <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
             
         </div>
 
-        <button type="submit" class="btn-login"><b>Login</b></button>
+        <button type="submit" class="btn-login" onclick="loginadmin()"><b>Login</b></button>
 
     </div>
 </body>
