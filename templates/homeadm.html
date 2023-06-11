@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -118,64 +119,72 @@
         });
 
         function listing() {
-            // $('#cards-box').empty();
             $.ajax({
                 type: 'GET',
                 url: '/input/destinasi',
                 data: {},
                 success: function (response) {
-                    // Saat client menerima sebuah response dari server, 
-                    // yang harus kita lakukan adalah melakukan loop over pada data respon tersebut dengan for-loop, bangun sebuah HTML string, dan tambahkan ke dalam dokumen HTML.
                     let rows = response['balidest'];
                     for (let i = 0; i < rows.length; i++) {
                         let image = rows[i]['image'];
+                        let imageSplit = image.split('.');
+
                         let judul = rows[i]['judul'];
                         let desc = rows[i]['desc'];
-                        
+
                         let temp_html = `
-                        <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="${image}" class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                                <h4 class="card-title"><b>${judul}</b></h4>
-                                <p class="card-text">${desc}.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/badung" class="orange-button" style="margin-left: 35%;">View More</a>
-                                 <button class="orange-button">View More</button>
-                                </div>  
-                        </div>  
-                        </div> `;
+    <div class="col">
+        <div class="card shadow-sm" style="border-radius: 35px;">
+            <img src="{{ url_for('static', filename=image) }}" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+            <div class="card-body">
+                <h4 class="card-title"><b>${judul}</b></h4>
+                <p class="card-text">${desc}.</p>
+            </div>
+            <div class="card-footer">
+                <a href="/badung" class="btn orange-button">View More</a>
+                <button class="btn orange-button">View More</button>
+            </div>
+        </div>
+    </div>`;
                         $('#cards-box').append(temp_html);
+
                     }
-                    // alert(response['msg'])
-                }
-            })
+                },
+            });
         }
-        // kode client
-        // Karena server kita membutuhkan data dengan label url, star, comment untuk dapat dikirim ke client, kita perlu memastikan bahwa datanya dilabel sesuai dengan ketentuan
+
         function posting() {
-            let image = $('#image').val();
-            let Judul = $('#judul').val();
+            let judul = $('#judul').val();
             let desc = $('#desc').val();
+            let fileInput = document.getElementById('image');
+            let file = fileInput.files[0];
+            let formData = new FormData();
+            formData.append('image', file);
+            formData.append('judul_give', judul);
+            formData.append('desc_give', desc);
+
             $.ajax({
                 type: 'POST',
                 url: '/input/destinasi',
-                data: {
-                    judul_give: judul,
-                    desc_give: desc
-                },
+                data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
+                    alert(response['msg']);
+                    window.location.reload();
+                },
             });
         }
+
         function open_box() {
-            $('#post-box').show()
+            $('#post-box').show();
         }
+
         function close_box() {
-            $('#post-box').hide()
+            $('#post-box').hide();
         }
     </script>
+
 </head>
 
 <body>
@@ -255,7 +264,7 @@
 
                 <div class="mypost" id="post-box">
                     <div class="form-floating mb-3">
-                        <input id="judul" type="text" class="form-control" placeholder="name@example.com">
+                        <input id="judul" type="text" class="form-control" placeholder="judul">
                         <label>Judul</label>
                     </div>
                     <div class="input-group mb-3">
@@ -264,8 +273,8 @@
                         </label>
                     </div>
                     <div class="form-floating">
-                        <textarea id="desc" class="form-control" placeholder="Leave a comment here"></textarea>
-                        <label for="floatingTextarea2">Deskripsi Destinasi</label>
+                        <textarea id="desc" class="form-control" placeholder="descriptions"></textarea>
+                        <label for="desc floatingTextarea2">Deskripsi Destinasi</label>
                     </div>
                     <div class="mybtns">
                         <button onclick="posting()" type="submit" class="blue-button">Save</button>
@@ -276,36 +285,35 @@
             </section>
             <!-- HEADLINE -->
             <section id="headline">
-                <h2 class="d-flex fw-bold justify-content-center" style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black;">BaliDest
-                </h2>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="card-body" id="cards-box">
-
-                    </div>
+                <h2 class="d-flex fw-bold justify-content-center"
+                    style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black;">
+                    BaliDest</h2>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-box">
+                    <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
                 </div>
             </section>
+            <br />
         </div>
-
-    </div>
-   
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="about" style="padding-top: 25px;">
-            <h2 class="d-flex fw-bold "
-                style="font-family: 'Bitter', serif;
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="about" style="padding-top: 25px;">
+                <h2 class="d-flex fw-bold "
+                    style="font-family: 'Bitter', serif;
                         font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
-                Bali</h2>
-            <h4
-                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
-                Indonesia</h4>
-            <p class="justify-content-center"
-                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
-                wisatawan.
-            </p>
-        </div>
-    </section>
+                    Bali</h2>
+                <h4
+                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
+                    Indonesia</h4>
+                <p class="justify-content-center"
+                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                    Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
+                    wisatawan.
+                </p>
+            </div>
+        </section>
+    </div>
+
+
     </div>
     </div>
 </body>

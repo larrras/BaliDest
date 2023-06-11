@@ -1,7 +1,8 @@
 
-# import os
-# from os.path import join, dirname
-# from dotenv import load_dotenv
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+from werkzeug.utils import secure_filename
 
 from flask import Flask, render_template, request, jsonify, redirect,url_for
 from pymongo import MongoClient
@@ -10,8 +11,9 @@ import jwt
 from datetime import datetime,timedelta
 import hashlib
 
-# dotenv_path = join(dirname(__file__), '.env')
-# load_dotenv(dotenv_path)
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # MONGODB_URI = os.environ.get("MONGODB_URI")
 # DB_NAME =  os.environ.get("DB_NAME")
@@ -24,6 +26,8 @@ client = MongoClient('mongodb+srv://randhyar955:Ardiansyah955@cluster0.vr2df0r.m
 db = client.dbbalidest
 
 app=Flask(__name__)
+
+app.static_folder= 'static'
 
 SECRET_KEY = "BALIDEST"
 
@@ -149,24 +153,30 @@ def admin_login():
     else:
         return jsonify({'result': 'failed', 'message': 'Login gagal'})
 
-# homeinputadmin
+# route input
 @app.route('/input/destinasi')
-def input_destinasi() :
-    destinasi =list(db.balides.find({},{'_id' : False}))
-    return jsonify({'balidest' : destinasi})
+def input_destinasi():
+    destinasi = list(db.balides.find({}, {'_id': False}))
+    return jsonify({'balidest': destinasi})
 
 @app.route('/input/destinasi', methods=['POST'])
 def destinasi_input():
-
     judul = request.form['judul_give']
     desc = request.form['desc_give']
-    db.balides.insert_one({
-        'judul' :judul,
-        'image':image,
-        'desc' :desc
-    })
-    return jsonify({'msg' : 'POST request!'})
+    image = request.files['image']
 
+    # Simpan file gambar ke direktori static
+    filename = secure_filename(image.filename)  # Pastikan nama file aman
+    image.save(os.path.join(app.static_folder, filename))
+
+    # Simpan data ke MongoDB
+    db.balides.insert_one({
+        'judul': judul,
+        'image': url_for('static', filename=filename),
+        'desc': desc
+    })
+
+    return jsonify({'msg': 'POST request!'})
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
