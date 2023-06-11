@@ -80,7 +80,7 @@ def api_register():
     nickname_receive = request.form.get('nickname_give')
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     if db.user.find_one({'id' : id_receive,}):
-        return jsonify({'message': 'Maaf, ya. Username telah terdaftar!'}) 
+        return jsonify({'message': 'Maaf, ya. ID telah terdaftar!'}) 
     db.user.insert_one({
         'id' : id_receive,
         'pw' : pw_hash,
@@ -103,38 +103,74 @@ def api_valid():
         msg="Login, yuk!"
         return jsonify({'result':'fail','msg':msg})
 
+import hashlib
+
 # route home_admin
-@app.route('/home_admin')
+@app.route('/home')
 def home_admin():
-    token_receive = request.cookies.get('mytoken')
+    token_receive = request.cookies.get('admintoken')
     try:
-        payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        admin_info = db.admins.find_one({'id':payload['id']})
-        return render_template('homeadm.html')
-    except jwt.ExpiredSignatureError :
-        return redirect(url_for('login_admin', msg="admin login mu udah Kadaluarsa, login lagi yah..."))
-    except jwt.exceptions.DecodeError :
-        return redirect(url_for('login_admin', msg="haii admin, login yuk!"))
- 
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        admin_info = db.admin.find_one({'id': payload['id']})
+        if admin_info:
+            return render_template('homeadm.html', admin_info=admin_info)
+        else:
+            return redirect(url_for('admin', msg="Admin tidak ditemukan"))
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('admin', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('admin', msg="Login, yuk!"))
+
 # login admin
-@app.route('/login_admin')
-def login_admin(): 
-    msg = request.args.get('msg')
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if request.method == 'POST':
+        id_receive = request.form['id_give']
+        pw_receive = request.form['pw_give']
+        pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+        db.admin.insert_one({
+            'id' : id_receive,
+            'pw' : pw_hash
+        })
+        return redirect(url_for('admin_login', id_give=id_receive))
     return render_template('loginadmin.html')
 
 # login api admin
 @app.route('/api/admin', methods=['POST'])
-def api_admin():
-    id_admin = request.form.get('id_admin')
-    pw_admin = request.form.get('pw_admin')
-    pw_hash = hashlib.sha256(pw_admin.encode('utf-8')).hexdigest()
-    db.admins.insert_one({
-        'id' : id_admin,
-        'pw' : pw_hash,
+def admin_login():
+    id_receive = request.form.get('id_give')
+    pw_receive = request.form.get('pw_give')
+
+    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    admin_info = db.admin.find_one({'id': id_receive, 'pw': pw_hash})
+    if admin_info:
+        token = jwt.encode({'id': id_receive}, SECRET_KEY, algorithm='HS256')
+        return jsonify({'result':'success','token':token})  # Mengubah token menjadi string sebelum mengirimkan respons
+    else:
+        return jsonify({'result': 'failed', 'message': 'Login gagal'})
+
+# homeinputadmin
+@app.route('/input/destinasi')
+def input_destinasi() :
+    destinasi =list(db.balides.find({},{'_id' : False}))
+    return jsonify({'balidest' : destinasi})
+
+@app.route('/input/destinasi', methods=['POST'])
+def destinasi_input():
+
+    judul = request.form['judul_give']
+    desc = request.form['desc_give']
+    db.balides.insert_one({
+        'judul' :judul,
+        'image':image,
+        'desc' :desc
     })
-    return jsonify ({'msg': id_admin})
+    return jsonify({'msg' : 'POST request!'})
 
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
     app.run('0.0.0.0',port=5000,debug=True)
+
+
+

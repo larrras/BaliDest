@@ -113,6 +113,62 @@
     </style>
 
     <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            // $('#cards-box').empty();
+            $.ajax({
+                type: 'GET',
+                url: '/input/destinasi',
+                data: {},
+                success: function (response) {
+                    // Saat client menerima sebuah response dari server, 
+                    // yang harus kita lakukan adalah melakukan loop over pada data respon tersebut dengan for-loop, bangun sebuah HTML string, dan tambahkan ke dalam dokumen HTML.
+                    let rows = response['balidest'];
+                    for (let i = 0; i < rows.length; i++) {
+                        let image = rows[i]['image'];
+                        let judul = rows[i]['judul'];
+                        let desc = rows[i]['desc'];
+                        
+                        let temp_html = `
+                        <div class="col">
+                        <div class="card shadow-sm" style="border-radius: 35px;">
+                            <img src="${image}" class="card-img-top" style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+                                <h4 class="card-title"><b>${judul}</b></h4>
+                                <p class="card-text">${desc}.</p>
+                                <div style="padding-top: 5px; padding-bottom: 8px;">
+                                    <a href="/badung" class="orange-button" style="margin-left: 35%;">View More</a>
+                                 <button class="orange-button">View More</button>
+                                </div>  
+                        </div>  
+                        </div> `;
+                        $('#cards-box').append(temp_html);
+                    }
+                    // alert(response['msg'])
+                }
+            })
+        }
+        // kode client
+        // Karena server kita membutuhkan data dengan label url, star, comment untuk dapat dikirim ke client, kita perlu memastikan bahwa datanya dilabel sesuai dengan ketentuan
+        function posting() {
+            let image = $('#image').val();
+            let Judul = $('#judul').val();
+            let desc = $('#desc').val();
+            $.ajax({
+                type: 'POST',
+                url: '/input/destinasi',
+                data: {
+                    judul_give: judul,
+                    desc_give: desc
+                },
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            });
+        }
         function open_box() {
             $('#post-box').show()
         }
@@ -199,20 +255,20 @@
 
                 <div class="mypost" id="post-box">
                     <div class="form-floating mb-3">
-                        <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                        <input id="judul" type="text" class="form-control" placeholder="name@example.com">
                         <label>Judul</label>
                     </div>
                     <div class="input-group mb-3">
                         <label class="label" for="input-pic"> Gambar Destinasi
-                            <input type="file" class="form-control" id="inputGroupFile02" style="margin: 3px;">
+                            <input type="file" class="form-control" id="image" style="margin: 3px;">
                         </label>
                     </div>
                     <div class="form-floating">
-                        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                        <textarea id="desc" class="form-control" placeholder="Leave a comment here"></textarea>
                         <label for="floatingTextarea2">Deskripsi Destinasi</label>
                     </div>
                     <div class="mybtns">
-                        <button onclick="posting()" type="button" class="blue-button">Save</button>
+                        <button onclick="posting()" type="submit" class="blue-button">Save</button>
                         <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
                     </div>
                 </div>
@@ -224,129 +280,33 @@
                     font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black;">BaliDest
                 </h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://images.unsplash.com/photo-1541739296801-2412947056ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>BADUNG</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/badung" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://img.theculturetrip.com/wp-content/uploads/2021/07/rice-terraces-in-tegallalang.jpg"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>GIANYAR</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/gianyar" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://images.unsplash.com/photo-1680094513129-abe05d29eee1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>TABANAN</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/tabanan" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="card-body" id="cards-box">
 
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://images.unsplash.com/photo-1603377191540-0b6b101b8edd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>BANGLI</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/bangli" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://a.cdn-hotels.com/gdcs/production96/d940/1f50e2d8-c41c-4ff5-a065-adf41f63b683.jpg?impolicy=fcrop&w=800&h=533&q=medium"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>KARANGASEM</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/karangasem" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card shadow-sm" style="border-radius: 35px;">
-                            <img src="https://images.unsplash.com/photo-1532253240322-146d5987f692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-                                class="card-img-top"
-                                style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                            <div class="card-body">
-                                <h4 class="card-title"><b>NUSA PENIDA</b></h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div style="padding-top: 5px; padding-bottom: 8px;">
-                                    <a href="/nusapenida" class="orange-button" style="margin-left: 35%;">View More</a>
-                                    <!-- <button class="orange-button">View More</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ABOUT -->
-            <section id="about">
-                <div class="about" style="padding-top: 25px;">
-                    <h2 class="d-flex fw-bold "
-                        style="font-family: 'Bitter', serif;
-                        font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
-                        Bali</h2>
-                    <h4
-                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
-                        Indonesia</h4>
-                    <p class="justify-content-center"
-                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                        Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
-                        wisatawan.
-                    </p>
                 </div>
             </section>
         </div>
+
+    </div>
+   
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about" style="padding-top: 25px;">
+            <h2 class="d-flex fw-bold "
+                style="font-family: 'Bitter', serif;
+                        font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
+                Bali</h2>
+            <h4
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
+                Indonesia</h4>
+            <p class="justify-content-center"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
+                wisatawan.
+            </p>
+        </div>
+    </section>
+    </div>
     </div>
 </body>
 

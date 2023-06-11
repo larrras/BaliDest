@@ -94,24 +94,27 @@
         alert("{{ msg }}")
         {% endif %}
 
-        function loginadmin(){
-            let id_admin = $('.adminid').val()
-            let pw_admin = $('.adminpw').val()
+        function admins() {
             $.ajax({
                 type: "POST",
                 url: "/api/admin",
-                data: { id_admin:id_admin,
-                        pw_admin : pw_admin },
+                data: {
+                    id_give: $('#id-input').val(),
+                    pw_give: $('#password-input').val()
+                },
                 success: function (response) {
                     if (response['result'] === 'success') {
-                        $.cookie('mytoken', response['token']);
-                        alert('Login Berhasil!')
-                        window.location.href = '/home_admin'
+                        $.cookie('admintoken', response['token'], { path: '/' }); // Mengatur cookie dengan token yang diterima dari server
+                        alert('Login Berhasil!');
+                        window.location.href = '/home';
                     } else {
-                        alert(response['msg'])
+                        alert(response['message']);
                     }
+                },
+                error: function () {
+                    alert('Terjadi kesalahan saat melakukan login.');
                 }
-            })
+            });
         }
 
         // fungsi icon pw
@@ -131,7 +134,7 @@
         }
 
     </script>
-    
+
 
 
 </head>
@@ -139,19 +142,21 @@
 <body>
     <div class="login">
 
-        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b></h2>
-        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as Administrator BaliDest</p>
+        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b>
+        </h2>
+        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as
+            Administrator BaliDest</p>
 
         <div class="box-email">
-                <input type="text" class="adminid" placeholder="ID">
+            <input type="text" class="adminid" id="id-input" placeholder="ID">
         </div>
         <div class="box-pw">
-                <input class='adminpw' type="password" id="password-input" placeholder="password">
-                <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
-            
+            <input class='adminpw' type="password" id="password-input" placeholder="password">
+            <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+
         </div>
 
-        <button type="submit" class="btn-login" onclick="loginadmin()"><b>Login</b></button>
+        <button type="submit" class="btn-login" onclick="admins()"><b>Login</b></button>
 
     </div>
 </body>
