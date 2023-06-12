@@ -156,24 +156,33 @@ def admin_login():
 # route input
 @app.route('/input/destinasi')
 def input_destinasi():
-    destinasi = list(db.balides.find({}, {'_id': False}))
-    return jsonify({'balidest': destinasi})
+    balidest = list(db.balides.find({}, {'_id': False}))
+    return jsonify({'balidest': balidest})
 
 @app.route('/input/destinasi', methods=['POST'])
 def destinasi_input():
-    judul = request.form['judul_give']
-    desc = request.form['desc_give']
-    image = request.files['image']
+    judul = request.form.get('judul_give')
+    desc = request.form.get('desc_give')
 
-    # Simpan file gambar ke direktori static
-    filename = secure_filename(image.filename)  # Pastikan nama file aman
-    image.save(os.path.join(app.static_folder, filename))
+    # Menerima file
+    today =datetime.now()
+    mytime = today.strftime('%Y-%M-%d-%H-%M-%S')
 
+    file = request.files["file_give"]
+    # # Selanjutnya, mari buat nama file baru menggunakan function datetime
+    extension = file.filename.split('.')[-1] #untuk memisahkan tanda titik .jpg
+    filename = f'file-{mytime}.{extension}'
+    # # Mari gunakan nama file baru tersebut dan ekstensi file original lalu save file nya
+    save_to =f'static/{filename}'
+    file.save(save_to)
+
+    time = today.strftime('%Y-%M-%d')
     # Simpan data ke MongoDB
     db.balides.insert_one({
+        'file':filename,
         'judul': judul,
-        'image': url_for('static', filename=filename),
-        'desc': desc
+        'desc': desc,
+        'time': time
     })
 
     return jsonify({'msg': 'POST request!'})
@@ -181,6 +190,3 @@ def destinasi_input():
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
     app.run('0.0.0.0',port=5000,debug=True)
-
-
-

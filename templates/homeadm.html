@@ -111,6 +111,36 @@
             padding: 9px 15px;
             border-radius: 7px;
         }
+
+        .card-body {
+            height: 150px;
+            /* Atur tinggi konten card */
+            overflow: hidden;
+            /* Sembunyikan konten yang melebihi tinggi yang ditentukan */
+            position: relative;
+        }
+
+        .card-body.read-more {
+            height: auto;
+            /* Set tinggi menjadi otomatis saat "Read More" diklik */
+        }
+
+        .card-footer .toggle-read-more {
+            display: none;
+            /* Sembunyikan tombol "Read Less" saat konten ditampilkan secara penuh */
+        }
+
+        .card-body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            /* Atur tinggi elemen penutup */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            /* Menerapkan gradient pada elemen penutup */
+        }
     </style>
 
     <script>
@@ -124,27 +154,31 @@
                 url: '/input/destinasi',
                 data: {},
                 success: function (response) {
-                    let rows = response['balidest'];
-                    for (let i = 0; i < rows.length; i++) {
-                        let image = rows[i]['image'];
-                        let imageSplit = image.split('.');
-
-                        let judul = rows[i]['judul'];
-                        let desc = rows[i]['desc'];
+                    let balidest = response['balidest'];
+                    temp_html = ''
+                    for (let i = 0; i < balidest.length; i++) {
+                        let judul = balidest[i]['judul'];
+                        let desc = balidest[i]['desc'];
+                        let file = balidest[i]['file'];
+                        let time = balidest[i]['time'];
 
                         let temp_html = `
     <div class="col">
         <div class="card shadow-sm" style="border-radius: 35px;">
-            <img src="{{ url_for('static', filename=image) }}" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+            <img src="../static/${file}" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover; border-top-left-radius: 35px; border-top-right-radius: 35px;">
             <div class="card-body">
                 <h4 class="card-title"><b>${judul}</b></h4>
                 <p class="card-text">${desc}.</p>
+                <h6 class="card-subtitle mb-2 text-muted"><small class="text-muted">${time}</small></h6>
+                </div>
+                <div class="toggle-read-more">
+                  <a href="#" class="btn read-more-button" onclick="toggleReadMore(this)">Read More>></a>
+                </div>
+                <div class="card-footer">
+                <a href="/badung" class="btn orange-button">Update</a>
+                <button class="btn orange-button">See Coment</button>
             </div>
-            <div class="card-footer">
-                <a href="/badung" class="btn orange-button">View More</a>
-                <button class="btn orange-button">View More</button>
             </div>
-        </div>
     </div>`;
                         $('#cards-box').append(temp_html);
 
@@ -156,10 +190,10 @@
         function posting() {
             let judul = $('#judul').val();
             let desc = $('#desc').val();
-            let fileInput = document.getElementById('image');
-            let file = fileInput.files[0];
+            let file = $('#image').prop('files')[0];
+
             let formData = new FormData();
-            formData.append('image', file);
+            formData.append('file_give', file);
             formData.append('judul_give', judul);
             formData.append('desc_give', desc);
 
@@ -182,6 +216,17 @@
 
         function close_box() {
             $('#post-box').hide();
+        }
+
+        function toggleReadMore(button) {
+            let cardBody = $(button).closest('.card-body');
+            cardBody.toggleClass('read-more');
+            let readMoreButton = $(button);
+            if (cardBody.hasClass('read-more')) {
+                readMoreButton.text('Read Less');
+            } else {
+                readMoreButton.text('Read More');
+            }
         }
     </script>
 
@@ -292,6 +337,7 @@
                     <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
                 </div>
             </section>
+          
             <br />
         </div>
         <!-- ABOUT -->
