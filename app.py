@@ -10,6 +10,7 @@ import requests
 import jwt
 from datetime import datetime,timedelta
 import hashlib
+from werkzeug.utils import secure_filename
 
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -182,10 +183,27 @@ def destinasi_input():
         'file':filename,
         'judul': judul,
         'desc': desc,
-        'time': time
+        'time': time,
     })
 
     return jsonify({'msg': 'POST request!'})
+
+
+# update
+@app.route('/update_destinasi', methods=['POST'])
+def update_destinasi():
+    # token_receive = request.cookies.get("admintoken")
+    # try:
+    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    #     admin_info = payload['id']
+        judul = request.form.get('judul_give')
+        desc = request.form.get('desc_give')
+
+        db.balides.update_one({}, {'$set': {'judul': judul,}})
+        # Lakukan pembaruan judul dan deskrips
+        return jsonify({'message': 'Data destinasi berhasil diperbarui'})
+ 
+
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
