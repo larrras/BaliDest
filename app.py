@@ -186,40 +186,44 @@ def destinasi_input():
         'desc': desc,
         'time': time,
     })
-
     return jsonify({'msg': 'POST request!'})
 
 
 @app.route('/update_destinasi/<judul>', methods=['POST'])
 def update_destinasi(judul):
-    token_receive = request.cookies.get("admintoken")
+    token_receive = request.cookies.get('admintoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        username = payload['id']
-        judul = request.form['judul_give']
-        desc = request.form['desc_give']
-        # file = request.form['file_give']
-        new_doc = {"judul": judul, "desc": desc}
+        admin_info = ({'id': payload['id']})
+        judul_give = request.form['judul_give']
+        desc_give = request.form['desc_give']
+    
+        new_doc = {"judul": judul_give, "desc": desc_give}
 
         if "file_give" in request.files:
             file = request.files["file_give"]
             filename = secure_filename(file.filename)
             extension = filename.split(".")[-1]
-            file_path = f"profil_admin/{username}.{extension}"
+            mytime = datetime.now().strftime("%Y%m%d%H%M%S")
+            file_path = f"updatenya-{mytime}.{extension}"
+            save_to = f'static/{file_path}'
+            file.save(save_to)
             new_doc["file_pic"] = filename
             new_doc["file_real"] = file_path
-            file.save("./static/" + file_path)
-            
-            
-        db.balides.update_one({}, {'$set': new_doc})
-        # Lakukan pembaruan judul dan deskripsi
+        
+        db.balides.update_one({"admin_info.id": payload['id']}, {'$set': new_doc})
         return jsonify({'message': 'Data destinasi berhasil diperbarui'})
     except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'Token expired'})
+        return jsonify({'message': 'Token sudah kadaluarsa'})
     except jwt.InvalidTokenError:
-        return jsonify({'message': 'Invalid token'})
+        return jsonify({'message': 'Token tidak valid'})
 
- 
+
+# @app.route('/update_destinasi/<judul>')
+# def render_update_destinasi(judul):
+#     return render_template('homeadm.html', judul=judul)
+
+
 
 
 if __name__ == '__main__':
