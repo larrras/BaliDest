@@ -28,7 +28,8 @@ db = client.dbbalidest
 
 app=Flask(__name__)
 
-app.static_folder= 'static'
+app.config['TEMPLATES_AUTO_RELOAD'] =True
+app.config['UPLOAD_FOLDER'] = './static/profiL_admin'
 
 SECRET_KEY = "BALIDEST"
 
@@ -189,19 +190,35 @@ def destinasi_input():
     return jsonify({'msg': 'POST request!'})
 
 
-# update
-@app.route('/update_destinasi', methods=['POST'])
-def update_destinasi():
-    # token_receive = request.cookies.get("admintoken")
-    # try:
-    #     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    #     admin_info = payload['id']
-        judul = request.form.get('judul_give')
-        desc = request.form.get('desc_give')
+@app.route('/update_destinasi/<judul>', methods=['POST'])
+def update_destinasi(judul):
+    token_receive = request.cookies.get("admintoken")
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload['id']
+        judul = request.form['judul_give']
+        desc = request.form['desc_give']
+        # file = request.form['file_give']
+        new_doc = {"judul": judul, "desc": desc}
 
-        db.balides.update_one({}, {'$set': {'judul': judul,}})
-        # Lakukan pembaruan judul dan deskrips
+        if "file_give" in request.files:
+            file = request.files["file_give"]
+            filename = secure_filename(file.filename)
+            extension = filename.split(".")[-1]
+            file_path = f"profil_admin/{username}.{extension}"
+            new_doc["file_pic"] = filename
+            new_doc["file_real"] = file_path
+            file.save("./static/" + file_path)
+            
+            
+        db.balides.update_one({}, {'$set': new_doc})
+        # Lakukan pembaruan judul dan deskripsi
         return jsonify({'message': 'Data destinasi berhasil diperbarui'})
+    except jwt.ExpiredSignatureError:
+        return jsonify({'message': 'Token expired'})
+    except jwt.InvalidTokenError:
+        return jsonify({'message': 'Invalid token'})
+
  
 
 

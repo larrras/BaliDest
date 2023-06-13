@@ -161,8 +161,7 @@
                         let desc = balidest[i]['desc'];
                         let file = balidest[i]['file'];
                         let time = balidest[i]['time'];
-                        // let post = balidest[i];
-
+                        let post = balidest[i];
                         let temp_html = `
     <div class="col">
         <div class="card shadow-sm" style="border-radius: 35px;">
@@ -171,17 +170,20 @@
                 <h4 class="card-title"><b>${judul}</b></h4>
                 <h6 class="card-subtitle mb-2 text-muted"><small class="text-muted">${time}</small></h6>
                 <p class="card-text">${desc}.</p>
-                </div>
-                <div class="toggle-read-more">
-                  <a href="#" class="btn read-more-button" onclick="toggleReadMore(this)">Read More>></a>
-                </div>
-                <div class="card-footer">
-                    <a class="btn orange-button" onclick="update()">Update</a>
-                <button class="btn orange-button">See Coment</button>
             </div>
+            <div class="toggle-read-more">
+                <a href="#" class="btn read-more-button" onclick="toggleReadMore(this)">Read More>></a>
             </div>
+            <div class="card-footer">
+                <button class="btn orange-button" onclick="openUpdate('${post.judul}')">Update</button>
+
+                <button class="btn orange-button">See Comment</button>
+            </div>
+        </div>
     </div>`;
                         $('#cards-box').append(temp_html);
+
+
 
                     }
                 },
@@ -214,6 +216,10 @@
         function open_box() {
             $('#post-box').show();
         }
+        function openUpdate() {
+            $('#post-box-update').show();
+        }
+
 
         function close_box() {
             $('#post-box').hide();
@@ -231,20 +237,22 @@
         }
 
         //   update
-        function update() {
-            let judul = $('#judul').val();
-            let desc = $('#desc').val();
-            let file = $('#image').prop('files')[0];
+        function update_ini(Judul) {
+            let judul1 = $('#judul1').val();
+            let desc1 = $('#desc1').val();
+            let file1 = $('#image1').prop('files')[0];
             // Buat objek FormData untuk mengirim data form
-            let formData = new FormData();
-            formData.append('judul_give', judul);
-            formData.append('desc_give', desc);
-            formData.append('file_give', file);
+            let form_Data = new FormData();
+            form_Data.append('judul_give', judul1);
+            form_Data.append('file_give', file1);
+            form_Data.append('desc_give', desc1);
+            console.log(judul1, file1, desc1);
 
             $.ajax({
                 type: 'POST',
-                url: '/update_destinasi',
-                data: formData,
+                url: '/update_destinasi/<id>',
+                data: form_Data,
+                cache: false,
                 processData: false,
                 contentType: false,
                 success: function (response) {
@@ -303,7 +311,8 @@
                     <a href="#"
                         class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false" style="padding: 5px;">
-                        <img src="{{url_for ('static', filename = '/profil_admin/randy.jpeg')}}" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img src="{{url_for ('static', filename = '/profil_admin/randy.jpeg')}}" alt="" width="32"
+                            height="32" class="rounded-circle me-2">
                         <strong>estlaras</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow">
@@ -339,12 +348,12 @@
                     </div>
                     <div class="input-group mb-3">
                         <label class="label" for="input-pic"> Gambar Destinasi
-                            <input type="file" class="form-control" id="image" style="margin: 3px;">
+                            <input type="file" class="form-control" id="image1" style="margin: 3px;">
                         </label>
                     </div>
                     <div class="form-floating">
                         <textarea id="desc" class="form-control" placeholder="descriptions"></textarea>
-                        <label for="desc floatingTextarea2">Deskripsi Destinasi</label>
+                        <label for="floatingTextarea2">Deskripsi Destinasi</label>
                     </div>
                     <div class="mybtns">
                         <button onclick="posting()" type="submit" class="blue-button">Save</button>
@@ -363,26 +372,35 @@
                 </div>
             </section>
 
+            <!-- update -->
+            <section id="form-input">
+                <div class="mypost" id="post-box-update">
+                    <div class="form-floating mb-3">
+                        <input id="judul1" type="text" class="form-control" placeholder="judul"
+                            value="{{ admin_info.judul }}" />
+                        <label for="judul1">Judul</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="label" for="input-pic1"> Gambar Destinasi
+                            <input type="file" class="form-control" id="image1" style="margin: 3px;" value="{{admin_info.file}}">
+                        </label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea id="desc1" class="form-control"
+                            placeholder="descriptions">{{ admin_info.desc }}</textarea>
+                        <label for="desc1">Deskripsi Destinasi</label>
+                    </div>
+                    <div class="mybtns">
+                        <button onclick="update_ini('{{ admin_info._id }}')" type="submit"
+                            class="blue-button">Update</button>
+                        <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
+                    </div>
+                </div>
+            </section>
+
             <br />
         </div>
-        
-        <!-- update -->
-        <div class="mypost" id="post-box">
-            <div class="form-floating mb-3">
-                <input id="judul" type="text" class="form-control" placeholder="judul">
-                <label>Judul</label>
-            </div>
-            <div class="input-group mb-3">
-                <label class="label" for="input-pic"> Gambar Destinasi
-                    <input type="file" class="form-control" id="image" style="margin: 3px;">
-                </label>
-            </div>
-            <div class="form-floating">
-                <textarea id="desc" class="form-control" placeholder="descriptions"></textarea>
-                <label for="desc floatingTextarea2">Deskripsi Destinasi</label>
-            </div>
-            <div class="mybtns">
-                <button onclick="update()" type="submit" class="blue-button">update</button>
+
 
         <!-- ABOUT -->
         <section id="about">
