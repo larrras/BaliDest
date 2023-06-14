@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Judul</th>
+                <th>Gambar</th>
+                <th>Desc</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for balidests in balidest%}
+            <tr>
+               
+                <td>{{ balidests.judul }}</td>
+                <td>{{ balidests.file }}</td>
+                <td>{{ balidests.desc }}</td>
+                <td><a href="/update_destinasi?id={{balidests._id}}" >Update</a></td>
+                <td> 
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </body>
+</html>

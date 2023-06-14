@@ -35,7 +35,7 @@ SECRET_KEY = "BALIDEST"
 
 # route ke home
 @app.route('/')
-def home():
+def home_user():
     token_receive = request.cookies.get('mytoken')
     try:
         payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -188,17 +188,29 @@ def destinasi_input():
     })
     return jsonify({'msg': 'POST request!'})
 
+@app.route('/update_destinasi', methods=['GET','POST'])
+def updatedns():
+    balidest = list(db.balides.find({}))
+    for bali in balidest :
+        bali["_id"] = str(bali['_id'])
+    return render_template('homeadm.html',balidest=balidest)
 
-@app.route('/update_destinasi/<judul>', methods=['POST'])
-def update_destinasi(judul):
+@app.route('/update_destinasi/api', methods=['POST'])
+def update_destinasi():
     token_receive = request.cookies.get('admintoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        admin_info = ({'id': payload['id']})
+        admin_id = payload['_id']
+        id = request.args.get("id")
         judul_give = request.form['judul_give']
         desc_give = request.form['desc_give']
-    
+        
+        id = request.form['id']
+        balidest = db.balides.find_one({"_id": ObjectId(id)})
+        balidest["_id"] = str(balidest["_id"])
         new_doc = {"judul": judul_give, "desc": desc_give}
+        return render_template('updateds.html', balidest=balidest)
+        
 
         if "file_give" in request.files:
             file = request.files["file_give"]
@@ -210,20 +222,14 @@ def update_destinasi(judul):
             file.save(save_to)
             new_doc["file_pic"] = filename
             new_doc["file_real"] = file_path
-        
-        db.balides.update_one({"admin_info.id": payload['id']}, {'$set': new_doc})
+
+        db.balides.update_one({"_id": ObjectId(id), "admin_info._id": admin_id}, {'$set': new_doc})
+        return redirect('/home')
         return jsonify({'message': 'Data destinasi berhasil diperbarui'})
     except jwt.ExpiredSignatureError:
         return jsonify({'message': 'Token sudah kadaluarsa'})
     except jwt.InvalidTokenError:
         return jsonify({'message': 'Token tidak valid'})
-
-
-# @app.route('/update_destinasi/<judul>')
-# def render_update_destinasi(judul):
-#     return render_template('homeadm.html', judul=judul)
-
-
 
 
 if __name__ == '__main__':

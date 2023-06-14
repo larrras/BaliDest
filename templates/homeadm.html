@@ -10,8 +10,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -112,34 +110,34 @@
             border-radius: 7px;
         }
 
-        .card-body {
-            height: 150px;
-            /* Atur tinggi konten card */
-            overflow: hidden;
-            /* Sembunyikan konten yang melebihi tinggi yang ditentukan */
-            position: relative;
+
+
+        /* table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
-        .card-body.read-more {
-            height: auto;
-            /* Set tinggi menjadi otomatis saat "Read More" diklik */
+        .table th,
+        .table td {
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            border-top: 5px solid #dee2e6;
         }
 
-        .card-footer .toggle-read-more {
-            display: none;
-            /* Sembunyikan tombol "Read Less" saat konten ditampilkan secara penuh */
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
         }
 
-        .card-body::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            /* Atur tinggi elemen penutup */
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-            /* Menerapkan gradient pada elemen penutup */
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef;
         }
     </style>
 
@@ -154,40 +152,35 @@
                 url: '/input/destinasi',
                 data: {},
                 success: function (response) {
-                    let balidest = response['balidest'];
-                    let temp_html = ''
-                    for (let i = 0; i < balidest.length; i++) {
-                        let judul = balidest[i]['judul'];
-                        let desc = balidest[i]['desc'];
-                        let file = balidest[i]['file'];
-                        let time = balidest[i]['time'];
-                        let post = balidest[i];
-                        temp_html = `
-    <div class="col">
-        <div class="card shadow-sm" style="border-radius: 35px;">
-            <img src="../static/${file}" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-            <div class="card-body">
-                <h4 class="card-title"><b>${judul}</b></h4>
-                <h6 class="card-subtitle mb-2 text-muted"><small class="text-muted">${time}</small></h6>
-                <p class="card-text">${desc}</p>
-            </div>
-            <div class="toggle-read-more">
-                <a href="#" class="btn read-more-button" onclick="toggleReadMore(this)">Read More>></a>
-            </div>
-            <div class="card-footer">
-                <button class="btn orange-button" onclick="openUpdate('${judul}')">Update</button>
+                    let balidests = response['balidest'];
+                    let temp_html = '';
+                    for (let i = 0; i < balidests.length; i++) {
+                        let judul = balidests[i]['judul'];
+                        let desc = balidests[i]['desc'];
+                        let file = balidests[i]['file'];
+                        let time = balidests[i]['time'];
+                        let id = balidests[i]['_id'];
 
-                <button class="btn orange-button">See Comment</button>
-            </div>
-        </div>
-    </div>`;
-                        $('#cards-box').append(temp_html);
-
-
-
+                        temp_html += `<tr>
+                    <td>${judul}</td>
+                    <td>${file}</td>
+                    <td>${desc}</td>
+                    <td><a href="#" class="update-link" data-id="${id}">Update</a></td>
+                    <td>
+                    </td>
+                </tr>`;
                     }
-                },
-            });
+                    $('#cards-box').append(temp_html);
+
+                    $('.update-link').click(function (e) {
+                        e.preventDefault();
+                        let id = $(this).data('id');
+                        updateDestination(id);
+                    });
+
+
+                }
+            })
         }
 
         function posting() {
@@ -216,9 +209,9 @@
         function open_box() {
             $('#post-box').show();
         }
-        function openUpdate(judul) {
-            $('#post-box-update').show();
-        }
+        // function openUpdate(_id) {
+        //     $('#post-box-update').show();
+        // }
 
 
         function close_box() {
@@ -236,30 +229,33 @@
             }
         }
 
-        function update_ini(judul) {
-            let judul1 = $('#judul1').val();
-            let desc1 = $('#desc1').val();
-            let file1 = $('#image1').prop('files')[0];
+        function updateDestination(id) {
+            let judul = $('#judul').val();
+            let desc = $('#desc').val();
+            let file = $('#image').prop('files')[0];
+
             // Buat objek FormData untuk mengirim data form
             let form_Data = new FormData();
-            form_Data.append('judul_give', judul1);
-            form_Data.append('file_give', file1);
-            form_Data.append('desc_give', desc1);
-            console.log(judul1, file1, desc1);
+            form_Data.append('id', id);  // Perbarui penambahan parameter id di FormData
+            form_Data.append('judul_give', judul);
+            form_Data.append('file_give', file);
+            form_Data.append('desc_give', desc);
 
             $.ajax({
                 type: 'POST',
-                url: `/update_destinasi/${judul}`,
+                url: '/update_destinasi/api',
                 data: form_Data,
                 cache: false,
                 processData: false,
                 contentType: false,
                 success: function (response) {
                     alert(response.message);
-                    window.location.reload();  // Memuat ulang data destinasi setelah pembaruan berhasil
-                }
-            })
+                    window.location.href = '/home';  // Mengarahkan pengguna ke halaman home setelah pembaruan berhasil
+                },
+               
+            });
         }
+
 
     </script>
 
@@ -363,59 +359,52 @@
 
             </section>
             <!-- HEADLINE -->
-            <section id="headline">
+            <!-- <section id="headline">
                 <h2 class="d-flex fw-bold justify-content-center"
                     style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black;">
                     BaliDest</h2>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-box">
-                    <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
-                </div>
-            </section>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-box"> -->
+            <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
+            <!-- </div>
+            </section> -->
 
-            <section id="form-input">
-                <div class="mypost" id="post-box-update">
-                    <div class="form-floating mb-3">
-                        <input id="judul1" type="text" class="form-control" placeholder="judul" value="{{ admin_info.judul }}" />
-                        <label>Judul</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="label" for="input-pic1"> Gambar Destinasi
-                            <input type="file" class="form-control" id="image1" style="margin: 3px;">
-                        </label>
-                    </div>
-                    <div class="form-floating">
-                        <textarea id="desc1" class="form-control" placeholder="descriptions">{{ admin_info.desc }}</textarea>
-                        <label for="desc1">Deskripsi Destinasi</label>
-                    </div>
-                    <div class="mybtns">
-                        <button onclick="update_ini('{{ admin_info._id }}')" type="submit" class="blue-button">Update</button>
-                        <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
-                    </div>
-                </div>
-            </section>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Judul</th>
+                        <th scope="col">Gambar</th>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="cards-box">
+                    <!-- Data destinasi akan ditambahkan oleh JavaScript -->
+                </tbody>
+            </table>
+
 
 
             <br />
+            <!-- ABOUT -->
+            <section id="about">
+                <div class="about" style="padding-top: 25px;">
+                    <h2 class="d-flex fw-bold "
+                        style="font-family: 'Bitter', serif;
+                        font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
+                        Bali</h2>
+                    <h4
+                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
+                        Indonesia</h4>
+                    <p class="justify-content-center"
+                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                        Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
+                        wisatawan.
+                    </p>
+                </div>
+            </section>
         </div>
 
 
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="about" style="padding-top: 25px;">
-                <h2 class="d-flex fw-bold "
-                    style="font-family: 'Bitter', serif;
-                        font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
-                    Bali</h2>
-                <h4
-                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
-                    Indonesia</h4>
-                <p class="justify-content-center"
-                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                    Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
-                    wisatawan.
-                </p>
-            </div>
-        </section>
     </div>
 
 
