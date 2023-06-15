@@ -11,6 +11,7 @@ import jwt
 from datetime import datetime,timedelta
 import hashlib
 from werkzeug.utils import secure_filename
+from bson import ObjectId
 
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -156,80 +157,81 @@ def admin_login():
         return jsonify({'result': 'failed', 'message': 'Login gagal'})
 
 # route input
-@app.route('/input/destinasi')
-def input_destinasi():
-    balidest = list(db.balides.find({}, {'_id': False}))
-    return jsonify({'balidest': balidest})
+@app.route('/homes')
+def homes():
+    balidest = db.balides.find({}, {'_id': False})
+    return render_template('homeadm.html', balidest=balidest)
 
-@app.route('/input/destinasi', methods=['POST'])
-def destinasi_input():
-    judul = request.form.get('judul_give')
-    desc = request.form.get('desc_give')
-
-    # Menerima file
-    today =datetime.now()
-    mytime = today.strftime('%Y-%M-%d-%H-%M-%S')
-
-    file = request.files["file_give"]
-    # # Selanjutnya, mari buat nama file baru menggunakan function datetime
-    extension = file.filename.split('.')[-1] #untuk memisahkan tanda titik .jpg
+@app.route('/input', methods=['POST'])
+def input():
+    judul = request.form['judul']
+    desc = request.form['desc']
+    
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    
+    file = request.files["file"]
+    extension = file.filename.split('.')[-1]
     filename = f'file-{mytime}.{extension}'
-    # # Mari gunakan nama file baru tersebut dan ekstensi file original lalu save file nya
-    save_to =f'static/{filename}'
+    save_to = f'static/{filename}'
     file.save(save_to)
-
-    time = today.strftime('%Y-%M-%d')
-    # Simpan data ke MongoDB
+    
+    time = today.strftime('%Y-%m-%d')
+    
     db.balides.insert_one({
-        'file':filename,
+        'file': filename,
         'judul': judul,
         'desc': desc,
         'time': time,
     })
-    return jsonify({'msg': 'POST request!'})
+    
+    return redirect('/input_destinasi')
 
-@app.route('/update_destinasi', methods=['GET','POST'])
-def updatedns():
-    balidest = list(db.balides.find({}))
-    for bali in balidest :
-        bali["_id"] = str(bali['_id'])
-    return render_template('homeadm.html',balidest=balidest)
+@app.route('/input_destinasi')
+def input_destinasi():
+    balidest = db.balides.find({}, {'_id': False})
+    return render_template('homeadm.html', balidest=balidest)
 
-@app.route('/update_destinasi/api', methods=['POST'])
-def update_destinasi():
-    token_receive = request.cookies.get('admintoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        admin_id = payload['_id']
+
+@app.route('/update', methods=['GET', 'POST'])
+def update():
+    if request.method == "GET":
         id = request.args.get("id")
-        judul_give = request.form['judul_give']
-        desc_give = request.form['desc_give']
-        
-        id = request.form['id']
-        balidest = db.balides.find_one({"_id": ObjectId(id)})
-        balidest["_id"] = str(balidest["_id"])
-        new_doc = {"judul": judul_give, "desc": desc_give}
-        return render_template('updateds.html', balidest=balidest)
-        
+        data = db.balides.find_one({"_id": ObjectId(id)})
+        data["_id"] = str(data["_id"])
+        return render_template('update.html', data=data)
 
-        if "file_give" in request.files:
-            file = request.files["file_give"]
-            filename = secure_filename(file.filename)
-            extension = filename.split(".")[-1]
-            mytime = datetime.now().strftime("%Y%m%d%H%M%S")
-            file_path = f"updatenya-{mytime}.{extension}"
-            save_to = f'static/{file_path}'
-            file.save(save_to)
-            new_doc["file_pic"] = filename
-            new_doc["file_real"] = file_path
-
-        db.balides.update_one({"_id": ObjectId(id), "admin_info._id": admin_id}, {'$set': new_doc})
-        return redirect('/home')
-        return jsonify({'message': 'Data destinasi berhasil diperbarui'})
-    except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'Token sudah kadaluarsa'})
-    except jwt.InvalidTokenError:
-        return jsonify({'message': 'Token tidak valid'})
+    id = request.form["id"]
+    judul = request.form['judul']
+    desc = request.form['desc']
+        
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+        
+    file = request.files.get("file")
+    if file:
+        extension = file.filename.split('.')[-1]
+        filename = f'file-{mytime}.{extension}'
+        save_to = f'static/{filename}'
+        file.save(save_to)
+    else:
+        # Jika tidak ada file yang diunggah, gunakan file yang ada sebelumnya
+        data = db.balides.find_one({'_id': ObjectId(id)})
+        filename = data['file']
+        
+        time = today.strftime('%Y-%m-%d')
+        
+        db.balides.update_one({'_id': ObjectId(id)}, {
+            '$set': {
+                'file': filename,
+                'judul': judul,
+                'desc': desc,
+            }
+        })
+        
+        return redirect('/homes')
+    
+    
 
 
 if __name__ == '__main__':

@@ -142,77 +142,68 @@
     </style>
 
     <script>
-        $(document).ready(function () {
-            listing();
-        });
+        // $(document).ready(function () {
+        //     listing();
+        // });
 
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/input/destinasi',
-                data: {},
-                success: function (response) {
-                    let balidests = response['balidest'];
-                    let temp_html = '';
-                    for (let i = 0; i < balidests.length; i++) {
-                        let judul = balidests[i]['judul'];
-                        let desc = balidests[i]['desc'];
-                        let file = balidests[i]['file'];
-                        let time = balidests[i]['time'];
-                        let id = balidests[i]['_id'];
+        // function listing() {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: '/input/destinasi',
+        //         data: {},
+        //         success: function (response) {
+        //             let balidests = response['balidest'];
+        //             let temp_html = '';
+        //             for (let i = 0; i < balidests.length; i++) {
+        //                 let judul = balidests[i]['judul'];
+        //                 let desc = balidests[i]['desc'];
+        //                 let file = balidests[i]['file'];
+        //                 let time = balidests[i]['time'];
+        //                 let _id = balidests[i]['_id'];
 
-                        temp_html += `<tr>
-                    <td>${judul}</td>
-                    <td>${file}</td>
-                    <td>${desc}</td>
-                    <td><a href="#" class="update-link" data-id="${id}">Update</a></td>
-                    <td>
-                    </td>
-                </tr>`;
-                    }
-                    $('#cards-box').append(temp_html);
-
-                    $('.update-link').click(function (e) {
-                        e.preventDefault();
-                        let id = $(this).data('id');
-                        updateDestination(id);
-                    });
+        //                 temp_html += `<tr>
+        //             <td>${judul}</td>
+        //             <td>${file}</td>
+        //             <td>${desc}</td>
+        //             <td><a href = '/update_destinasi/api?id=${_id}'>update</a> 
+                    
+        //             <td>
+        //             </td>
+        //         </tr>`;
+        //             }
+        //             $('#cards-box').append(temp_html);
 
 
-                }
-            })
-        }
+        //         }
+        //     })
+        // }
 
-        function posting() {
-            let judul = $('#judul').val();
-            let desc = $('#desc').val();
-            let file = $('#image').prop('files')[0];
+        // function posting() {
+        //     let judul = $('#judul').val();
+        //     let desc = $('#desc').val();
+        //     let file = $('#image').prop('files')[0];
 
-            let formData = new FormData();
-            formData.append('file_give', file);
-            formData.append('judul_give', judul);
-            formData.append('desc_give', desc);
+        //     let formData = new FormData();
+        //     formData.append('file_give', file);
+        //     formData.append('judul_give', judul);
+        //     formData.append('desc_give', desc);
 
-            $.ajax({
-                type: 'POST',
-                url: '/input/destinasi',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                },
-            });
-        }
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/input/destinasi',
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //         success: function (response) {
+        //             alert(response['msg']);
+        //             window.location.reload();
+        //         },
+        //     });
+        // }
 
         function open_box() {
             $('#post-box').show();
-        }
-        // function openUpdate(_id) {
-        //     $('#post-box-update').show();
-        // }
-
+        }   
 
         function close_box() {
             $('#post-box').hide();
@@ -229,33 +220,32 @@
             }
         }
 
-        function updateDestination(id) {
-            let judul = $('#judul').val();
-            let desc = $('#desc').val();
-            let file = $('#image').prop('files')[0];
+        // function updateDestination(id) {
+        //     let judul = $('#judul').val();
+        //     let desc = $('#desc').val();
+        //     let file = $('#image').prop('files')[0];
 
             // Buat objek FormData untuk mengirim data form
-            let form_Data = new FormData();
-            form_Data.append('id', id);  // Perbarui penambahan parameter id di FormData
-            form_Data.append('judul_give', judul);
-            form_Data.append('file_give', file);
-            form_Data.append('desc_give', desc);
+            // let form_Data = new FormData();
+            // form_Data.append('id', id);  // Perbarui penambahan parameter id di FormData
+            // form_Data.append('judul_give', judul);
+            // form_Data.append('file_give', file);
+            // form_Data.append('desc_give', desc);
 
-            $.ajax({
-                type: 'POST',
-                url: '/update_destinasi/api',
-                data: form_Data,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    alert(response.message);
-                    window.location.href = '/home';  // Mengarahkan pengguna ke halaman home setelah pembaruan berhasil
-                },
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/update_destinasi/api',
+        //         data: form_Data,
+        //         cache: false,
+        //         processData: false,
+        //         contentType: false,
+        //         success: function (response) {
+        //             alert(response.message);
+        //             window.location.href = '/home';  // Mengarahkan pengguna ke halaman home setelah pembaruan berhasil
+        //         },
                
-            });
-        }
-
+        //     });
+        // }
 
     </script>
 
@@ -331,13 +321,59 @@
         <!-- End Sidebar -->
         <div class="main-content px-4 m-auto">
             <!-- FORM INPUT -->
-            <section id="form-input">
+            <!-- <section id="form-input">
                 <div class="mytitle">
                     <h1 style="font-weight: 800;">ADMINISTRATOR PANEL</h1>
                     <button onclick="open_box()">UPDATE DATA WISATA!</button>
-                </div>
+                </div> -->
+                    
+                    <!-- Form untuk input data -->
+                    <form action="/input" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="judul">Judul</label>
+                            <input type="text" name="judul" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="file">Gambar Destinasi</label>
+                            <input type="file" name="file" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="desc">Description</label>
+                            <textarea name="desc" required></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                    
+                    <!-- Tabel untuk menampilkan data -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Judul</th>
+                                <th>Description</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in balidest %}
+                            <tr>
+                                <td>{{ data.file }}</td>
+                                <td>{{ data.judul }}</td>
+                                <td>{{ data.desc }}</td>
+                                <td>{{ data.time }}</td>
+                                <td>
+                                    <a href="/update?id={{ data._id }}">Update</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                
 
-                <div class="mypost" id="post-box">
+
+                <!-- <div class="mypost" id="post-box">
                     <div class="form-floating mb-3">
                         <input id="judul" type="text" class="form-control" placeholder="judul">
                         <label>Judul</label>
@@ -355,9 +391,9 @@
                         <button onclick="posting()" type="submit" class="blue-button">Save</button>
                         <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
                     </div>
-                </div>
-
-            </section>
+                </div> -->
+                
+            <!-- </section> -->
             <!-- HEADLINE -->
             <!-- <section id="headline">
                 <h2 class="d-flex fw-bold justify-content-center"
@@ -367,22 +403,8 @@
             <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
             <!-- </div>
             </section> -->
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="cards-box">
-                    <!-- Data destinasi akan ditambahkan oleh JavaScript -->
-                </tbody>
-            </table>
-
-
+            <br />
+            
 
             <br />
             <!-- ABOUT -->

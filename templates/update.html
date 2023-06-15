@@ -33,29 +33,23 @@
 </head>
 
 <body>
-    <h1>Update Destinasi</h1>
-    <table>
-        <thead>
-          <tr>
-            <th>Judul</th>
-            <th>Gambar</th>
-            <th>Desc</th>
-            <th>Update</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="cards-box">
-          {% for balidest in balidests %}
-          <tr>
-            <td>{{ balidest.judul }}</td>
-            <td>{{ balidest.file }}</td>
-            <td>{{ balidest.desc }}</td>
-            <td><a href="#" class="update-link" data-id="{{ balidest._id }}">Update</a></td>
-            <td></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+  <h1>Update Data</h1>
+    
+  <form action="/update" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+          <label for="judul">Judul</label>
+          <input type="text" name="judul" value="{{ data.judul }}" required>
+      </div>
+      <div class="mb-3">
+          <label for="file">Gambar Destinasi</label>
+          <input type="file" name="file">
+      </div>
+      <div class="mb-3">
+          <label for="desc">Description</label>
+          <textarea name="desc" required>{{ data.desc }}</textarea>
+      </div>
+      <button type="submit">Update</button>
+  </form>
       
 
 </body>
