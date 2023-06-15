@@ -318,7 +318,7 @@
                                 <td>{{ data.desc }}</td>
                                 <td>{{ data.time }}</td>
                                 <td>
-                                    <a href="/update?id={{ data._id }}" class="btn btn-primary">Update</a>
+                                    <a href="/updates?id={{ data._id|string }}" class="btn btn-primary">Update</a>
                                 </td>
                             </tr>
                             {% endfor %}

@@ -6,12 +6,13 @@ from werkzeug.utils import secure_filename
 
 from flask import Flask, render_template, request, jsonify, redirect,url_for
 from pymongo import MongoClient
+from bson import ObjectId
 import requests
 import jwt
 from datetime import datetime,timedelta
 import hashlib
 from werkzeug.utils import secure_filename
-from bson import ObjectId
+
 
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -159,8 +160,10 @@ def admin_login():
 # route input
 @app.route('/homes')
 def homes():
-    balidest = db.balides.find({}, {'_id': False})
-    return render_template('homeadm.html', balidest=balidest)
+    data = list(db.balides.find({}))
+    for d in data:
+        d['_id'] = str(d['_id'])
+    return render_template('homeadm.html', data=data)
 
 @app.route('/input', methods=['POST'])
 def input():
@@ -189,12 +192,12 @@ def input():
 
 @app.route('/input_destinasi')
 def input_destinasi():
-    balidest = db.balides.find({}, {'_id': False})
+    balidest = db.balides.find({}, {})
     return render_template('homeadm.html', balidest=balidest)
 
 
-@app.route('/update', methods=['GET', 'POST'])
-def update():
+@app.route('/updates', methods=['GET', 'POST'])
+def updates():
     if request.method == "GET":
         id = request.args.get("id")
         data = db.balides.find_one({"_id": ObjectId(id)})
@@ -202,34 +205,20 @@ def update():
         return render_template('update.html', data=data)
 
     id = request.form["id"]
-    judul = request.form['judul']
+    judul = request.form["judul"]
     desc = request.form['desc']
-        
-    today = datetime.now()
-    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
-        
+    file_path= ""
     file = request.files.get("file")
     if file:
-        extension = file.filename.split('.')[-1]
-        filename = f'file-{mytime}.{extension}'
-        save_to = f'static/{filename}'
-        file.save(save_to)
-    else:
-        # Jika tidak ada file yang diunggah, gunakan file yang ada sebelumnya
-        data = db.balides.find_one({'_id': ObjectId(id)})
-        filename = data['file']
-        
-        time = today.strftime('%Y-%m-%d')
-        
-        db.balides.update_one({'_id': ObjectId(id)}, {
-            '$set': {
-                'file': filename,
-                'judul': judul,
-                'desc': desc,
-            }
-        })
-        
-        return redirect('/homes')
+        filename = secure_filename(file.filename)
+        extension = filename.split(".")[-1]
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+        file_path = f'update-{mytime}.{extension}'
+        file.save("./static/" + file_path)
+
+    db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
+    return redirect('/homes')
     
     
 # posting user
