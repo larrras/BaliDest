@@ -232,6 +232,8 @@ def update():
         return redirect('/homes')
     
     
+# posting user
+
 
 
 if __name__ == '__main__':

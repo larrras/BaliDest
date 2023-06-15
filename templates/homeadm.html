@@ -112,33 +112,6 @@
 
 
 
-        /* table */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .table th,
-        .table td {
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-            border-top: 5px solid #dee2e6;
-        }
-
-        .table th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-
-        .table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .table tbody tr:hover {
-            background-color: #e9ecef;
-        }
     </style>
 
     <script>
@@ -252,52 +225,36 @@
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-row px-0">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
-                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
                 <a href="/" class="d-flex align-items-center mx-5 mb-3 mb-md-0 link-body-emphasis text-decoration-none">
-
-                    <!-- <span class="fs-4">Sidebar</span> -->
-                    <p style="font-size: 38px; font-weight: 600; color: darkblue    ;">Sidebar</p>
+                    <p style="font-size: 38px; font-weight: 600; color: darkblue;">Sidebar</p>
                 </a>
                 <br>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;"><i
-                                class="fa fa-home" style="font-size: 28px;"></i>
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                            Home
+                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;">
+                            <i class="fa fa-home" style="font-size: 28px;"></i> Home
                         </a>
                     </li>
                     <li>
-                        <a href="#headline" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
-                                class='fas fa-stream' style='font-size: 25px'></i>
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#speedometer2"></use>
-                            </svg>
-                            Headline
+                        <a href="#headline" class="nav-link link-body-emphasis" style="font-size: 18px;">
+                            <i class='fas fa-stream' style='font-size: 25px'></i> Headline
                         </a>
                     </li>
                     <li>
-                        <a href="#about" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
-                                class='fas fa-info-circle' style='font-size: 24px'></i>
-                            <svg class="bi pe-none me-2" width="16" height="16">
-                                <use xlink:href="#table"></use>
-                            </svg>
-                            About
+                        <a href="#about" class="nav-link link-body-emphasis" style="font-size: 18px;">
+                            <i class='fas fa-info-circle' style='font-size: 24px'></i> About
                         </a>
                     </li>
                 </ul>
                 <hr>
                 <div class="dropdown">
-                    <a href="#"
-                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                    <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false" style="padding: 5px;">
-                        <img src="{{url_for ('static', filename = '/profil_admin/randy.jpeg')}}" alt="" width="32"
+                        <img src="{{url_for('static', filename='/profil_admin/randy.jpeg')}}" alt="" width="32"
                             height="32" class="rounded-circle me-2">
                         <strong>estlaras</strong>
                     </a>
@@ -311,41 +268,39 @@
                         <li><a class="dropdown-item" href="#">Sign out</a></li>
                     </ul>
                     <footer>
-                        <p class="text-center text-body-secondary"
-                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; padding-top: 25px;">
-                            © 2023 Balidest</p>
+                        <p class="text-center text-body-secondary" style="font-family: 'Bitter', serif;
+                        font-family: 'Shantell Sans', cursive;
+                        font-family: 'Tilt Neon', cursive; padding-top: 25px;">© 2023 Balidest</p>
                     </footer>
                 </div>
             </div>
         </div>
-        <!-- End Sidebar -->
-        <div class="main-content px-4 m-auto">
-            <!-- FORM INPUT -->
-            <!-- <section id="form-input">
-                <div class="mytitle">
-                    <h1 style="font-weight: 800;">ADMINISTRATOR PANEL</h1>
-                    <button onclick="open_box()">UPDATE DATA WISATA!</button>
-                </div> -->
-                    
+
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
                     <!-- Form untuk input data -->
                     <form action="/input" method="POST" enctype="multipart/form-data">
+                        <h1>MASUKKAN DATA</h1>
                         <div class="mb-3">
                             <label for="judul">Judul</label>
-                            <input type="text" name="judul" required>
+                            <input type="text" name="judul" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="file">Gambar Destinasi</label>
-                            <input type="file" name="file" required>
+                            <input type="file" name="file" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="desc">Description</label>
-                            <textarea name="desc" required></textarea>
+                            <textarea name="desc" class="form-control" required></textarea>
                         </div>
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    
+                </div>
+
+                <div class="col-md-6">
                     <!-- Tabel untuk menampilkan data -->
-                    <table>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>File</th>
@@ -363,75 +318,34 @@
                                 <td>{{ data.desc }}</td>
                                 <td>{{ data.time }}</td>
                                 <td>
-                                    <a href="/update?id={{ data._id }}">Update</a>
+                                    <a href="/update?id={{ data._id }}" class="btn btn-primary">Update</a>
                                 </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                
-                
-
-
-                <!-- <div class="mypost" id="post-box">
-                    <div class="form-floating mb-3">
-                        <input id="judul" type="text" class="form-control" placeholder="judul">
-                        <label>Judul</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="label" for="input-pic"> Gambar Destinasi
-                            <input type="file" class="form-control" id="image" style="margin: 3px;">
-                        </label>
-                    </div>
-                    <div class="form-floating">
-                        <textarea id="desc" class="form-control" placeholder="descriptions"></textarea>
-                        <label for="desc">Deskripsi Destinasi</label>
-                    </div>
-                    <div class="mybtns">
-                        <button onclick="posting()" type="submit" class="blue-button">Save</button>
-                        <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
-                    </div>
-                </div> -->
-                
-            <!-- </section> -->
-            <!-- HEADLINE -->
-            <!-- <section id="headline">
-                <h2 class="d-flex fw-bold justify-content-center"
-                    style="padding-top: 50px; padding-bottom: 15px; font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black;">
-                    BaliDest</h2>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-box"> -->
-            <!-- Di sini akan ditambahkan kartu-kartu destinasi oleh JavaScript -->
-            <!-- </div>
-            </section> -->
-            <br />
-            
-
-            <br />
-            <!-- ABOUT -->
-            <section id="about">
-                <div class="about" style="padding-top: 25px;">
-                    <h2 class="d-flex fw-bold "
-                        style="font-family: 'Bitter', serif;
-                        font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
-                        Bali</h2>
-                    <h4
-                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; color: darkblue;">
-                        Indonesia</h4>
-                    <p class="justify-content-center"
-                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                        Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para
-                        wisatawan.
-                    </p>
                 </div>
-            </section>
+                <br />
+                <!-- ABOUT -->
+                <section id="about">
+                    <div class="about" style="padding-top: 25px;">
+                        <h2 class="d-flex fw-bold" style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive; color: darkblue; text-shadow: 1px 2px 4px black; padding-top: 20px;">
+                            Bali</h2>
+                        <h4 style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; color: darkblue;">
+                            Indonesia</h4>
+                        <p class="justify-content-center" style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                            Bali adalah salah satu destinasi wisata yang sangat digandrungi oleh para wisatawan.
+                        </p>
+                    </div>
+                </section>
+            </div>
         </div>
-
-
     </div>
+</div>
 
-
-    </div>
-    </div>
 
 </body>
 

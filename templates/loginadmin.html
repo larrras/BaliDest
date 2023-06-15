@@ -33,61 +33,74 @@
     <!-- Link Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
         .login {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgb(200, 200, 200);
-            padding: 50px;
-            width: 650px;
-            height: 370px;
-            box-shadow: 0px 0px 5px 3px rgb(106, 104, 104);
-            border-radius: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+
         }
 
         .login h2 {
+            font-size: 24px;
+            font-weight: bold;
             text-align: center;
-            color: black;
-            font-size: 30px;
-            font-family: sans-serif;
-            letter-spacing: 3px;
-            padding-top: 0;
-            margin-top: -20px;
+            margin-bottom: 10px;
         }
 
-        .box-email {
-            margin-top: 40px;
-            margin-left: 25px;
-            margin-right: 25px;
+        .login p {
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .box-email,
+        .box-pw {
+            margin-bottom: 15px;
+        }
+
+        .box-email input,
+        .box-pw input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         .box-pw {
-            margin-top: 20px;
-            margin-left: 25px;
-            margin-right: 25px;
             position: relative;
+        }
+
+        .box-pw i {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
             cursor: pointer;
         }
 
         .btn-login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 35%;
-            margin-bottom: 20px;
-            margin-top: 40px;
-            background: black;
-            border: 3px solid rgb(68, 68, 233);
-            border-radius: 30px;
-            width: 30%;
-            padding: 9px;
-            color: rgb(68, 68, 233);
-            font-size: 18px;
-            letter-spacing: 1px;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
     </style>
+
+
 
     <script>
         {% if msg %}
@@ -138,24 +151,21 @@
 
 <body>
     <div class="login">
-
-        <h2 style="font-size: 33px; color: black; text-shadow: 1px 1px 5px rgb(63, 63, 65);"><b>Administrator Login</b>
-        </h2>
-        <p style="text-align: center; justify-content: center; padding-top: 5px;">Welcome back! Please log you in as
-            Administrator BaliDest</p>
+        <h2><b>Administrator Login</b></h2>
+        <p>Welcome back! Please log in as Administrator BaliDest</p>
 
         <div class="box-email">
             <input type="text" class="adminid" id="id-input" placeholder="ID">
         </div>
         <div class="box-pw">
-            <input class='adminpw' type="password" id="password-input" placeholder="password">
+            <input class="adminpw" type="password" id="password-input" placeholder="Password">
             <i id="toggle-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
-
         </div>
 
         <button type="submit" class="btn-login" onclick="admins()"><b>Login</b></button>
-
     </div>
+
+
 </body>
 
 </html>
