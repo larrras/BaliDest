@@ -213,7 +213,6 @@ def input():
         'desc': desc,
         'time': time,
     })
-    
     return redirect('/input_destinasi')
 
 @app.route('/input_destinasi')
@@ -248,19 +247,17 @@ def updates():
 
 @app.route('/userhomes')
 def userhomes():
-    token_receive = request.cookies.get('mytoken')  # Mengambil token pengguna
+    token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
-        balidest = list(db.balides.find({}, {}))
-        return render_template('userhomes.html', nickname=user_info['nick'], balidest=balidest)
+        balidest = list(db.balides.find({}))  # Mengambil semua data dari koleksi 'balides'
+        return render_template('userhomes.html', nickname=user_info['nick'], balidest=balidest, is_admin=False)
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Login, yuk!"))
-
-
-
+        
 
 
 if __name__ == '__main__':
