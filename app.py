@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, jsonify, redirect,url_for
 from pymongo import MongoClient
 from bson import ObjectId
+from bson.objectid import ObjectId
 import requests
 import jwt
 from datetime import datetime,timedelta
@@ -42,7 +43,7 @@ def home_user():
     try:
         payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id':payload['id']})
-        return render_template('home.html', nickname = user_info['nick'])
+        return render_template('userhomes.html', nickname = user_info['nick'])
     except jwt.ExpiredSignatureError :
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError :
@@ -68,7 +69,7 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60)
+            'exp': datetime.utcnow() + timedelta(seconds=60*60)
         }
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
@@ -111,23 +112,48 @@ def api_valid():
         msg="Login, yuk!"
         return jsonify({'result':'fail','msg':msg})
 
-import hashlib
 
-# route home_admin
-@app.route('/home')
+
+@app.route('/home', methods=['GET', 'POST'])
 def home_admin():
+    if request.method == 'POST':
+        judul = request.form['judul']
+        desc = request.form['desc']
+    
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    
+        file = request.files["file"]
+        extension = file.filename.split('.')[-1]
+        filename = f'file-{mytime}.{extension}'
+        save_to = f'static/{filename}'
+        file.save(save_to)
+    
+        time = today.strftime('%Y-%m-%d')
+    
+        db.balides.insert_one({
+            'file': filename,
+            'judul': judul,
+            'desc': desc,
+            'time': time,
+        })
+    
     token_receive = request.cookies.get('admintoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         admin_info = db.admin.find_one({'id': payload['id']})
         if admin_info:
-            return render_template('homeadm.html', admin_info=admin_info)
+            data = list(db.balides.find({}))
+            for d in data:
+                d['_id'] = str(d['_id'])
+            return render_template('homeadm.html', admin_info=admin_info, data=data)
         else:
             return redirect(url_for('admin', msg="Admin tidak ditemukan"))
     except jwt.ExpiredSignatureError:
         return redirect(url_for('admin', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('admin', msg="Login, yuk!"))
+
 
 # login admin
 @app.route('/admin', methods=['GET', 'POST'])
@@ -195,7 +221,6 @@ def input_destinasi():
     balidest = db.balides.find({}, {})
     return render_template('homeadm.html', balidest=balidest)
 
-
 @app.route('/updates', methods=['GET', 'POST'])
 def updates():
     if request.method == "GET":
@@ -207,7 +232,7 @@ def updates():
     id = request.form["id"]
     judul = request.form["judul"]
     desc = request.form['desc']
-    file_path= ""
+    file_path = ""
     file = request.files.get("file")
     if file:
         filename = secure_filename(file.filename)
@@ -219,9 +244,22 @@ def updates():
 
     db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
     return redirect('/homes')
-    
-    
-# posting user
+
+
+@app.route('/userhomes')
+def userhomes():
+    token_receive = request.cookies.get('mytoken')  # Mengambil token pengguna
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+        balidest = list(db.balides.find({}, {}))
+        return render_template('userhomes.html', nickname=user_info['nick'], balidest=balidest)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Login, yuk!"))
+
+
 
 
 
