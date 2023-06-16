@@ -60,7 +60,7 @@ body {
     border-radius: 30px;
     width: 92.5%;
     font-size: 18px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     cursor: pointer;
 }
 
@@ -74,7 +74,7 @@ body {
     padding: 9px;
     color: black;
     font-size: 18px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     cursor: pointer;
 }
 

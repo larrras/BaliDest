@@ -202,6 +202,14 @@
     <!-- <div id="mySwiper" class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
+<<<<<<< HEAD
+                <img src="https://images.unsplash.com/photo-1588625224664-a561c1f5f619?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                    class="slides" alt="Slide 1">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
+                    class="slides" alt="Slide 2">
+=======
                 <img src=" https://images.unsplash.com/photo-1528265417219-1a288ae08573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                     class="slides" alt="Slide 1">
                 <span class="arrow prev"><i class="fa fa-chevron-left"
@@ -216,10 +224,13 @@
                         style="font-size:40px;color: darkblue"></i></span>
                 <span class="arrow next"><i class="fa fa-chevron-right"
                         style="font-size:40px;color: darkblue"></i></span>
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
             </div>
             <div class="swiper-slide">
                 <img src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
                     class="slides" alt="Slide 3">
+<<<<<<< HEAD
+=======
                 <span class="arrow prev"><i class="fa fa-chevron-left"
                         style="font-size:40px;color: darkblue"></i></span>
                 <span class="arrow next"><i class="fa fa-chevron-right"
@@ -240,6 +251,7 @@
                         style="font-size:40px;color: darkblue"></i></span>
                 <span class="arrow next"><i class="fa fa-chevron-right"
                         style="font-size:40px;color: darkblue"></i></span>
+>>>>>>> f60d08e2ba6b8abc428db2bcdcafdee6129014af
             </div>
         </div>
 
@@ -275,7 +287,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src="https://images.unsplash.com/photo-1551008475-4533d141425b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                        <img src="https://images.unsplash.com/photo-1541739296801-2412947056ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
                         <div class="card-body">
@@ -356,22 +368,6 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm" style="border-radius: 35px;">
-                        <img src="https://lovebali.baliprov.dev/storage/touriest_destinations/img-165837417662d8c820e6c3a.jpg"
-                            class="card-img-top"
-                            style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-                        <div class="card-body">
-                            <h4 class="card-title"><b>BULELENG</b></h4>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div style="padding-top: 5px; padding-bottom: 8px;">
-                                <a href="/nusapenida" class="orange-button" style="margin-left: 35%;">View More</a>
-                                <!-- <button class="orange-button">View More</button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm" style="border-radius: 35px;">
                         <img src="https://images.unsplash.com/photo-1532253240322-146d5987f692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
                             class="card-img-top"
                             style="width: 100%; height: 225px; border-top-left-radius: 35px; border-top-right-radius: 35px;">
@@ -386,7 +382,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
 
@@ -413,13 +408,10 @@
                             style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
                             Website BaliDest dibuat pada tahun 2023 sebagai proyek akhir program MSIB Batch 4 dan
                             memiliki potensi untuk tetap beroperasi di masa depan. Website ini bertujuan sebagai sumber
-                            informasi tentang destinasi wisata di Bali. Nama "Balidest" merupakan kependekan
+                            informasi tentang destinasi wisata di Bali, dengan nama "Balidest" yang merupakan kependekan
                             dari "Bali Destinasi".
-                        </p>
-                        <p class="justify-content-center"
-                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                            Untuk kamu pengunjung baru, Balidest menyediakan informasi dan ulasan dari para wisatawan
-                            yang
+
+                            Untuk kamu pengunjung baru, Balidest menyediakan informasi dan ulasan dari para wisatawan yang
                             telah mengunjungi destinasi yang ditampilkan. Selain itu, pengunjung juga dapat memberikan
                             pendapat mereka melalui fitur ulasan untuk berbagi pengalaman mereka dengan senang hati.
                         </p>

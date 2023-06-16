@@ -1,12 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TABANAN | Balidest</title>
+    <!-- Link bootstrap CDN untuk menggunakan bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Link Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <!-- css internal untuk mengatur design dari halaman -->
+
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .log {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 7px 7px;
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            font-size: 15px;
+        }
+
+        .detail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
+        .namedetail {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            color: darkblue;
+            text-shadow: 1px 1px 2px rgb(247, 125, 81);
+            padding-top: 20px;
+        }
+
+        .justify-content-center {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+    </style>
+
+
 </head>
+
 <body>
-    
+    <!-- Navbar -->
+
+    <div class="container-fluid px-0">
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow"
+            style="background-color: rgb(247, 125, 81); height: 72px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4 text-nav fw-bold"
+                    style="font-family: 'Bitter', serif;
+                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
+            </a>
+
+            <ul class="nav nav-pills"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Headline</b></a>
+                </li>
+                <li class="nav-item"><a href="#about" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
+                <span>
+                    <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
+                        <a href="/login" class="log" style="font-size: 17px;">
+                            <i class='fas'>&#xf2bd;
+                            </i><b> Login</b>
+                        </a>
+                    </li>
+                </span>
+            </ul>
+        </header>
+
+    </div>
+
+    <!-- DESTINASI -->
+    <div>
+        <div class="container-fluid px-0">
+            <div class="container col-xxl-8 px-4 py-5 ">
+                <div class="jumbotron jumbotron-fluid">
+
+                    <!-- PURA TANAH LOT -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Pura Tanah Lot</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://cdn.holidayguru.ch/wp-content/uploads/2018/01/pura-tanah-lot-tempel-am-meer-istock-494560541.jpg"
+                                    style="width: 300px; height: 200px;">
+                                <img src="https://www.trawell.in/blog/wp-content/uploads/2018/08/Pura_Tanah_Lot.jpg"
+                                    style="width: 300px; height: 200px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center">
+                            Pura Tanah Lot adalah sebuah pura yang terletak di pesisir barat daya Bali, Indonesia.
+                            Pura ini terkenal karena lokasinya yang menarik di atas sebuah batu karang yang menjorok ke
+                            laut, menciptakan pemandangan yang spektakuler.</p>
+                        <p class="justify-content-center">
+                            Pura Tanah Lot dianggap suci oleh masyarakat Bali dan merupakan salah satu pura paling
+                            ikonik di Bali.
+                            Pada saat air laut pasang, pura ini tampak seperti terapung di atas ombak.
+                            Pengunjung dapat menikmati panorama yang menakjubkan, terutama saat matahari terbenam,
+                            ketika langit dan laut berpadu menciptakan pemandangan yang indah.</p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Tanah Lot memiliki beberapa pura seperti Pura Njuh Galuh, Pura Batu
+                                    Bolog, Pura Batu Mejan,
+                                    dan masih banyak lagi. Selain pura juga terdaat Gua Ular Suci dan ua Air Suci.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Pura Tanah Lot terletak di pesisir pantai Desa Beraban, Kecamatan
+                                    Kediri, Kabupaten Tabanan,
+                                    tepatnya 13 km dari Kota Tabanan dan 25 km dari Kota Denpasar.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Parkir, Toilet/WC/Kamar Mandi, Toko Souvenir, Restoran/Food Court</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Tanah Lot buka setiap hari pukul 06.00-19.00 WITA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PURA ULUN DANU BRATAN -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Pura Ulun Danu Bratan</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://www.teahub.io/photos/full/356-3568354_pura-ulun-danu-bratan-temple-4k-shaivite-water.jpg"
+                                    style="width: 300px; height: 200px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center">
+                            Pura Ulun Danu Bratan adalah sebuah pura yang terletak di tepi Danau Bratan, Bedugul, Bali,
+                            Indonesia.
+                            Pura ini merupakan salah satu pura paling terkenal di Bali dan dihormati sebagai tempat
+                            ibadah bagi masyarakat Hindu setempat.</p>
+                        <p class="justify-content-center">
+                            Pura Ulun Danu Bratan terkenal dengan arsitektur yang indah dan lokasinya yang menakjubkan
+                            di tepi danau.
+                            Pura ini dikelilingi oleh perbukitan hijau dan pemandangan Danau Bratan yang memukau,
+                            menciptakan suasana yang damai dan menenangkan.</p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Pura Ulun Danu Beratan menyediakan kompleks pura, taman bunga, serta
+                                    taman bermain anak. </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Danau Beratan, Candikuning, Baturiti, Tabanan Regency, Bali 82191.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Pura Ulun Danu Beratan memiliki beberapa fasilitas seperti restoran,
+                                    area parkir,
+                                    kios belanja oleh-oleh, toilet umum, serta ATM. </p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Pura Ulun Danu Beratan buka setiap hari mulai pukul 08.00-18.00 WITA.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>

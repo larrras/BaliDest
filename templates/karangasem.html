@@ -1,12 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KARANGASEM | Balidest</title>
+    <!-- Link bootstrap CDN untuk menggunakan bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Link Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <!-- css internal untuk mengatur design dari halaman -->
+
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .log {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 7px 7px;
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            font-size: 15px;
+        }
+
+        .detail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
+        .namedetail {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            color: darkblue;
+            text-shadow: 1px 1px 2px rgb(247, 125, 81);
+            padding-top: 20px;
+        }
+
+        .justify-content-center {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+    </style>
+
+
 </head>
+
 <body>
-    
+    <!-- Navbar -->
+
+    <div class="container-fluid px-0">
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow"
+            style="background-color: rgb(247, 125, 81); height: 72px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4 text-nav fw-bold"
+                    style="font-family: 'Bitter', serif;
+                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
+            </a>
+
+            <ul class="nav nav-pills"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Headline</b></a>
+                </li>
+                <li class="nav-item"><a href="#about" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
+                <span>
+                    <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
+                        <a href="/login" class="log" style="font-size: 17px;">
+                            <i class='fas'>&#xf2bd;
+                            </i><b> Login</b>
+                        </a>
+                    </li>
+                </span>
+            </ul>
+        </header>
+
+    </div>
+
+    <!-- DESTINASI -->
+    <div>
+        <div class="container-fluid px-0">
+            <div class="container col-xxl-8 px-4 py-5 ">
+                <div class="jumbotron jumbotron-fluid">
+
+                    <!-- PURA BESAKIH -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Pura Besakih</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="http://elaprendizdeviajero.com/wp-content/uploads/2018/09/Pura-Besakih.jpg"
+                                    style="width: 300px; height: 200px;">
+                                <img src="https://imgcld.yatra.com/ytimages/image/upload/v1462338108/Bali-Pura_Besakih1.jpg"
+                                    style="width: 300px; height: 200px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center">
+                            Pura Besakih adalah pura terbesar dan paling suci di Bali, Indonesia.
+                            Pura ini terletak di lereng Gunung Agung, pura ini dianggap sebagai pura ibu atau pura
+                            paling utama di pulau Bali.
+                            Pura Besakih terdiri dari kompleks pura yang mencakup sekitar 23 pura yang berbeda dan
+                            terletak di berbagai tingkat lereng gunung.
+                            Pura utama yang paling penting adalah Pura Penataran Agung Besakih, yang didedikasikan untuk
+                            tiga dewa utama dalam agama Hindu, yaitu Brahma, Wisnu, dan Siwa.
+                        </p>
+                        <p class="justify-content-center">
+                            Pura Besakih memiliki arsitektur yang indah dan kaya akan ornamen Bali.
+                            Bangunan-bangunan pura yang terbuat dari batu dan terasering terletak di tengah-tengah
+                            perbukitan hijau, menciptakan pemandangan yang memukau.</p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail"> Pura Besakih menyediakan kompleks pura yang bisa dijelajahi oleh
+                                    wisatawan.</p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Besakih, Rendang, Karangasem, Bali, Indonesia, 80863.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Parkir, Toilet/WC/Kamar Mansi, Restoran/Food Court</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Pura Besakih buka setiap hari pukul 08.00-18.00 WITA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CANDI LEMPUYANGAN -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Candi Lempuyangan</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://serunyaberkelilingindonesia.files.wordpress.com/2018/12/97cba5f04d26c0d9c71dc40f0baec692.jpg?w=246"
+                                    style="width: 300px; height: 200px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center">
+                            Candi Lempuyangan merupakan sebuah pura yang terletak di lereng Gunung Lempuyang di
+                            Karangasem, Bali.
+                            Pura Penataran Agung Lempuyang dianggap sebagai bagian dari kompleks pura di sekitar Gunung
+                            Lempuyang, salah satu pura yang sangat dihormati di Bali.
+                            Pura-pura di Gunung Lempuyang, yang diwakili oleh pura tertinggi di puncak Gunung Lempuyang,
+                            Pura Lempuyang Luhur, merupakan salah satu Sad Kahyangan Jagad, atau "enam tempat suci
+                            dunia", enam tempat sembahyang paling suci di Bali.</p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Candi Lempuyangan berfokus sebaai tempat wisata religi bagi umat
+                                    hindu.
+                                    Selain sebagai tempat ibadah untuk umat hindu, Candi ini juga bisa dijadikan tempat
+                                    berswafoto.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Banjar Purwa Ayu, Tribuana, Abang, Karangasem, Bali.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Candi Lempuyangan menyediakan area parkir, toilet, tempat istirahat,
+                                    dan tempat sampah</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Candi Lempuyangan buka setiap hari mulai pukul 07.00-17.00 WITA.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAMAN AIR TIRTA GANGGA -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
+                            Taman Air Tirta Gangga</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://ksmtour.com/media/images/articles6/taman-air-tirta-gangga-bali.jpg"
+                                    style="width: 300px; height: 200px;">
+                                <img src="https://www.tripbaligo.com/wp-content/uploads/2019/01/Menikmati-Istana-Air-Tirta-Gangga-Water-Palace-Karangasem.jpg"
+                                    style="width: 300px; height: 200px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center">
+                            Air Tirta Gangga adalah sebuah destinasi wisata yang terletak di Desa Ababi, Kabupaten
+                            Karangasem, Bali, Indonesia.
+                            Tempat ini terkenal karena taman airnya yang indah, kolam renang alami, dan keindahan alam
+                            sekitarnya.</p>
+                        <p class="justify-content-center">
+                            Air Tirta Gangga adalah kompleks taman yang terinspirasi oleh ajaran agama Hindu Bali.
+                            Di tengah-tengah taman terdapat kolam air yang dipenuhi dengan air yang jernih dan segar
+                            yang berasal dari mata air alami.
+                            Pengunjung dapat berenang atau berendam di kolam-kolam ini, atau hanya menikmati pemandangan
+                            yang menenangkan sambil duduk di tepi kolam.</p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Taman Air Tirta Gannga menyediakan kompleks taman dengan pemandangan
+                                    indah.
+                                    Selain itu, wisatawan juga bisa melakukan aktivitas berenang, naik perahu, dan
+                                    berswafoto.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Jalan Raya Abang Desa Adat, Ababi, Abang, Karangasem, Bali, Indonesia,
+                                    80852.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Taman ini menyediakan area parkir, penginapan, restoran, serta kedai
+                                    penjaja hidangan.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Taman Air Tirta Gangga buka setiap hari pukul 07.30-18.30 WITA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
