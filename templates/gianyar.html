@@ -36,22 +36,25 @@
             color: rgb(247, 125, 81);
             padding: 7px 7px;
             border-radius: 7px;
-            border: 2px solid whitesmoke;
+            border: 2px solid rgb(89, 89, 239);
             font-size: 15px;
         }
-        
+
         .detail {
             color: darkblue;
             font-family: 'Bitter', serif;
             font-family: 'Shantell Sans', cursive;
             font-family: 'Tilt Neon', cursive;
+            text-align: justify;
+            font-size: 15px;
         }
 
         .namedetail {
+            color: darkblue;
             font-family: 'Bitter', serif;
             font-family: 'Shantell Sans', cursive;
-            color: darkblue;
-            text-shadow: 1px 1px 2px rgb(247, 125, 81);
+            font-family: 'Tilt Neon', cursive;
+            font-size: 21px;
             padding-top: 20px;
         }
 
@@ -60,18 +63,39 @@
             font-family: 'Shantell Sans', cursive;
             font-family: 'Tilt Neon', cursive;
         }
+
+        .cover {
+            width: 100%;
+            height: 555px;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150px;
+            color: darkblue;
+        }
     </style>
 
 
 </head>
+
 
 <body>
     <!-- Navbar -->
 
     <div class="container-fluid px-0">
 
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow"
-            style="background-color: rgb(247, 125, 81); height: 72px;">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow" style="height: 72px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
@@ -103,6 +127,14 @@
 
     </div>
 
+
+    <!-- COVER -->
+    <div class="cover">
+        <img src="https://img.theculturetrip.com/wp-content/uploads/2021/07/rice-terraces-in-tegallalang.jpg"
+            alt="...">
+        <div class="centered" style="font-weight: 800;">GIANYAR</div>
+    </div>
+
     <!-- DESTINASI -->
     <div>
         <div class="container-fluid px-0">
@@ -113,24 +145,26 @@
                     <div class="container">
                         <h1 class="d-flex fw-bold "
                             style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Bali Safari</h1>
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 12px; padding-bottom: 15px;">
+                            GUNUNG BATUR</h1>
                         <div class="container text-center">
-                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                            <div class="row row-cols-2"
+                                style="display: block; margin-left: auto; margin-right: auto; border-radius: 3px;">
                                 <img src="https://www.triptemptation.com/media/4a2e6c37-abf3-4517-97f9-e54d0c0b0008/C9DFow/Blog/Alina/bali-safari/bali-safari-panorama.jpg"
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 350px; height: 250px;">
                                 <img src="https://www.flamingotravels.co.in/blog/wp-content/uploads/2019/12/bali-safari.jpg"
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 350px; height: 250px;">
                             </div>
                         </div>
                         <p></p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Bali Safari and Marine Park, atau lebih dikenal sebagai Bali Safari, adalah sebuah taman
                             safari yang terletak di Gianyar, Bali, Indonesia.
                             Destinasi ini menawarkan pengalaman unik dan mendebarkan dengan mendekati dan
                             berinteraksi
                             dengan satwa liar.</p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Bali Safari menampilkan berbagai jenis hewan yang hidup dalam lingkungan yang dirancang
                             menyerupai habitat asli mereka.
                             Pengunjung dapat menjelajahi taman safari dengan menggunakan mobil khusus yang aman dan
@@ -142,25 +176,29 @@
                     <div class="container text-center">
                         <div class="row row-cols-4">
                             <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail"> Safari Explore, Elephant Back Safari, Safari Legend, Night Safari</p>
+                                <p class="detail">Safari Explore, Elephant Back Safari, Safari Legend, Night Safari
+                                </p>
                             </div>
                             <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Alamat</h5>
                                 <p class="detail">Jalan Bypass Prof. Dr. Ida Bagus Mantra Km. 19,8 Kec. Gianyar, Bali
-                                    80551, Indonesia</p>
+                                    80551, Indonesia.</p>
                             </div>
                             <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Fasilitas</h5>
                                 <p class="detail">Parkir, Toilet/WC/Kamar Mandi, P3K, Toko Souvenir,
-                                    Ruang Menyusui, Restoran/Food Court</p>
+                                    Ruang Menyusui, Restoran/Food Court.</p>
                             </div>
                             <div class="col">
                                 <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Jam Operasional</h5>
                                 <p class="detail">Safari Explore = 09.00-15.00 WITA</p>
                                 <p class="detail">Elephant Back Safari = 09.00-15.00 WITA</p>
@@ -170,25 +208,28 @@
                         </div>
                     </div>
 
-                    <!-- UBUD MONKEY -->
+                    <!-- UBUD MONKEY-->
                     <div class="container">
                         <h1 class="d-flex fw-bold "
                             style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Ubud Monkey Forest</h1>
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                            UBUD MONKEY FOREST</h1>
                         <div class="container text-center">
                             <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
-                                <img src="https://i.pinimg.com/originals/3e/36/76/3e36761a21d2e531bb5dfc9e3f994489.jpg"
-                                    style="width: 300px; height: 200px;">
+                                <img src="https://ticmpu.id/wp-content/uploads/job-manager-uploads/company_logo/2021/02/monyet4.jpg"
+                                    style="width: 350px; height: 250px;">
+                                <img src="https://images.unsplash.com/photo-1578725177176-68187f785f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                                    style="width: 350px; height: 250px;">
                             </div>
                         </div>
                         <p></p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Ubud Monkey Forest adalah sebuah hutan yang terletak di desa Padangtegal, Ubud, Bali,
                             Indonesia.
                             Tempat ini terkenal karena populasi monyet yang tinggal di dalamnya, serta sebagai tempat
                             suci bagi masyarakat Hindu setempat.</p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Hutan ini menawarkan pengalaman yang unik, di mana pengunjung dapat berinteraksi dengan
                             monyet-monyet yang hidup bebas di dalam kawasan hutan.
                             Monyet-monyet ini cukup ramah terhadap manusia, namun tetap disarankan untuk menjaga jarak
@@ -198,18 +239,23 @@
                     <div class="container text-center">
                         <div class="row row-cols-4">
                             <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail"> Pura Dalem Agung Padangtegal, Pura Beji, Pura Prajapati</p>
+                                <p class="detail">Desa Pura Dalem Agung Padangtegal, Pura Beji, Pura Prajapati.
+                                </p>
                             </div>
                             <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Alamat</h5>
-                                <p class="detail">Jalan Monkey Forest Ubud, kabupaten Gianyar – Bali dengan kode pos
-                                    80571</p>
+                                <p class="detail">Jalan Monkey Forest Ubud, kabupaten Gianyar
+                                    80571,
+                                    Indonesia.</p>
                             </div>
                             <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Fasilitas</h5>
                                 <p class="detail">Monkey Forest memiliki kawasan konservasi hutan, aula dan galeri umum,
                                     panggung terbuka, kantin,
@@ -218,189 +264,208 @@
                             </div>
                             <div class="col">
                                 <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Jam Operasional</h5>
                                 <p class="detail">Monkey Forest buka setiap hari mulai pukul 09.00-18.00 WITA.
                                     Namun, layanan tiket masuk hanya dibuka hingga pukul 17.00 WITA.</p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- PURA TIRTA -->
-                    <div class="container">
-                        <h1 class="d-flex fw-bold "
-                            style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Pura Tirta Empul Tompak Siring</h1>
-                        <div class="container text-center">
-                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
-                                <img src="https://www.baliaround.com/wp-content/uploads/2014/07/tirta-empul.jpg"
-                                    style="width: 300px; height: 200px;">
-                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbalistarisland.com%2Fwp-content%2Fuploads%2F2016%2F03%2Ftampaksiringtemple.jpg&f=1&nofb=1&ipt=8587eacda2cb13ce05f796ecced0707a2a03f5f6d05fe1ecaaa506a42159861b&ipo=images"
-                                    style="width: 300px; height: 200px;">
-                            </div>
-                        </div>
-                        <p></p>
-                        <p class="justify-content-center">
-                            Pura Tirta Empul atau juga dikenal sebagai Pura Tampak Siring adalah sebuah tempat suci yang
-                            terletak di desa Tampak Siring, Gianyar, Bali, Indonesia.
-                            Pura ini terkenal karena sumber air suci yang dianggap suci oleh masyarakat Hindu.</p>
-                        <p class="justify-content-center">
-                            Pura Tirta Empul memiliki kolam suci yang terdiri dari beberapa pancuran air yang berasal
-                            dari mata air alami.
-                            Air suci ini diyakini memiliki kekuatan spiritual yang dapat membersihkan dan menyucikan
-                            diri bagi mereka yang mandi di dalamnya.</p>
+            <!-- PURA TIRTA -->
+            <div class="container">
+                <h1 class="d-flex fw-bold "
+                    style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive;
+                    font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                    PURA TIRTA EMPUL TOMPAK SIRING</h1>
+                <div class="container text-center">
+                    <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                        <img src="https://images.unsplash.com/photo-1552301726-570d51466ae2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80"
+                            style="width: 350px; height: 250px;">
+                        <img src="https://images.unsplash.com/photo-1596637020779-ade1e5bb4c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                            style="width: 350px; height: 250px;">
                     </div>
+                </div>
+                <p></p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Pura Tirta Empul atau juga dikenal sebagai Pura Tampak Siring adalah sebuah tempat suci yang
+                    terletak di desa Tampak Siring, Gianyar, Bali, Indonesia.
+                    Pura ini terkenal karena sumber air suci yang dianggap suci oleh masyarakat Hindu.</p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Pura Tirta Empul memiliki kolam suci yang terdiri dari beberapa pancuran air yang berasal
+                    dari mata air alami.
+                    Air suci ini diyakini memiliki kekuatan spiritual yang dapat membersihkan dan menyucikan
+                    diri bagi mereka yang mandi di dalamnya.</p>
+            </div>
 
-                    <div class="container text-center">
-                        <div class="row row-cols-4">
-                            <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail">Terdapat pura dan kolam air suci (pemandian) yang disebut Tirta Empul
-                                </p>
-                            </div>
-                            <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Alamat</h5>
-                                <p class="detail">Jl. Tirta, Manukaya, Tampaksiring, Kabupaten Gianyar, Bali.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Fasilitas</h5>
-                                <p class="detail">Area parkir, toilet, area penjualan souvenir dan pakaian, loker, dan
-                                    jasa pemandu wisata.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Jam Operasional</h5>
-                                <p class="detail">Tirta Empul buka setiap hari mulai pukul 08.00-18.00 WITA.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- PASAR UBUD -->
-                    <div class="container">
-                        <h1 class="d-flex fw-bold "
-                            style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Pasar Tradisional Ubud</h1>
-                        <div class="container text-center">
-                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
-                                <img src="http://1.bp.blogspot.com/-vOv_yzYs0rc/TniqId-fZ-I/AAAAAAAABW0/Mc_KmgLsYQU/s1600/73.IMG_3354.JPG"
-                                    style="width: 300px; height: 200px;">
-                            </div>
-                        </div>
-                        <p></p>
-                        <p class="justify-content-center">
-                            Pasar Tradisional Ubud adalah pasar yang terletak di pusat kota Ubud, Bali, Indonesia.
-                            Pasar ini merupakan pusat perdagangan tradisional yang terkenal di Bali dan menjadi salah
-                            satu daya tarik utama bagi wisatawan yang mengunjungi Ubud.</p>
-                        <p class="justify-content-center">
-                            Pasar Tradisional Ubud menawarkan berbagai macam barang dagangan, seperti makanan,
-                            buah-buahan, sayuran, rempah-rempah, pakaian tradisional, kerajinan tangan, dan banyak lagi.
-                            Pengunjung dapat menjelajahi pasar ini dan merasakan suasana yang ramai, serta berinteraksi
-                            dengan para penjual lokal yang ramah.
-                            Pasar ini merupakan tempat yang ideal untuk mencari oleh-oleh tradisional Bali atau
-                            mencicipi makanan lokal yang autentik.
-                            Pengunjung juga dapat mencoba keterampilan menawar untuk mendapatkan harga yang lebih baik.
+            <div class="container text-center">
+                <div class="row row-cols-4">
+                    <div class="col">
+                        <i class="fa-solid fa-feather"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Daya Tarik</h5>
+                        <p class="detail">Terdapat pura dan kolam air suci (pemandian) yang disebut Tirta Empul.
                         </p>
                     </div>
-
-                    <div class="container text-center">
-                        <div class="row row-cols-4">
-                            <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail"> Pasar Ubud memiliki berbagai jenis kerajinan yang dijual.
-                                    Pasar Ubud memiliki ornamen khas yan memanjakan mata.
-                                    Selain itu, terdapat lokasi khusus yang bisa digunakan untuk ber swa foto atau
-                                    menjadi lokasi syuting.
-                                </p>
-                            </div>
-                            <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Alamat</h5>
-                                <p class="detail">Jl. Raya Ubud No.5, Ubud, Ubud, Gianyar, Bali, Indonesia, 80571.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Fasilitas</h5>
-                                <p class="detail">Pasar ubud menyediakan tempat parkir, toilet serta kafe yang menjual
-                                    berbagai makanan khas Bai.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Jam Operasional</h5>
-                                <p class="detail">Pasar Ubud buka setiap hari mulai pukul 10.00-17.00 WITA.</p>
-                            </div>
-                        </div>
+                    <div class="col ">
+                        <i class="fa-solid fa-route"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Alamat</h5>
+                        <p class="detail">Jalan Tirta, Manukaya, Tampaksiring, Kabupaten Gianyar, Bali.
+                            Indonesia.</p>
                     </div>
-
-                    <!-- HIDDEN CAYON -->
-                    <div class="container">
-                        <h1 class="d-flex fw-bold "
-                            style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Hidden Canyon (Bali Canon Tubing)</h1>
-                        <div class="container text-center">
-                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
-                                <img src="https://media-cdn.tripadvisor.com/media/photo-s/10/77/1e/42/bali-hidden-canyon-tour.jpg"
-                                    style="width: 300px; height: 200px;">
-                                <img src="https://visitbalitour.com/wp-content/uploads/2022/08/BejiGuwangHiddenCanyon.jpg"
-                                    style="width: 300px; height: 200px;">
-                            </div>
-                        </div>
-                        <p></p>
-                        <p class="justify-content-center">
-                            Hidden Canyon, juga dikenal sebagai Beji Guwang Hidden Canyon, adalah sebuah destinasi alam
-                            yang terletak di Desa Guwang,
-                            Gianyar, Bali, Indonesia. Hidden Canyon menawarkan pengalaman petualangan yang unik dan
-                            menakjubkan.</p>
-                        <p class="justify-content-center">
-                            Destinasi ini terkenal karena formasi batu karst yang spektakuler dan air terjun yang indah.
-                            Pengunjung dapat menjelajahi ngarai yang tersembunyi dengan menelusuri aliran sungai yang
-                            berliku dan
-                            menyusuri tebing-tebing curam.</p>
+                    <div class="col">
+                        <i class="fa-solid fa-hotel"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Fasilitas</h5>
+                        <p class="detail">Area parkir, toilet, area penjualan souvenir dan pakaian, loker, dan
+                            jasa pemandu wisata.
+                        </p>
                     </div>
-
-                    <div class="container text-center">
-                        <div class="row row-cols-4">
-                            <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail">Hidden Canyon menawarkan keindahan alam tebing ang bisa didaki supaya
-                                    lebih leluasa dalam menikmati pemandanannya.
-                                    Aliras sungai pada Hidden Canyon juga bisa digunakan untuk pemandian atau juga
-                                    trekking.
-                                </p>
-                            </div>
-                            <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Alamat</h5>
-                                <p class="detail">Jalan Sahadewa, Banjar Wangbung, Guwang, Sukawati, Gianyar, Bali,
-                                    Indonesia, 80582.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Fasilitas</h5>
-                                <p class="detail">Hidden Canyon menyediakan toilet, tempat berganti baju, parkir, serta
-                                    warung.</p>
-                            </div>
-                            <div class="col">
-                                <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
-                                <h5 class="namedetail">Jam Operasional</h5>
-                                <p class="detail">Pasar Ubud buka setiap hari mulai pukul 08.00-17.00 WITA.</p>
-                            </div>
-                        </div>
+                    <div class="col">
+                        <i class="fa-solid fa-calendar-days"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Jam Operasional</h5>
+                        <p class="detail">Tirta Empul buka setiap hari mulai pukul 08.00-18.00 WITA</p>
                     </div>
                 </div>
             </div>
+            <!-- HIDDEN CANYON -->
+            <div class="container">
+                <h1 class="d-flex fw-bold "
+                    style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive;
+                    font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                    BALI CANYON TUBING</h1>
+                <div class="container text-center">
+                    <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/10/77/1e/42/bali-hidden-canyon-tour.jpg"
+                            style="width: 350px; height: 250px;">
+                        <img src="https://visitbalitour.com/wp-content/uploads/2022/08/BejiGuwangHiddenCanyon.jpg"
+                            style="width: 350px; height: 250px;">
+                    </div>
+                </div>
+                <p></p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Hidden Canyon, juga dikenal sebagai Beji Guwang Hidden Canyon, adalah sebuah destinasi alam
+                    yang terletak di Desa Guwang,
+                    Gianyar, Bali, Indonesia. Hidden Canyon menawarkan pengalaman petualangan yang unik dan
+                    menakjubkan.</p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Destinasi ini terkenal karena formasi batu karst yang spektakuler dan air terjun yang indah.
+                    Pengunjung dapat menjelajahi ngarai yang tersembunyi dengan menelusuri aliran sungai yang
+                    berliku dan
+                    menyusuri tebing-tebing curam.</p>
+            </div>
+
+            <div class="container text-center">
+                <div class="row row-cols-4">
+                    <div class="col">
+                        <i class="fa-solid fa-feather"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Daya Tarik</h5>
+                        <p class="detail">Hidden Canyon menawarkan keindahan alam tebing ang bisa didaki supaya
+                            lebih leluasa dalam menikmati pemandanannya.
+                            Aliras sungai pada Hidden Canyon juga bisa digunakan untuk pemandian atau juga
+                            trekking juga rafting.
+                        </p>
+                    </div>
+                    <div class="col ">
+                        <i class="fa-solid fa-route"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Alamat</h5>
+                        <p class="detail">Jalan Sahadewa, Banjar Wangbung, Guwang, Sukawati, Gianyar, Bali,
+                            Indonesia, 80582.</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-hotel"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Fasilitas</h5>
+                        <p class="detail">Hidden Canyon menyediakan toilet, tempat berganti baju, parkir, serta
+                            warung.
+                        </p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-calendar-days"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Jam Operasional</h5>
+                        <p class="detail">Bali Canyon Tubing Adventure beroperasi pukul 09:00-17:00.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASAR UBUD -->
+            <div class="container">
+                <h1 class="d-flex fw-bold "
+                    style="font-family: 'Bitter', serif;
+                    font-family: 'Shantell Sans', cursive;
+                    font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                    PASAR TRADISIONAL UBUD</h1>
+                <div class="container text-center">
+                    <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                        <img src="https://atourin.obs.ap-southeast-3.myhuaweicloud.com/images/destination/gianyar/pasar-seni-ubud-profile1645549827.jpeg"
+                            style="width: 350px; height: 250px;">
+                        <img src="https://www.kintamani.id/wp-content/uploads/Pasar-Tradisional-Ubud-3.jpg"
+                            style="width: 350px; height: 250px;">
+                    </div>
+                </div>
+                <p></p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Pasar Tradisional Ubud adalah pasar yang terletak di pusat kota Ubud, Bali, Indonesia.
+                    Pasar ini merupakan pusat perdagangan tradisional yang terkenal di Bali dan menjadi salah
+                    satu daya tarik utama bagi wisatawan yang mengunjungi Ubud.</p>
+                <p class="justify-content-center" style="text-align: justify;">
+                    Pasar Tradisional Ubud menawarkan berbagai macam barang dagangan, seperti makanan,
+                    buah-buahan, sayuran, rempah-rempah, pakaian tradisional, kerajinan tangan, dan banyak lagi.
+                    Pengunjung dapat menjelajahi pasar ini dan merasakan suasana yang ramai, serta berinteraksi
+                    dengan para penjual lokal yang ramah.
+                    Pasar ini merupakan tempat yang ideal untuk mencari oleh-oleh tradisional Bali atau
+                    mencicipi makanan lokal yang autentik.
+                    Pengunjung juga dapat mencoba keterampilan menawar untuk mendapatkan harga yang lebih baik.</p>
+            </div>
+
+            <div class="container text-center">
+                <div class="row row-cols-4">
+                    <div class="col">
+                        <i class="fa-solid fa-feather"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Daya Tarik</h5>
+                        <p class="detail">Pasar Ubud memiliki berbagai jenis kerajinan yang dijual.
+                            Pasar Ubud memiliki ornamen khas yan memanjakan mata.
+                            Selain itu, terdapat lokasi khusus yang bisa digunakan untuk ber swa foto atau
+                            menjadi lokasi syuting.
+                        </p>
+                    </div>
+                    <div class="col ">
+                        <i class="fa-solid fa-route"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Alamat</h5>
+                        <p class="detail">Jalan Raya Ubud No.5, Ubud, Ubud, Gianyar, Bali, Indonesia, 80571.</p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-hotel"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Fasilitas</h5>
+                        <p class="detail">Pasar ubud menyediakan tempat parkir, toilet serta kafe yang menjual
+                            berbagai makanan khas Bali.
+                        </p>
+                    </div>
+                    <div class="col">
+                        <i class="fa-solid fa-calendar-days"
+                            style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                        <h5 class="namedetail">Jam Operasional</h5>
+                        <p class="detail">Pasar Ubud buka setiap hari mulai pukul 10.00-17.00 WITA.</p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+    </div>
+    </div>
     </div>
 
 </body>

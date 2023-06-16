@@ -36,22 +36,25 @@
             color: rgb(247, 125, 81);
             padding: 7px 7px;
             border-radius: 7px;
-            border: 2px solid whitesmoke;
+            border: 2px solid rgb(89, 89, 239);
             font-size: 15px;
         }
-        
+
         .detail {
             color: darkblue;
             font-family: 'Bitter', serif;
             font-family: 'Shantell Sans', cursive;
             font-family: 'Tilt Neon', cursive;
+            text-align: justify;
+            font-size: 15px;
         }
 
         .namedetail {
+            color: darkblue;
             font-family: 'Bitter', serif;
             font-family: 'Shantell Sans', cursive;
-            color: darkblue;
-            text-shadow: 1px 1px 2px rgb(247, 125, 81);
+            font-family: 'Tilt Neon', cursive;
+            font-size: 21px;
             padding-top: 20px;
         }
 
@@ -60,18 +63,39 @@
             font-family: 'Shantell Sans', cursive;
             font-family: 'Tilt Neon', cursive;
         }
+
+        .cover {
+            width: 100%;
+            height: 555px;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 115px;
+            color: darkblue;
+        }
     </style>
 
 
 </head>
+
 
 <body>
     <!-- Navbar -->
 
     <div class="container-fluid px-0">
 
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow"
-            style="background-color: rgb(247, 125, 81); height: 72px;">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow" style="height: 72px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
@@ -103,66 +127,78 @@
 
     </div>
 
+
+    <!-- COVER -->
+    <div class="cover">
+        <img src="https://images.unsplash.com/photo-1532253240322-146d5987f692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            alt="...">
+        <div class="centered" style="font-weight: 800;">NUSAPENIDA</div>
+    </div>
+
     <!-- DESTINASI -->
     <div>
         <div class="container-fluid px-0">
             <div class="container col-xxl-8 px-4 py-5 ">
                 <div class="jumbotron jumbotron-fluid">
 
-                    <!-- PANTAI KELINGKING -->
+                    <!-- KLINGKING BEACH-->
                     <div class="container">
                         <h1 class="d-flex fw-bold "
                             style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Pantai Kelingking</h1>
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 12px; padding-bottom: 15px;">
+                            KLINGKING BEACH</h1>
                         <div class="container text-center">
-                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                            <div class="row row-cols-2"
+                                style="display: block; margin-left: auto; margin-right: auto; border-radius: 3px;">
                                 <img src="https://awsimages.detik.net.id/community/media/visual/2020/09/19/pantai-kelingking.jpeg?w=1000"
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 350px; height: 250px;">
                                 <img src="https://asset.kompas.com/crops/5WXmIjPLHkI60fF3Vr5EYACVONE=/0x0:780x520/750x500/data/photo/2020/11/16/5fb214bc2d6ee.jpg"
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 350px; height: 250px;">
                             </div>
                         </div>
                         <p></p>
-                        <p class="justify-content-center">
-                            Pantai Kelingking merupakan salah satu terindah yang terletak di Pulau Nusa Penida, Bali.
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Klingking Beach merupakan salah satu terindah yang terletak di Pulau Nusa Penida, Bali.
                             Pantai ini menjadi bagian eksotis Pulau Nusa Penida, sehingga menjadi favorit para turis.
                         </p>
-                        <p class="justify-content-center">
-                            Pantai Kelingking merupakan pantai yang menyerupai jari kelingking, namu tak sedikit
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Klingking Beach merupakan pantai yang menyerupai jari kelingking, namu tak sedikit
                             berpendapat bahwa pantai tersebut mirip Tyrannosaurus Rex (T-Rex).
                             Hal ini tidak lain karena, pintu masuk yang terletak di sebuah tebing dengan bukit memanjang
                             serta menjorok ke arah laut tampak seperti jari kelingking.
-                            Pemandangan Pantai Kelingking dari atas adalah pemandangan eksotis Tebing Paluang, atau
-                            disebut juga Karang Dewa. Tebing membuat cekungan masuk ke dalam pantai.
-                        </p>
+                            Pemandangan Klingking Beach dari atas adalah pemandangan eksotis Tebing Paluang, atau
+                            disebut juga Karang Dewa. Tebing membuat cekungan masuk ke dalam pantai.</p>
                     </div>
 
                     <div class="container text-center">
                         <div class="row row-cols-4">
                             <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail"> Pantai Kelingking menawarkan pendakian dan penyewaan perahu bagi yang
+                                <p class="detail">Pantai Kelingking menawarkan pendakian dan penyewaan perahu bagi yang
                                     berminat.
                                     Selain itu, pantai ini menyediakan spot foto yang menarik bagi wisatawan.
                                 </p>
                             </div>
                             <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Alamat</h5>
-                                <p class="detail">Pantai Kelingking terletak di pesisir barat daya Nusa Penida</p>
+                                <p class="detail">Pesisir Barat Daya Nusa Penida</p>
                             </div>
                             <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Fasilitas</h5>
                                 <p class="detail">Parkir, Toilet/WC/Kamar Mandi, Restoran/Food Court</p>
                             </div>
                             <div class="col">
                                 <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Jam Operasional</h5>
-                                <p class="detail">Pantai Kelingking terbuka 24 jam untuk pengunjung sepanjang tahun.
+                                <p class="detail">Klingking Beach terbuka 24 jam untuk pengunjung sepanjang tahun.
                                     Namun, penting dicatat pantai mungkin ditutup selama musim hujan, saat air pasang,
                                     atau saat kondisi laut memburuk karena alasan keamanan.</p>
                             </div>
@@ -173,22 +209,25 @@
                     <div class="container">
                         <h1 class="d-flex fw-bold "
                             style="font-family: 'Bitter', serif;
-                    font-family: 'Shantell Sans', cursive; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 20px;">
-                            Pantai Crystal Bay</h1>
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                            PANTAI CRYSTAL BAY</h1>
                         <div class="container text-center">
                             <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
-                                <img src="https://awsimages.detik.net.id/community/media/visual/2022/10/28/crystal-bay-nusa-penida-2.jpeg?w=1024"
-                                    style="width: 300px; height: 200px;">
+                                <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                                    style="width: 350px; height: 250px;">
+                                <img src="https://wisatabalipenida.com/wp-content/uploads/2021/03/Crystal-Bay.jpg"
+                                    style="width: 350px; height: 250px;">
                             </div>
                         </div>
                         <p></p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Crystal Bay Nusa Penida merupakan pantai dengan panjang garis bibir sekitar 200 meter dan
                             lebar mencapai 15 meter.
                             Pantai satu ini terletak di sebelah tenggara Pulau Bali yang dipisahkan Selat Badung.
                             Crystal Bay Nusa Penida sendiri memiliki banyak keindahan alam hingga dikenal sebagai salah
                             satu pantai yang indah di Bali.</p>
-                        <p class="justify-content-center">
+                        <p class="justify-content-center" style="text-align: justify;">
                             Meski diberi nama Crystal Bay Nusa Penida, pantai ini lebih dikenal atau disebut sebagai
                             Pantai Penida.
                             Crystal Bay sendiri pada dasarnya adalah nama populer yang diberikan oleh wisatawan asing.
@@ -198,26 +237,30 @@
                     <div class="container text-center">
                         <div class="row row-cols-4">
                             <div class="col">
-                                <i class="fa-solid fa-feather" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Daya Tarik</h5>
-                                <p class="detail"> Pantai Crystal Bay menawarkan aktivitas scuba diving atau snorkling.
+                                <p class="detail">Pantai Crystal Bay menawarkan aktivitas scuba diving atau snorkling.
                                     Selain itu, pantai ini menyediakan pemandangan utuh teluk indah yang dinamakan
                                     Crystal Bay Point
                                 </p>
                             </div>
                             <div class="col ">
-                                <i class="fa-solid fa-route" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Alamat</h5>
                                 <p class="detail">Crystal Bay terletak di Teluk Penida atau tepatnya Banjar Penida.</p>
                             </div>
                             <div class="col">
-                                <i class="fa-solid fa-hotel" style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Fasilitas</h5>
-                                <p class="detail">Parkir, Toilet/WC/Kamar Mandi, Restoran/Food Court</p>
+                                <p class="detail">Parkir, Toilet/WC/Kamar Mandi, Restoran/Food Court.
+                                </p>
                             </div>
                             <div class="col">
                                 <i class="fa-solid fa-calendar-days"
-                                    style='font-size:50px; color:rgb(247, 125, 81)'></i>
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
                                 <h5 class="namedetail">Jam Operasional</h5>
                                 <p class="detail">Pantai Crystal Bay terbuka 24 jam untuk pengunjung sepanjang tahun.
                                     Namun, penting dicatat pantai mungkin ditutup selama musim hujan, saat air pasang,
@@ -228,6 +271,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
 </body>
