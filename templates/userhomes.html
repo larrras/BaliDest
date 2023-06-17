@@ -267,7 +267,7 @@
                 {% for data in balidest %}
                 <div class="col-md-4">
                     <div class="card mb-3">
-                        <img src="{{ url_for('static', filename=data.file) }}" class="card-img-top" alt="Card Image">
+                        <img src="{{ url_for('static', filename= data.file) }}" class="card-img-top" alt="Card Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ data.judul }}</h5>
                             <p class="card-text">{{ data.desc }}</p>

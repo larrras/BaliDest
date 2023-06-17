@@ -13,6 +13,9 @@ import jwt
 from datetime import datetime,timedelta
 import hashlib
 from werkzeug.utils import secure_filename
+import logging
+
+
 
 
 
@@ -30,6 +33,8 @@ client = MongoClient('mongodb+srv://randhyar955:Ardiansyah955@cluster0.vr2df0r.m
 db = client.dbbalidest
 
 app=Flask(__name__)
+
+app.logger.setLevel(logging.INFO)
 
 app.config['TEMPLATES_AUTO_RELOAD'] =True
 app.config['UPLOAD_FOLDER'] = './static/profiL_admin'
@@ -220,6 +225,7 @@ def hapus():
     id = request.form["id"]
     db.balides.delete_one({"_id": ObjectId(id)})
     return redirect('/input_destinasi')
+    
 
 
 @app.route('/userhomes')
@@ -229,13 +235,15 @@ def userhomes():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
         balidest = db.balides.find()  # Mengambil semua data dari koleksi 'balides'
-        print(balidest)
-        return render_template('userhomes.html', nickname=user_info['nick'], balidest=balidest, is_admin=False)
+        
+        app.logger.info('Nilai balidest: %s', balidest)
+
+        return render_template('userhomes.html', balidest=balidest, nickname=user_info['nick'])
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Login, yuk!"))
-        
+
 
 
 if __name__ == '__main__':
