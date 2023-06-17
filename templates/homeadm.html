@@ -321,6 +321,13 @@
                                 <td>
                                     <a href="/updates?id={{ data._id }}" class="btn btn-primary">Update</a>
                                 </td>
+                                <td>
+                                    <form action="/hapus" method="post" style="display: inline;">
+                                        <input type="hidden" name="id" value="{{ data._id }}">
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                      </form>
+                                </td>
+                                
                             </tr>
                             {% endfor %}
                         </tbody>
