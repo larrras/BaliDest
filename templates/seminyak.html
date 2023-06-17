@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMINYAK | Balidest</title>
+    <!-- Link bootstrap CDN untuk menggunakan bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Link Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <!-- css internal untuk mengatur design dari halaman -->
+
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .log {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 7px 7px;
+            border-radius: 7px;
+            border: 2px solid rgb(89, 89, 239);
+            font-size: 15px;
+        }
+
+        .detail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .namedetail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+            font-size: 21px;
+            padding-top: 20px;
+        }
+
+        .justify-content-center {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
+        .cover {
+            width: 100%;
+            height: 555px;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150px;
+            color: darkblue;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+    <!-- Navbar -->
+
+    <div class="container-fluid px-0">
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow" style="height: 72px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4 text-nav fw-bold"
+                    style="font-family: 'Bitter', serif;
+                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
+            </a>
+
+            <ul class="nav nav-pills"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Headline</b></a>
+                </li>
+                <li class="nav-item"><a href="#about" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
+                <span>
+                    <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
+                        <a href="/login" class="log" style="font-size: 17px;">
+                            <i class='fas'>&#xf2bd;
+                            </i><b> Login</b>
+                        </a>
+                    </li>
+                </span>
+            </ul>
+        </header>
+
+    </div>
+
+
+    <!-- COVER -->
+    <div class="cover">
+        <img src="https://images.unsplash.com/photo-1603377191540-0b6b101b8edd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+            alt="...">
+        <div class="centered" style="font-weight: 800;">SEMINYAK</div>
+    </div>
+
+    <!-- DESTINASI -->
+    <div>
+        <div class="container-fluid px-0">
+            <div class="container col-xxl-8 px-4 py-5 ">
+                <div class="jumbotron jumbotron-fluid">
+
+                    <!-- THE FLEA MARKET -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 12px; padding-bottom: 15px;">
+                            The Flea Market</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2"
+                                style="display: block; margin-left: auto; margin-right: auto; border-radius: 3px;">
+                                <img src="https://indonesia.tripcanvas.co/id/wp-content/uploads/sites/2/2022/07/17-1-The-Flea-Market-by-awpatel-740x555.jpg"
+                                    style="width: 350px; height: 250px;">
+                                <img src="https://static.thehoneycombers.com/wp-content/uploads/sites/4/2016/08/the-flea-market-seminyak-bali-indonesia-art-fashion-900x642.jpg"
+                                    style="width: 350px; height: 250px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            The Flea Market adalah pasar kekinian yang terdiri dari sekitar 40 buah tenda ini bisa
+                            dibilang sebagai one-stop-shopping, karena pemunjung bisa berbelanja apapun – khususnya
+                            kerajinan
+                            tangan. Mulai dari sarung Bali, souvenir, kaos, tas anyaman, pernak-pernik, kacamata, hingga
+                            lukisan semua ada. Semuanya produksi lokal dan kualitasnya juga tidak kalah dengan di
+                            toko-toko modern.</p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Di Flea Market pengunjung dapat menjelajahi pasar ini dan merasakan suasana yang ramai,
+                            serta berinteraksi
+                            dengan para penjual lokal yang ramah.
+                            Pasar ini merupakan tempat yang ideal untuk mencari oleh-oleh tradisional Bali atau
+                            mencicipi makanan lokal yang autentik.
+                            Pengunjung juga dapat mencoba keterampilan menawar untuk mendapatkan harga yang lebih baik.
+                        </p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">The Flea Market memiliki berbagai jenis kerajinan yang dijual.
+                                    The Flea Market memiliki ornamen khas yan memanjakan mata.
+                                    Selain itu, terdapat lokasi khusus yang bisa digunakan untuk ber swafoto atau
+                                    menjadi lokasi syuting.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Kayu Aya Square Oberoi, Jl. Kayu Aya, Seminyak, Kec. Kuta, Kabupaten
+                                    Badung, Bali, Indonesia.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">The Flea Market menyediakan tempat parkir, toilet serta kafe yang
+                                    menjual berbagai makanan khas Bali.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">The Flea Market buka setiap hari pukul 10.00 – 17.00 WITA.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANTAI SEMINYAK -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                            Pantai Seminyak</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://www.thejetsetterdiaries.com/wp-content/uploads/2018/06/20180329-DSCF7619.jpg"
+                                    style="width: 350px; height: 250px;">
+                                <img src="https://content.api.news/v3/images/bin/043d9733f6aef692c730174834b6f1c7?width=1280"
+                                    style="width: 350px; height: 250px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Pantai Seminyak merupakan satu dari sejumlah pantai dengan pemandangan yang indah di Bali.
+                            Pantai Seminyak lebih baik dikunjungi saat menjelang matahari terbenam karena menajikan
+                            panorama ang sangat indah.
+                            Pantai seminyak ini sudah menjadi favorit bagi wisatawan lokal maupun wisatawan asing.
+                            Pantai seminyak ini dulunya disebut sebagai Pantai Dhynapura oleh masyarakat sekitar. </p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Pantai seminyak menyediakan beberapa aktivitas menyenangkan seperti
+                                    surfing, berjemur, berenang, jogging, nongkrong di cafe terdekat, dan menikmati
+                                    sunset.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Desa Seminyak, Kecamatan Kuta, Kabupaten Badung, Bali, Indonesia.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Pantai Seminyak menyediakan tempat parkir, restoran, toilet, serta
+                                    tempat penginapan dengan nuansa budaya Bali.
+                                </p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Pantai Seminyak buka setiap hari selama 24 jam.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANTAI JIMBARAN -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 12px; padding-bottom: 15px;">
+                            Pantai Jimbaran</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2"
+                                style="display: block; margin-left: auto; margin-right: auto; border-radius: 3px;">
+                                <img src="http://2.bp.blogspot.com/--bUrvpXbbtU/UoiW02SerAI/AAAAAAAACOI/WbRH_IFu8QE/s1600/seafoodjimbaran1.jpg"
+                                    style="width: 350px; height: 250px;">
+                                <img src="http://4.bp.blogspot.com/-vHAOksX-vAE/UoiWUfOBPzI/AAAAAAAACN4/iwJUqcMwehs/s1600/beach-jimbaran-bay.jpg"
+                                    style="width: 350px; height: 250px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Pantai Jimbran adalah sebuah pantai yang terletak di Bali, Indonesia. Pantai ini terkenal
+                            karena keindahan alamnya yang menakjubkan. Pantai Jimbran terletak di wilayah desa Jimbran,
+                            sekitar 10 kilometer sebelah barat daya dari kota Singaraja.</p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Salah satu hal yang paling mencolok dari Pantai Jimbaran adalah pasirnya yang unik. Pasir di
+                            pantai ini terdiri dari butiran-butiran hitam yang halus dan terbuat dari kerikil vulkanik.
+                            Keunikan ini membuat Pantai Jimbran tampak sangat eksotis dan berbeda dari pantai-pantai
+                            lainnya.
+                        </p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Pantai Jimbaran menyediakan beberapa aktivitas menyenangkan seperti
+                                    berenang, berfoto, menikmati sunset, jalan-jalan sembari menikmati pemandangan, dan
+                                    bersepeda di tepi pantai.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Jimbaran, Kuta Selatan, Kabupaten Badung, Bali, Indonesia.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Pantai Jimbaran menyediakan tempat parkir, kamar mandi, payung pantai,
+                                    kafe, serta restoran yang menjual berbagai makanan khas Bali.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Pantai Jimbaran buka setiap hari selama 24 jam.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LA PLANCHA -->
+                    <div class="container">
+                        <h1 class="d-flex fw-bold "
+                            style="font-family: 'Bitter', serif;
+                            font-family: 'Shantell Sans', cursive;
+                            font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 50px; padding-bottom: 15px;">
+                            La Plancha</h1>
+                        <div class="container text-center">
+                            <div class="row row-cols-2" style="display: block; margin-left: auto; margin-right: auto;">
+                                <img src="https://www.coast-boutiqueapartments.com/wp-content/uploads/2018/12/la-plancha3.jpg"
+                                    style="width: 350px; height: 250px;">
+                                <img src="https://laplancha-bali.com/wp-content/uploads/2020/01/La-Plancha-Bali-Sunset-3795.jpg"
+                                    style="width: 350px; height: 250px;">
+                            </div>
+                        </div>
+                        <p></p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            La Plancha adalah sebuah destinasi pantai dan bar di Seminyak, Bali, Indonesia. Terletak di
+                            tepi Pantai Seminyak yang indah, La Plancha menawarkan suasana yang santai, pasir putih, dan
+                            pemandangan matahari terbenam yang spektakuler.
+                        </p>
+                        <p class="justify-content-center" style="text-align: justify;">
+                            Nama La Plancha berasal dari bahasa Spanyol yang berarti di atas piring logam, hal ini
+                            mengacu pada resep-resep makanan yang dimasak di atas piring logam ala Spanyol.
+                            La Plancha terkenal dengan dekorasi warna-warni yang ceria, dengan hamparan bean bag
+                            berwarna-warni yang tersebar di sepanjang pantai. Tempat ini menjadi populer bagi pengunjung
+                            yang ingin bersantai, menikmati suasana pantai, dan menikmati minuman dan hidangan ringan.
+                        </p>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Pantai seminyak menyediakan beberapa aktivitas menyenangkan seperti
+                                    menikmati suasana pantai dengan duduk di bean bag yang ditutupi payung serta menikmati 
+                                    makanan dan minuman ang disediakan oleh restoran. 
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Jalan Mesari Beach, Seminyak, Kuta, Kabupaten Badung, Bali, Indonesia.
+                                </p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">La Plancha menyediakan toilet, bean bag, payung, minuman,
+                                    serta makanan seafood dan western.
+                                </p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Pantai Seminak buka setiap hari pukul 09.00-00.00 WITA.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
