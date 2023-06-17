@@ -137,6 +137,7 @@ def home_admin():
             'desc': desc,
             'time': time,
         })
+        return redirect('/input_destinasi')
     
     token_receive = request.cookies.get('admintoken')
     try:
@@ -184,40 +185,40 @@ def admin_login():
         return jsonify({'result': 'failed', 'message': 'Login gagal'})
 
 # route input
-@app.route('/homes')
-def homes():
-    data = list(db.balides.find({}))
-    for d in data:
-        d['_id'] = str(d['_id'])
-    return render_template('homeadm.html', data=data)
+# @app.route('/homes')
+# def homes():
+#     data = list(db.balides.find({}))
+#     for d in data:
+#         d['_id'] = str(d['_id'])
+#     return render_template('homeadm.html', data=data)
 
-@app.route('/input', methods=['POST'])
-def input():
-    judul = request.form['judul']
-    desc = request.form['desc']
+# @app.route('/input', methods=['POST'])
+# def input():
+#     judul = request.form['judul']
+#     desc = request.form['desc']
     
-    today = datetime.now()
-    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+#     today = datetime.now()
+#     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
     
-    file = request.files["file"]
-    extension = file.filename.split('.')[-1]
-    filename = f'file-{mytime}.{extension}'
-    save_to = f'static/{filename}'
-    file.save(save_to)
+#     file = request.files["file"]
+#     extension = file.filename.split('.')[-1]
+#     filename = f'file-{mytime}.{extension}'
+#     save_to = f'static/{filename}'
+#     file.save(save_to)
     
-    time = today.strftime('%Y-%m-%d')
+#     time = today.strftime('%Y-%m-%d')
     
-    db.balides.insert_one({
-        'file': filename,
-        'judul': judul,
-        'desc': desc,
-        'time': time,
-    })
-    return redirect('/input_destinasi')
+#     db.balides.insert_one({
+#         'file': filename,
+#         'judul': judul,
+#         'desc': desc,
+#         'time': time,
+#     })
+#     return redirect('/input_destinasi')
 
 @app.route('/input_destinasi')
 def input_destinasi():
-    balidest = db.balides.find({}, {})
+    balidest = db.balides.find({})
     return render_template('homeadm.html', balidest=balidest)
 
 @app.route('/updates', methods=['GET', 'POST'])
@@ -242,7 +243,7 @@ def updates():
         file.save("./static/" + file_path)
 
     db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
-    return redirect('/homes')
+    return redirect('/input_destinasi')
 
 
 @app.route('/userhomes')
@@ -252,6 +253,7 @@ def userhomes():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
         balidest = list(db.balides.find({}))  # Mengambil semua data dari koleksi 'balides'
+        print(balidest)
         return render_template('userhomes.html', nickname=user_info['nick'], balidest=balidest, is_admin=False)
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
