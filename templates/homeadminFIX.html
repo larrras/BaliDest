@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRATOR PAGE | Balidest</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .sidebar {
+            width: 300px;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+            color: darkblue;
+            font-weight: 850;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle>button {
+            width: 160px;
+            height: 45px;
+            background-color: darkblue;
+            color: white;
+
+            border-radius: 50px;
+            border: 2px solid darkblue;
+
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .mytitle>button:hover {
+            border: 2px solid darkblue;
+        }
+
+        .container {
+            width: auto;
+            height: auto;
+            box-shadow: 0px 0px 3px 0px gray;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: white;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
+        .upbtn {
+            background-color: darkblue;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 7px;
+            width: 40px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .delbtn {
+            background-color: rgb(215, 11, 11);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 7px;
+            width: 40px;
+            justify-content: center;
+            position: relative;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 5px 0;
+            background-color: white;
+            text-align: center;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+    </style>
+
+    <script>
+
+        function toggleReadMore(button) {
+            let cardBody = $(button).closest('.card-body');
+            cardBody.toggleClass('read-more');
+            let readMoreButton = $(button);
+            if (cardBody.hasClass('read-more')) {
+                readMoreButton.text('Read Less');
+            } else {
+                readMoreButton.text('Read More');
+            }
+        }
+
+        function addnew() {
+            window.location.href = "addcard.html";
+        }
+
+        function contoh() {
+            swal({
+                title: "Berhasil!",
+                text: "Pop-up berhasil dihapus",
+                icon: "success",
+                button: true
+            });
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid d-flex flex-row px-0">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <a href="/" class="d-flex align-items-center mx-5 mb-3 mb-md-0 link-body-emphasis text-decoration-none">
+
+                    <!-- <span class="fs-4">Sidebar</span> -->
+                    <p style="font-size: 40px; font-weight: 900; color: darkblue;">Sidebar</p>
+                </a>
+                <br>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;"><i
+                                class="fa fa-home" style="font-size: 28px;"></i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#home"></use>
+                            </svg>
+                            Destinasi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
+                                style='font-size:21px' class='fas'>&#xf0c0;</i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis" style="font-size: 18px;"><i
+                                style='font-size:28px' class='fas'>&#xf682;</i>
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Review
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#"
+                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="padding: 5px;">
+                        <img src="{{url_for('static', filename='/profil_admin/admin.png')}}" alt="" width="32"
+                            height="32" class="rounded-circle me-2">
+                        <strong>Balidest | Admin</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                    <footer>
+                        <p class="text-center text-body-secondary"
+                            style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; padding-top: 25px;">
+                            © 2023 Balidest</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-content px-4 m-auto">
+            <!-- FORM INPUT -->
+            <section id="form-input">
+                <div class="mytitle">
+                    <h1 style="font-weight: 800;">ADMINISTRATOR PANEL</h1>
+                    <button onclick="addnew()"><B>+ ADD NEW</B></button>
+                </div>
+            </section>
+
+            <!-- TABLE UPDATE -->
+            <div class="container">
+                <div class="wrapper">
+                    <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
+
+                    <table class="table">
+                        <thead class="thead-light" style="color: darkblue">
+                            <tr>
+                                <th scope="col">File</th>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Deskripsi</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-box" style="color: darkblue">
+                            {% for data in balidest %}
+                            <tr>
+                                <td>{{ data.file }}</td>
+                                <td>{{ data.judul }}</td>
+                                <td>{{ data.desc }}</td>
+                                <td>{{ data.time }}</td>
+                                <td>
+                                    <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
+                                    <div>
+                                        <a href="/updates?id={{ data._id }}">
+                                            <button class="upbtn" style="justify-content: center;"><i
+                                                    style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
+                                            </button>
+                                        </a>
+                                        <form action="/hapus" method="post" style="display: inline;">
+                                            <input type="hidden" name="id" value="{{ data._id }}">
+                                            <button class="delbtn" onclick="contoh()"><i
+                                                    style='font-size:21px; color: white;'
+                                                    class='fas'>&#xf1f8;</i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- TABLE UPDATE END -->
+        </div>
+
+    </div>
+</body>
+
+</html>
+</body>
+
+</html>

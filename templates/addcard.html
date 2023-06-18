@@ -90,33 +90,46 @@
             $('#post-box').show();
         }
 
+        function cancel() {
+            window.location.href = "homeadminFIX.html";
+        }
+
+        function add() {
+            swal({
+                title: "Berhasil!",
+                text: "Pop-up berhasil ditampilkan",
+                icon: "success",
+                button: true
+            });
+        }
     </script>
 </head>
 
 <body>
     <section id="form-input">
         <div class="mytitle">
-            <h1 style="font-weight: 800;">UPDATE DATA PANEL</h1>
-            <!-- <button onclick="open_box()">UPDATE DATA WISATA!</button> -->
+            <h1 style="font-weight: 800;">ADD NEW CARD</h1>
         </div>
 
-        <div class="mypost" id="post-box" action="/updates" method="POST" enctype="multipart/form-data">
+        <div class="mypost" id="post-box" action="/home" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="{{ data['_id'] }}">
             <div class="form-floating mb-3">
-                <input id="url" type="text" class="form-control" placeholder="name@example.com" type="text" name="judul" value="{{ data.judul }}" required>
-                <label>Judul</label>
+                <input id="url" type="text" class="form-control" placeholder="name@example.com" type="text"
+                    name="judul" />
+                <label for="judul">Judul</label>
             </div>
             <div class="input-group mb-3">
-                <label class="label" for="input-pic"> Gambar Destinasi
+                <label class="label" for="file"> Gambar Destinasi
                     <input type="file" class="form-control" id="inputGroupFile02" style="margin: 3px;" name="file">
                 </label>
             </div>
             <div class="form-floating">
-                <textarea id="comment" class="form-control" placeholder="Leave a comment here" name="desc" required>{{ data.desc }}</textarea>
-                <label for="floatingTextarea2">Deskripsi Destinasi</label>
+                <textarea class="form-control" placeholder="Leave a comment here" name="desc"></textarea>
+                <label for="desc">Deskripsi Destinasi</label>
             </div>
             <div class="mybtns">
-                <button onclick="posting()" type="sumbit" class="blue-button">Update</button>
+                <button onclick="add()" type="button" class="blue-button">Submit</button>
+                <button onclick="cancel()" type="button" class="blue-button-outline">Back</button>
             </div>
         </div>
     </section>
