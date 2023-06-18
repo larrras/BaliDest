@@ -152,7 +152,7 @@ def home_admin():
             for d in data:
                 d['_id'] = str(d['_id'])
                 return redirect('/input_destinasi')
-            return render_template('homeadm.html', admin_info=admin_info, data=data)
+            return render_template('homeadminCSS.html', admin_info=admin_info, data=data)
         else:
             return redirect(url_for('admin', msg="Admin tidak ditemukan"))
     except jwt.ExpiredSignatureError:
