@@ -261,6 +261,26 @@ def details():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
 
+# route views rating
+@app.route('/view')
+def view():
+    try:
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+
+        # Ambil data destinasi dari database
+        destination_id = request.args.get('id')
+        data = db.balides.find_one({"_id": ObjectId(destination_id)})
+        data["_id"] = str(data["_id"])
+
+        return render_template('view.html', data=data)
+
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Silakan Login"))
+
 
         
 
