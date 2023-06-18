@@ -117,11 +117,15 @@
         /* CSS untuk card */
         .card {
             margin-bottom: 20px;
+            border-radius: 35px;
+            transition: box-shadow 0.2s;
         }
 
         .card-img-top {
             height: 200px;
             object-fit: cover;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
         }
 
         .card-title {
@@ -153,37 +157,15 @@
             object-fit: cover;
         }
 
+        .btn {
+            background-color: darkblue;
+            color: white;
+            padding: 9px 8px;
+            border-radius: 25px;
+            width: 150px;
+        }
+
     </style>
-
-    <script>
-        function badung() {
-            window.location.href = "badung.html";
-        }
-
-        function gianyar() {
-            window.location.href = "gianyar.html";
-        }
-
-        function tabanan() {
-            window.location.href = "tabanan.html";
-        }
-
-        function bangli() {
-            window.location.href = "bangli.html";
-        }
-
-        function karangasem() {
-            window.location.href = "karangasem.html";
-        }
-
-        function buleleng() {
-            window.location.href = "buleleng.html";
-        }
-
-        function nusapenida() {
-            window.location.href = "nusapenida.html";
-        }
-    </script>
 
 
 </head>
@@ -217,7 +199,7 @@
                     <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
                         <a href="/login" class="log" style="font-size: 17px;">
                             <i class='fas'>&#xf2bd;
-                                <b>Welcome, {{ nickname}}</b>
+                                <b>Welcome, {{ nickname }}</b>
                             </i>
                         </a>
 
@@ -277,10 +259,10 @@
                     <div class="card mb-3">
                         <img src="{{ url_for('static', filename= data.file) }}" class="card-img-top" alt="Card Image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ data.judul }}</h5>
+                            <h3 class="card-title">{{ data.judul }}</h3>
                             <p class="card-text">{{ data.desc }}</p>
                             <p class="card-text"><small class="text-muted">{{ data.time }}</small></p>
-                            <a href="/details?id={{ data._id }}" class="btn btn-primary">Tampilkan Detail</a>
+                            <a href="/details?id={{ data._id }}" class="btn">Tampilkan Detail</a>
 
 
                         </div>

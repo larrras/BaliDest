@@ -33,10 +33,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
+        body {
+            margin: 0;
+            padding-bottom: 50px;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
         .sidebar {
             width: 300px;
             min-height: 100vh;
             display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .main {
+            margin-left: 260px;
+            margin-top: 20px;
         }
 
         .mytitle {
@@ -103,7 +120,7 @@
             padding: 9px 15px;
             border-radius: 7px;
         } */
-/* 
+        /* 
         .orange-button {
             background-color: darkblue;
             color: white;
@@ -309,59 +326,61 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- Form untuk input data -->
-                        <form action="/home" method="POST" enctype="multipart/form-data">
-                            <h1>MASUKKAN DATA</h1>
-                            <div class="mb-3">
-                                <label for="judul">Judul</label>
-                                <input type="text" name="judul" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <label for="file">Gambar Destinasi</label>
-                                <input type="file" name="file" class="form-control" />
-                            </div>
-                            <div class="mb-3">
-                                <label for="desc">Description</label>
-                                <textarea name="desc" class="form-control"></textarea>
-                            </div>
-                            <button onclick="add()" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+            <div class="main">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Form untuk input data -->
+                            <form action="/home" method="POST" enctype="multipart/form-data">
+                                <h1>MASUKKAN DATA</h1>
+                                <div class="mb-3">
+                                    <label for="judul">Judul</label>
+                                    <input type="text" name="judul" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="file">Gambar Destinasi</label>
+                                    <input type="file" name="file" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="desc">Description</label>
+                                    <textarea name="desc" class="form-control"></textarea>
+                                </div>
+                                <button onclick="add()" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
 
-                    <div class="col-md-6">
-                        <!-- Tabel untuk menampilkan data -->
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>File</th>
-                                    <th>Judul</th>
-                                    <th>Description</th>
-                                    <th>Time</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for data in balidest %}
-                                <tr>
-                                    <td>{{ data.file }}</td>
-                                    <td>{{ data.judul }}</td>
-                                    <td>{{ data.desc }}</td>
-                                    <td>{{ data.time }}</td>
-                                    <td>
-                                        <a href="/updates?id={{ data._id }}" class="btn btn-primary">Update</a>
-                                        <form action="/hapus" method="post" style="display: inline;">
-                                            <input type="hidden" name="id" value="{{ data._id }}">
-                                            <button class="btn btn-danger" onclick="contoh()">Hapus</button>
-                                        </form>
-                                    </td>
+                        <div class="col-md-6">
+                            <!-- Tabel untuk menampilkan data -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>File</th>
+                                        <th>Judul</th>
+                                        <th>Description</th>
+                                        <th>Time</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in balidest %}
+                                    <tr>
+                                        <td>{{ data.file }}</td>
+                                        <td>{{ data.judul }}</td>
+                                        <td>{{ data.desc }}</td>
+                                        <td>{{ data.time }}</td>
+                                        <td>
+                                            <a href="/updates?id={{ data._id }}" class="btn btn-primary">Update</a>
+                                            <form action="/hapus" method="post" style="display: inline;">
+                                                <input type="hidden" name="id" value="{{ data._id }}">
+                                                <button class="btn btn-danger" onclick="contoh()">Hapus</button>
+                                            </form>
+                                        </td>
 
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

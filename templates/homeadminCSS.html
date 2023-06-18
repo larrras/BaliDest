@@ -32,10 +32,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
+        body {
+            margin: 0;
+            padding-bottom: 50px;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
         .sidebar {
             width: 300px;
             min-height: 100vh;
             display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .main {
+            margin-left: 260px;
         }
 
         .mytitle {
@@ -98,17 +114,6 @@
             position: relative;
         }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            padding: 5px 0;
-            background-color: white;
-            text-align: center;
-            font-family: 'Bitter', serif;
-            font-family: 'Shantell Sans', cursive;
-            font-family: 'Tilt Neon', cursive;
-        }
     </style>
 
     <script>
@@ -212,66 +217,64 @@
         </div>
         <!-- End Sidebar -->
 
-        <div class="main-content px-4 m-auto">
-            <!-- FORM INPUT -->
-            <section id="form-input">
-                <div class="mytitle">
-                    <h1 style="font-weight: 800;">ADMINISTRATOR PANEL</h1>
-                    <button onclick="addnew()"><B>+ ADD NEW</B></button>
-                </div>
-            </section>
+        <div class="main">
+            <div class="main-content px-4 m-auto">
+                <!-- FORM INPUT -->
+                <section id="form-input">
+                    <div class="mytitle">
+                        <h1 style="font-weight: 800;">ADMINISTRATOR PANEL</h1>
+                        <button onclick="addnew()"><B>+ ADD NEW</B></button>
+                    </div>
+                </section>
 
-            <!-- TABLE UPDATE -->
-            <div class="container">
-                <div class="wrapper">
-                    <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
+                <!-- TABLE UPDATE -->
+                <div class="container">
+                    <div class="wrapper">
+                        <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
 
-                    <table class="table">
-                        <thead class="thead-light" style="color: darkblue">
-                            <tr>
-                                <th scope="col">File</th>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Deskripsi</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-box" style="color: darkblue">
-                            {% for data in balidest %}
-                            <tr>
-                                <td>{{ data.file }}</td>
-                                <td>{{ data.judul }}</td>
-                                <td>{{ data.desc }}</td>
-                                <td>{{ data.time }}</td>
-                                <td>
-                                    <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
-                                    <div>
-                                        <a href="/updates?id={{ data._id }}">
-                                            <button class="upbtn" style="justify-content: center;"><i
-                                                    style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
-                                            </button>
-                                        </a>
-                                        <form action="/hapus" method="post" style="display: inline;">
-                                            <input type="hidden" name="id" value="{{ data._id }}">
-                                            <button class="delbtn" onclick="contoh()"><i
-                                                    style='font-size:21px; color: white;'
-                                                    class='fas'>&#xf1f8;</i></button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                        <table class="table">
+                            <thead class="thead-light" style="color: darkblue">
+                                <tr>
+                                    <th scope="col">File</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Deskripsi</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-box" style="color: darkblue">
+                                {% for data in balidest %}
+                                <tr>
+                                    <td>{{ data.file }}</td>
+                                    <td>{{ data.judul }}</td>
+                                    <td>{{ data.desc }}</td>
+                                    <td>{{ data.time }}</td>
+                                    <td>
+                                        <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
+                                        <div>
+                                            <a href="/updates?id={{ data._id }}">
+                                                <button class="upbtn" style="justify-content: center;"><i
+                                                        style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
+                                                </button>
+                                            </a>
+                                            <form action="/hapus" method="post" style="display: inline;">
+                                                <input type="hidden" name="id" value="{{ data._id }}">
+                                                <button class="delbtn" onclick="contoh()"><i
+                                                        style='font-size:21px; color: white;'
+                                                        class='fas'>&#xf1f8;</i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <!-- TABLE UPDATE END -->
             </div>
-            <!-- TABLE UPDATE END -->
         </div>
-
     </div>
-</body>
-
-</html>
 </body>
 
 </html>
