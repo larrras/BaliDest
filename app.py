@@ -48,6 +48,7 @@ def home_user():
     try:
         payload =jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id':payload['id']})
+        return redirect ('/userhomes')
         return render_template('userhomes.html', nickname = user_info['nick'])
     except jwt.ExpiredSignatureError :
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
@@ -227,7 +228,6 @@ def hapus():
     return redirect('/input_destinasi')
     
 
-
 @app.route('/userhomes')
 def userhomes():
     token_receive = request.cookies.get('mytoken')
@@ -243,6 +243,27 @@ def userhomes():
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Login, yuk!"))
+
+# details dari destinasi
+@app.route('/details')
+def details():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+        id = request.args.get("id")
+        data = db.balides.find_one({"_id": ObjectId(id)})
+        data["_id"] = str(data["_id"])
+        
+        return render_template('details.html', data=data)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Silakan Login"))
+
+
+        
+
 
 
 

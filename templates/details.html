@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details | Balidest</title>
+    <!-- Link bootstrap CDN untuk menggunakan bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Link Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter&family=Shantell+Sans:wght@300&family=Tilt+Neon&display=swap"
+        rel="stylesheet">
+    <!-- css internal untuk mengatur design dari halaman -->
+
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .log {
+            background-color: darkblue;
+            color: rgb(247, 125, 81);
+            padding: 7px 7px;
+            border-radius: 7px;
+            border: 2px solid rgb(89, 89, 239);
+            font-size: 15px;
+        }
+
+        .detail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .namedetail {
+            color: darkblue;
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+            font-size: 21px;
+            padding-top: 20px;
+        }
+
+        .justify-content-center {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
+
+        .cover {
+            width: 100%;
+            height: 555px;
+            overflow: hidden;
+        }
+
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150px;
+            color: darkblue;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+    <!-- Navbar -->
+
+    <div class="container-fluid px-0">
+
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom shadow" style="height: 72px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4 text-nav fw-bold"
+                    style="font-family: 'Bitter', serif;
+                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
+            </a>
+
+            <ul class="nav nav-pills"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
+                <li class="nav-item"><a href="#headline" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>Headline</b></a>
+                </li>
+                <li class="nav-item"><a href="#about" class="nav-link"
+                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
+                <span>
+                    <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
+                        <a href="/login" class="log" style="font-size: 17px;">
+                            <i class='fas'>&#xf2bd;
+                            </i><b> {{nickname}}</b>
+                        </a>
+                    </li>
+                </span>
+            </ul>
+        </header>
+
+    </div>
+
+
+    <!-- COVER -->
+    <div class="cover">
+        <img src="{{ url_for('static', filename=data.file) }}" alt="Card Image">
+        <div class="centered" style="font-weight: 800;">
+
+        </div>
+    </div>
+
+    <!-- DESTINASI -->
+    <div class="container-fluid px-0">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="jumbotron jumbotron-fluid">
+
+                <!-- GUNUNG BATUR -->
+                <div class="container">
+                    <h1 class="d-flex fw-bold"
+                        style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive; font-size: 47px; font-weight: 600; color: rgb(247, 125, 81); text-shadow: 1px 1px 2px darkblue; padding-top: 12px; padding-bottom: 15px;">
+                        {{ data.judul }}
+                    </h1>
+                    <div class="container text-center">
+                        <div class="row row-cols-2"
+                            style="display: block; margin-left: auto; margin-right: auto; border-radius: 3px;">
+                            <img src="{{ url_for('static', filename=data.file) }}" alt="Card Image">
+                        </div>
+                    </div>
+                    <p></p>
+                    <p class="justify-content-center" style="text-align: justify;">
+                        {{ data.desc }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">Gunung Batur menyediakan area pendakian dan juga jalur trek untuk
+                                    berasepeda.
+                                    Selain itu, unung Batur juga menyediakan kolam air hangat yang bisa digunakan untuk
+                                    berendam.
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">Batur Selatan, Kintamani, Bangli, Bali, Indonesia.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">Gunung Batur menyediakan area parkir luas, warung/restoran, serta
+                                    penginaan bagi wisatawan.</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">Gunung batur buka selama 24 jam setiap hari.</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Footer -->
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Headline</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Login</a></li>
+            </ul>
+            <p class="text-center text-body-secondary"
+                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                © 2023 Balidest</p>
+        </footer>
+    </div>
+</body>
+
+</html>
