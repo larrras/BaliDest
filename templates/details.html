@@ -157,8 +157,41 @@
                     <p class="justify-content-center" style="text-align: justify;">
                         {{ data.desc }}
                     </p>
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <i class="fa-solid fa-feather"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Daya Tarik</h5>
+                                <p class="detail">{{data.dayatarik}}
+                                </p>
+                            </div>
+                            <div class="col ">
+                                <i class="fa-solid fa-route"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Alamat</h5>
+                                <p class="detail">{{data.alamat}}</p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-hotel"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Fasilitas</h5>
+                                <p class="detail">{{data.fasilitas}}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid fa-calendar-days"
+                                    style='font-size:40px; color:rgb(247, 125, 81); padding-top:15px'></i>
+                                <h5 class="namedetail">Jam Operasional</h5>
+                                <p class="detail">{{data.jam}}</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <a href="/add_review?id={{ data._id }}" class="btn btn-primary">View More</a>
                 </div>
+
+
             </div>
         </div>
     </div>

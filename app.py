@@ -17,8 +17,6 @@ import logging
 
 
 
-
-
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -80,7 +78,7 @@ def api_login():
         token = jwt.encode(payload,SECRET_KEY,algorithm='HS256')
         return jsonify({'result':'success','token':token})
     else :
-        return jsonify({'result':'fail', 'msg': 'Coba gunakan ID yang lain, yuk!'})
+        return jsonify({'result':'fail', 'msg': 'Oops! ID/Password kamu salah. Periksa kembali, ya!'})
 
 # route ke logout
 @app.route('/logout')
@@ -241,6 +239,10 @@ def add_card():
     if request.method == 'POST':
         judul = request.form['judul']
         desc = request.form['desc']
+        dayatarik = request.form['dayatarik']
+        alamat = request.form['alamat']
+        fasilitas = request.form['fasilitas']
+        jamoperasional = request.form['jam']
     
         today = datetime.now()
         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
@@ -258,9 +260,13 @@ def add_card():
             'judul': judul,
             'desc': desc,
             'time': time,
+            'dayatarik': dayatarik,
+            'alamat': alamat,
+            'fasilitas': fasilitas,
+            'jam': jamoperasional
 
         })
-        return render_template('/ulasan2.html',reviews=reviews)
+        # return render_template('/ulasan2.html',reviews=reviews)
     
         return redirect('/input_destinasi')
     
