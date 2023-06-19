@@ -51,8 +51,9 @@
         }
 
         .main {
-            margin-left: 280px;
-            margin-right: 10px;
+            justify-content: center;
+            text-align: center;
+            margin-left: 480px;
         }
 
         .title {
@@ -60,8 +61,9 @@
             font-size: 43px;
             font-weight: 900;
             color: darkblue;
-            margin-left: 300px;
+            /* margin-left: 100px; */
             padding-top: 50px;
+            padding-bottom: 50px;
         }
 
         .btnadd {
@@ -85,16 +87,19 @@
 
         }
 
-        .container {
-            width: auto;
+        .containers {
+            width: 550px;
             height: auto;
             box-shadow: 0px 0px 3px 0px gray;
             padding: 25px;
+            /* padding-left: 50px; */
             border-radius: 12px;
             background-color: white;
             font-family: 'Bitter', serif;
             font-family: 'Shantell Sans', cursive;
             font-family: 'Tilt Neon', cursive;
+            margin-left: 25px;
+            float: left;
         }
 
         .upbtn {
@@ -144,7 +149,8 @@
             });
         }
 
-        document.getElementById('user-btn').addEventListener('click', function () {
+
+        document.getElementById('input-btn').addEventListener('click', function () {
             // Menghapus kelas 'active' dari semua elemen <li>
             var listItems = document.querySelectorAll('.nav-item');
             listItems.forEach(function (item) {
@@ -155,7 +161,7 @@
             this.classList.add('active');
 
             // Mengarahkan ke halaman daftar_user.html
-            window.location.href = '/daftar_user';
+            window.location.href = '/input_destinasi';
         });
 
         document.getElementById('review-btn').addEventListener('click', function () {
@@ -171,8 +177,6 @@
             // Mengarahkan ke halaman daftar_user.html
             window.location.href = '/daftar_review';
         });
-
-
 
     </script>
 
@@ -193,22 +197,23 @@
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
                 style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
                 <a href="/" class="d-flex align-items-center mx-5 mb-3 mb-md-0 link-body-emphasis text-decoration-none">
+
                     <!-- <span class="fs-4">Sidebar</span> -->
                     <p style="font-size: 40px; font-weight: 900; color: darkblue;">Sidebar</p>
                 </a>
                 <br>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;"><i
-                                class="fa fa-home" style="font-size: 28px;"></i>
+                    <li id="input-btn">
+                        <a href="/input_destinasi" class="nav-link link-body-emphasis" style="font-size: 18px;">
+                            <i class="fa fa-home" style="font-size: 28px;"></i>
                             <svg class="bi pe-none me-2" width="16" height="16">
                                 <use xlink:href="#home"></use>
                             </svg>
                             Destinasi
                         </a>
                     </li>
-                    <li id="user-btn">
-                        <a href="/daftar_user" class="nav-link link-body-emphasis" style="font-size: 18px;">
+                    <li id="nav-item">
+                        <a href="#home" class="nav-link active" aria-current="page" style="font-size: 18px;">
                             <i style='font-size:21px' class='fas'>&#xf0c0;</i>
                             <svg class="bi pe-none me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"></use>
@@ -250,64 +255,33 @@
 
         <div class="main">
             <div class="title">
-                <p>ADMINISTRATOR PANEL</p>
+                <p style="margin-left: 70px;" class="d-flex justify-content-center align-items-center">ADMINISTRATOR
+                    PANEL</p>
             </div>
 
-            <a href="{{ url_for('add_card') }}" class="btnadd">
-                <span>
-                    <i style='font-size:20px; justify-content: center;' class='fas'>&#xf067;</i><b>ADD NEW</b>
-                </span>
-            </a>
+            <!-- TABLE USER LIST -->
+            <div class="d-flex justify-content-center" style="margin-left: 31px;">
+                <div class="containers">
+                    <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE DAFTAR USER</b></p>
 
-            <!-- TABLE UPDATE -->
-
-            <div class="container">
-                <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
-
-                <table class="table">
-                    <thead class="thead-light" style="color: darkblue">
-                        <tr>
-                            <th scope="col">File</th>
-                            <th scope="col">Judul</th>
-                            <th scope="col">Deskripsi</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-box" style="color: darkblue">
-                        {% for data in balidest %}
-                        <tr>
-                            <td>{{ data.file }}</td>
-                            <td>{{ data.judul }}</td>
-                            <td>{{ data.desc }}</td>
-                            <td>{{ data.time }}</td>
-                            <td>
-                                <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
-                                <div style="margin-left: 5px; margin-bottom: 6px; margin-top: 5px;">
-                                    <a href="/updates?id={{ data._id }}" style="margin-bottom: 5px;">
-                                        <button class="upbtn" style="justify-content: center;"><i
-                                                style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
-                                        </button>
-                                    </a>
-                                    <br>
-
-                                </div>
-                                <div style="margin-left: 5px;">
-                                    <form action="/hapus" method="post" style="display: inline; ">
-                                        <input type="hidden" name="id" value="{{ data._id }}">
-                                        <button class="delbtn" onclick="contoh()"><i
-                                                style='font-size:21px; color: white;' class='fas'>&#xf1f8;</i></button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- TABLE UPDATE END -->
-
+                    <table class="table">
+                        <thead class="thead-light" style="color: darkblue">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nickname</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-box" style="color: darkblue">
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.nick }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- TABLE USER LIST END -->
             </div>
         </div>
     </div>

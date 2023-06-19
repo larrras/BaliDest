@@ -40,7 +40,7 @@
             font-weight: bold;
             display: flex;
             flex-direction: column;
-            padding-left: 40px;
+            /* padding-left: 40px; */
             padding-top: 20px;
         }
 
@@ -134,32 +134,40 @@
                 <button onclick="open_box()">Tulis Review</button>
             </div>
 
-            <div class="mypost" id="post-box">
-                <p class="txt">Berikan review terbaikmu!</p>
-                <div class="form-floating mb-3">
-                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
-                    <label>Judul</label>
+            <form action="/add_review" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="review_id" value="{{ data._id }}">
+
+                <div class="mypost" id="post-box">
+                    <p class="txt">Berikan review terbaikmu!</p>
+                    <div class="form-floating mb-3">
+                        <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                        <label>Judul Review</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Rating</label>
+                        <select class="form-select" id="star">
+                            <option selected>-- Select a star--</option>
+                            <option value="1">⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                        </select>
+                    </div>
+                    <div class="form-floating">
+                        <textarea id="comment" class="form-control" placeholder="Leave a comment here"
+                            name="comment"></textarea>
+                        <label for="comment">Tulis Review</label>
+                    </div>
+                    <div class="mybtns">
+                        <button onclick="posting()" type="button" class="blue-button">Kirim Review</button>
+                        <!-- <a href="/details?id={{ data._id }}" class="btn btn-primary">Details</a> -->
+                        <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
+                    </div>
                 </div>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Rating</label>
-                    <select class="form-select" id="star">
-                        <option selected>-- Select a rating--</option>
-                        <option value="1">⭐</option>
-                        <option value="2">⭐⭐</option>
-                        <option value="3">⭐⭐⭐</option>
-                        <option value="4">⭐⭐⭐⭐</option>
-                        <option value="5">⭐⭐⭐⭐⭐</option>
-                    </select>
-                </div>
-                <div class="form-floating">
-                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-                    <label for="floatingTextarea2">Deskripsi Destinasi</label>
-                </div>
-                <div class="mybtns">
-                    <button onclick="posting()" type="button" class="blue-button">Kirim Review</button>
-                    <button onclick="close_box()" type="button" class="blue-button-outline">Close</button>
-                </div>
-            </div>
+
+            </form>
+
 
         </section>
     </div>

@@ -301,6 +301,18 @@ def userhomes():
         return redirect(url_for('login', msg="Login, yuk!"))
 
 
+# Lihat Daftar Registrasi
+@app.route('/daftar_user')
+def daftar_user():
+    users = db.user.find()  # Mengambil semua data user dari koleksi 'user'
+    return render_template('daftar_user.html', users=users)
+
+# Lihat Daftar Review
+@app.route('/daftar_review')
+def daftar_review():
+    users = db.user.find()  # Mengambil semua data user dari koleksi 'user'
+    return render_template('daftar_review.html', users=users)
+
 # details dari destinasi
 @app.route('/details')
 def details():
@@ -350,6 +362,8 @@ def add_review():
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
+        
+
         
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
