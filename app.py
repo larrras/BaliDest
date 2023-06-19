@@ -194,7 +194,32 @@ def admin_login():
 @app.route('/input_destinasi')
 def input_destinasi():
     balidest = db.balides.find({})
-    return render_template('homeadm.html', balidest=balidest)
+    return render_template('homeadminCSS.html', balidest=balidest)
+
+# @app.route('/updates', methods=['GET', 'POST'])
+# def updates():
+#     if request.method == "GET":
+#         id = request.args.get("id")
+#         data = db.balides.find_one({"_id": ObjectId(id)})
+#         data["_id"] = str(data["_id"])
+#         return render_template('updateCSS.html', data=data)
+
+#     id = request.form["id"]
+#     judul = request.form["judul"]
+#     desc = request.form['desc']
+#     file_path = ""
+#     file = request.files.get("file")
+#     if file:
+#         filename = secure_filename(file.filename)
+#         extension = filename.split(".")[-1]
+#         today = datetime.now()
+#         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+#         file_path = f'update-{mytime}.{extension}'
+#         file.save("./static/" + file_path)
+
+#     db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
+#     return redirect('/input_destinasi')
+
 
 @app.route('/updates', methods=['GET', 'POST'])
 def updates():
@@ -202,7 +227,7 @@ def updates():
         id = request.args.get("id")
         data = db.balides.find_one({"_id": ObjectId(id)})
         data["_id"] = str(data["_id"])
-        return render_template('update.html', data=data)
+        return render_template('updateCSS.html', data=data)
 
     id = request.form["id"]
     judul = request.form["judul"]
@@ -217,8 +242,9 @@ def updates():
         file_path = f'update-{mytime}.{extension}'
         file.save("./static/" + file_path)
 
-    db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
+    db.balides.update_one({"_id": ObjectId(id)}, {'$set': {"judul": judul, "desc": desc}})
     return redirect('/input_destinasi')
+
 
 
 @app.route('/hapus', methods=['POST'])
@@ -282,8 +308,47 @@ def view():
         return redirect(url_for('login', msg="Silakan Login"))
 
 
-        
-
+@app.route('/addcard', methods=['GET', 'POST'])
+def add_card():
+    if request.method == 'POST':
+        judul = request.form['judul']
+        desc = request.form['desc']
+    
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    
+        file = request.files["file"]
+        extension = file.filename.split('.')[-1]
+        filename = f'file-{mytime}.{extension}'
+        save_to = f'static/{filename}'
+        file.save(save_to)
+    
+        time = today.strftime('%Y-%m-%d')
+    
+        db.balides.insert_one({
+            'file': filename,
+            'judul': judul,
+            'desc': desc,
+            'time': time,
+        })
+    
+        return redirect('/input_destinasi')
+    
+    token_receive = request.cookies.get('admintoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        admin_info = db.admin.find_one({'id': payload['id']})
+        if admin_info:
+            data = list(db.balides.find({}))
+            for d in data:
+                d['_id'] = str(d['_id'])
+            return render_template('addcard.html', data=data)  # Pass the 'data' variable to the template
+        else:
+            return redirect(url_for('admin', msg="Admin tidak ditemukan"))
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('admin', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('admin', msg="Login, yuk!"))
 
 
 

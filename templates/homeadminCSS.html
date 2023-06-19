@@ -51,7 +51,8 @@
         }
 
         .main {
-            margin-left: 300px;
+            margin-left: 280px;
+            margin-right: 10px;
         }
 
         .title {
@@ -59,7 +60,7 @@
             font-size: 43px;
             font-weight: 900;
             color: darkblue;
-            margin-left: 260px;
+            margin-left: 300px;
             padding-top: 50px;
         }
 
@@ -89,8 +90,6 @@
             height: auto;
             box-shadow: 0px 0px 3px 0px gray;
             padding: 25px;
-            padding-left: 300px;
-            margin-left: 50px;
             border-radius: 12px;
             background-color: white;
             font-family: 'Bitter', serif;
@@ -230,50 +229,53 @@
                     <i style='font-size:20px; justify-content: center;' class='fas'>&#xf067;</i><b>ADD NEW</b>
                 </span>
             </a>
-  
+
             <!-- TABLE UPDATE -->
 
-                <div class="container">
-                    <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
+            <div class="container">
+                <p style="font-size: 25px; text-align: center; color: darkblue;"><b>TABLE UPDATE DATA</b></p>
 
-                    <table class="table">
-                        <thead class="thead-light" style="color: darkblue">
-                            <tr>
-                                <th scope="col">File</th>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Deskripsi</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-box" style="color: darkblue">
-                            {% for data in balidest %}
-                            <tr>
-                                <td>{{ data.file }}</td>
-                                <td>{{ data.judul }}</td>
-                                <td>{{ data.desc }}</td>
-                                <td>{{ data.time }}</td>
-                                <td>
-                                    <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
-                                    <div>
-                                        <a href="/updates?id={{ data._id }}">
-                                            <button class="upbtn" style="justify-content: center;"><i
-                                                    style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
-                                            </button>
-                                        </a>
-                                        <form action="/hapus" method="post" style="display: inline;">
-                                            <input type="hidden" name="id" value="{{ data._id }}">
-                                            <button class="delbtn" onclick="contoh()"><i
-                                                    style='font-size:21px; color: white;'
-                                                    class='fas'>&#xf1f8;</i></button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table">
+                    <thead class="thead-light" style="color: darkblue">
+                        <tr>
+                            <th scope="col">File</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-box" style="color: darkblue">
+                        {% for data in balidest %}
+                        <tr>
+                            <td>{{ data.file }}</td>
+                            <td>{{ data.judul }}</td>
+                            <td>{{ data.desc }}</td>
+                            <td>{{ data.time }}</td>
+                            <td>
+                                <!-- <a href="/updates?id={{ data._id }}" class="upbtn">Update</a> -->
+                                <div style="margin-left: 5px; margin-bottom: 6px; margin-top: 5px;">
+                                    <a href="/updates?id={{ data._id }}" style="margin-bottom: 5px;">
+                                        <button class="upbtn" style="justify-content: center;"><i
+                                                style='font-size:22px; color: white;' class='fas'>&#xf044;</i>
+                                        </button>
+                                    </a>
+                                    <br>
+
+                                </div>
+                                <div style="margin-left: 5px;">
+                                    <form action="/hapus" method="post" style="display: inline; ">
+                                        <input type="hidden" name="id" value="{{ data._id }}">
+                                        <button class="delbtn" onclick="contoh()"><i
+                                                style='font-size:21px; color: white;' class='fas'>&#xf1f8;</i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
             <!-- TABLE UPDATE END -->
 
