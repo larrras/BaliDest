@@ -4,7 +4,7 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 
-from flask import Flask, render_template, request, jsonify, redirect,url_for
+from flask import Flask, render_template, request, jsonify, redirect,url_for, make_response
 from pymongo import MongoClient
 from bson import ObjectId
 from bson.objectid import ObjectId
@@ -81,6 +81,13 @@ def api_login():
         return jsonify({'result':'success','token':token})
     else :
         return jsonify({'result':'fail', 'msg': 'Coba gunakan ID yang lain, yuk!'})
+
+# route ke logout
+@app.route('/logout')
+def logout():
+    response = make_response(render_template('login.html', msg='Logout berhasil'))
+    response.set_cookie('mytoken', '', expires=0)  # Menghapus cookie token
+    return response
 
 
 # route ke register
@@ -270,42 +277,6 @@ def userhomes():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Login, yuk!"))
 
-# details dari destinasi
-@app.route('/details')
-def details():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.user.find_one({'id': payload['id']})
-        id = request.args.get("id")
-        data = db.balides.find_one({"_id": ObjectId(id)})
-        data["_id"] = str(data["_id"])
-        
-        return render_template('details.html', data=data)
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for('login', msg="Silakan Login"))
-
-# route views rating
-@app.route('/view')
-def view():
-    try:
-        token_receive = request.cookies.get('mytoken')
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.user.find_one({'id': payload['id']})
-
-        # Ambil data destinasi dari database
-        destination_id = request.args.get('id')
-        data = db.balides.find_one({"_id": ObjectId(destination_id)})
-        data["_id"] = str(data["_id"])
-
-        return render_template('view.html', data=data)
-
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for('login', msg="Silakan Login"))
 
 
 @app.route('/addcard', methods=['GET', 'POST'])
@@ -349,6 +320,44 @@ def add_card():
         return redirect(url_for('admin', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('admin', msg="Login, yuk!"))
+
+
+# details dari destinasi
+@app.route('/details')
+def details():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+        id = request.args.get("id")
+        data = db.balides.find_one({"_id": ObjectId(id)})
+        data["_id"] = str(data["_id"])
+        
+        return render_template('details.html', data=data)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Silakan Login"))
+
+# route views rating
+@app.route('/view')
+def view():
+    try:
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+
+        # Ambil data destinasi dari database
+        destination_id = request.args.get('id')
+        data = db.balides.find_one({"_id": ObjectId(destination_id)})
+        data["_id"] = str(data["_id"])
+
+        return render_template('view.html', data=data)
+
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Silakan Login"))
 
 
 
