@@ -203,30 +203,6 @@ def input_destinasi():
     balidest = db.balides.find({})
     return render_template('homeadminCSS.html', balidest=balidest)
 
-# @app.route('/updates', methods=['GET', 'POST'])
-# def updates():
-#     if request.method == "GET":
-#         id = request.args.get("id")
-#         data = db.balides.find_one({"_id": ObjectId(id)})
-#         data["_id"] = str(data["_id"])
-#         return render_template('updateCSS.html', data=data)
-
-#     id = request.form["id"]
-#     judul = request.form["judul"]
-#     desc = request.form['desc']
-#     file_path = ""
-#     file = request.files.get("file")
-#     if file:
-#         filename = secure_filename(file.filename)
-#         extension = filename.split(".")[-1]
-#         today = datetime.now()
-#         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
-#         file_path = f'update-{mytime}.{extension}'
-#         file.save("./static/" + file_path)
-
-#     db.balides.update_one({"_id":ObjectId(id)},{'$set':{"judul":judul,"desc":desc}})
-#     return redirect('/input_destinasi')
-
 
 @app.route('/updates', methods=['GET', 'POST'])
 def updates():
@@ -253,30 +229,11 @@ def updates():
     return redirect('/input_destinasi')
 
 
-
 @app.route('/hapus', methods=['POST'])
 def hapus():
     id = request.form["id"]
     db.balides.delete_one({"_id": ObjectId(id)})
     return redirect('/input_destinasi')
-    
-
-@app.route('/userhomes')
-def userhomes():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.user.find_one({'id': payload['id']})
-        balidest = db.balides.find()  # Mengambil semua data dari koleksi 'balides'
-        
-        app.logger.info('Nilai balidest: %s', balidest)
-
-        return render_template('userhomes.html', balidest=balidest, nickname=user_info['nick'])
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for('login', msg="Login, yuk!"))
-
 
 
 @app.route('/addcard', methods=['GET', 'POST'])
@@ -301,7 +258,9 @@ def add_card():
             'judul': judul,
             'desc': desc,
             'time': time,
+
         })
+        return render_template('/ulasan2.html',reviews=reviews)
     
         return redirect('/input_destinasi')
     
@@ -321,6 +280,20 @@ def add_card():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('admin', msg="Login, yuk!"))
 
+@app.route('/userhomes')
+def userhomes():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({'id': payload['id']})
+        balidest = db.balides.find()  # Mengambil semua data dari koleksi 'balides'
+
+        return render_template('userhomes.html', balidest=balidest, nickname=user_info['nick'])
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login', msg="Login, yuk!"))
+
 
 # details dari destinasi
 @app.route('/details')
@@ -339,28 +312,39 @@ def details():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
 
-# route views rating
-@app.route('/view')
-def view():
+# review
+@app.route('/add_review', methods=['GET', 'POST'])
+def add_review():
+    token_receive = request.cookies.get('mytoken')
     try:
-        token_receive = request.cookies.get('mytoken')
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
+        data = {}  # Tambahkan ini untuk menginisialisasi data dengan nilai awal
+        if request.method == 'POST':
+            rating = request.form.get('rating')
+            comment = request.form.get('comment')
+            review_id = request.form.get('review_id')
 
-        # Ambil data destinasi dari database
-        destination_id = request.args.get('id')
-        data = db.balides.find_one({"_id": ObjectId(destination_id)})
-        data["_id"] = str(data["_id"])
+            today = datetime.now()
+            time = today.strftime('%Y-%m-%d')
 
-        return render_template('view.html', data=data)
+            # Simpan review ke dalam database
+            review = {
+                'user_id': user_info['id'],
+                'rating': rating,
+                'comment': comment,
+                'time': time,
+                'review_id': review_id
+            }
+            db.reviews.insert_one(review)
 
+            return redirect(url_for('details', id=review_id))
+        return render_template('add_review.html', data=data)
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
-
-
-
+        
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
     app.run('0.0.0.0',port=5000,debug=True)

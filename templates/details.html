@@ -129,12 +129,12 @@
 
 
     <!-- COVER -->
-    <div class="cover">
+    <!-- <div class="cover">
         <img src="{{ url_for('static', filename=data.file) }}" alt="Card Image">
         <div class="centered" style="font-weight: 800;">
 
         </div>
-    </div>
+    </div> -->
 
     <!-- DESTINASI -->
     <div class="container-fluid px-0">
@@ -157,11 +157,23 @@
                     <p class="justify-content-center" style="text-align: justify;">
                         {{ data.desc }}
                     </p>
-                    <a href="/views?id={{ data._id }}" class="btn btn-primary">View More</a>
+                    <a href="/add_review?id={{ data._id }}" class="btn btn-primary">View More</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Review dan Komentar -->
+    <h2>Review dan Komentar:</h2>
+    <ul>
+        {% for review in reviews %}
+        <li>Rating: {{ review.rating }}</li>
+        <li>Komentar: {{ review.comment }}</li>
+        <br>
+        {% endfor %}
+    </ul>
+
+
 
     <!-- 
                     <div class="container text-center">
@@ -203,6 +215,8 @@
     </div>
     </div>
     </div>
+
+
     <!-- Footer -->
     <div class="container">
         <footer class="py-3 my-4">
