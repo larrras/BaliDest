@@ -314,21 +314,29 @@ def daftar_review():
     return render_template('daftar_review.html', users=users)
 
 # details dari destinasi
+# details dari destinasi
 @app.route('/details')
 def details():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
-        id = request.args.get("id")
-        data = db.balides.find_one({"_id": ObjectId(id)})
-        data["_id"] = str(data["_id"])
-        
-        return render_template('details.html', data=data)
+        if user_info:
+            id = request.args.get("id")
+            data = db.balides.find_one({"_id": ObjectId(id)})
+            review = db.reviews.find({"review_id": id})
+            if data:
+                data["_id"] = str(data["_id"])
+                return render_template('details.html', data=data, review=review)
+            else:
+                return "Destinasi tidak ditemukan"  # Tambahkan penanganan jika destinasi tidak ditemukan
+        else:
+            return "Pengguna tidak ditemukan"  # Tambahkan penanganan jika pengguna tidak ditemukan
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
+
 
 # review
 @app.route('/add_review', methods=['GET', 'POST'])
@@ -337,31 +345,41 @@ def add_review():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({'id': payload['id']})
-        data = {}  # Tambahkan ini untuk menginisialisasi data dengan nilai awal
-        if request.method == 'POST':
-            rating = request.form.get('rating')
-            comment = request.form.get('comment')
-            review_id = request.form.get('review_id')
+        if user_info:
+            if request.method == 'POST':
+                rating = request.form.get('rating')
+                comment = request.form.get('comment')
+                review_id = request.form.get('review_id')
 
-            today = datetime.now()
-            time = today.strftime('%Y-%m-%d')
+                today = datetime.now()
+                time = today.strftime('%Y-%m-%d')
 
-            # Simpan review ke dalam database
-            review = {
-                'user_id': user_info['id'],
-                'rating': rating,
-                'comment': comment,
-                'time': time,
-                'review_id': review_id
-            }
-            db.reviews.insert_one(review)
+                # Simpan review ke dalam database
+                review = {
+                    'user_id': user_info['id'],
+                    'rating': rating,
+                    'comment': comment,
+                    'time': time,
+                    'review_id': review_id
+                }
+                db.reviews.insert_one(review)
 
-            return redirect(url_for('details', id=review_id))
-        return render_template('add_review.html', data=data)
+                return redirect(url_for('details', id=review_id))
+            elif request.method == 'GET':
+                id = request.args.get("id")
+                data = db.balides.find_one({"_id": ObjectId(id)})
+                if data:
+                    data["_id"] = str(data["_id"])
+                    return render_template('details.html', data=data, review=review)
+                else:
+                    return "Destinasi tidak ditemukan"  # Tambahkan penanganan jika destinasi tidak ditemukan
+        else:
+            return "Pengguna tidak ditemukan"  # Tambahkan penanganan jika pengguna tidak ditemukan
     except jwt.ExpiredSignatureError:
         return redirect(url_for('login', msg="Login Sudah Kadaluarsa"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
+
         
 
         

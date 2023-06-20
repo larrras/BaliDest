@@ -179,6 +179,61 @@
             padding: 9px 15px;
             border-radius: 7px;
         }
+
+        /* review */
+
+        .review-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .review-item p {
+            margin: 5px 0;
+        }
+
+        #review-section p {
+            font-style: italic;
+        }
+
+        #review-section .add-review-form {
+            margin-top: 30px;
+        }
+
+        #review-section .add-review-form h3 {
+            margin-bottom: 10px;
+        }
+
+        #review-section .form-group {
+            margin-bottom: 15px;
+        }
+
+        #review-section .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        #review-section .form-group select,
+        #review-section .form-group textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #review-section button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #review-section button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
     </style>
 
     <script>
@@ -188,6 +243,9 @@
         function close_box() {
             $('#post-box').hide()
         }
+
+
+
     </script>
 
 </head>
@@ -286,7 +344,6 @@
 
 
                     <div class="main-content px-4 m-auto">
-                        <!-- FORM INPUT -->
                         <section id="form-input">
                             <div class="mytitle">
                                 <h2 style="font-weight: 800;">Rating & Review Destinasi</h2>
@@ -298,20 +355,17 @@
 
                                 <div class="mypost" id="post-box">
                                     <p class="txt">Berikan review terbaikmu!</p>
-                                    <div class="form-floating mb-3">
-                                        <input id="url" type="email" class="form-control"
-                                            placeholder="name@example.com">
-                                        <label>Judul Review</label>
-                                    </div>
                                     <div class="input-group mb-3">
-                                        <label class="input-group-text" for="inputGroupSelect01">Rating</label>
-                                        <select class="form-select" id="star">
-                                            <option selected>-- Select a star--</option>
-                                            <option value="1">⭐</option>
-                                            <option value="2">⭐⭐</option>
-                                            <option value="3">⭐⭐⭐</option>
-                                            <option value="4">⭐⭐⭐⭐</option>
-                                            <option value="5">⭐⭐⭐⭐⭐</option>
+                                        <input type="hidden" name="user_id" id="user_id" value="{{ data.id }}">
+
+                                        <label class="input-group-text" for="star">Rating</label>
+                                        <select class="form-select" id="star" name="rating">
+                                            <option selected disabled>-- Select a star--</option>
+                                            <option value="⭐">⭐</option>
+                                            <option value="⭐⭐">⭐⭐</option>
+                                            <option value="⭐⭐⭐">⭐⭐⭐</option>
+                                            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                                            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
                                         </select>
                                     </div>
                                     <div class="form-floating">
@@ -320,53 +374,59 @@
                                         <label for="comment">Tulis Review</label>
                                     </div>
                                     <div class="mybtns">
-                                        <button onclick="posting()" type="button" class="blue-button">Kirim
-                                            Review</button>
-                                        <!-- <a href="/details?id={{ data._id }}" class="btn btn-primary">Details</a> -->
+                                        <button type="submit" class="blue-button">Kirim Review</button>
                                         <button onclick="close_box()" type="button"
                                             class="blue-button-outline">Close</button>
                                     </div>
                                 </div>
                             </form>
                         </section>
+
+
+                        <section id="review-section">
+                            <h2>Review</h2>
+                        
+                            <!-- Tampilkan review yang telah ditambahkan -->
+                            {% if review %}
+                            {% for review_item in review %}
+                            {% if review_item.review_id == data._id %}
+                            <div class="review-item">
+                                <p>User ID: {{ review_item.user_id }}</p>
+                                <p>Rating: {{ review_item.rating }}</p>
+                                <p>Comment: {{ review_item.comment }}</p>
+                                <p>Time: {{ review_item.time }}</p>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                            <p>Belum ada review untuk destinasi ini.</p>
+                            {% endif %}
+                        </section>
+                        
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Review dan Komentar -->
-    <h2>Review dan Komentar:</h2>
-    <ul>
-        {% for review in reviews %}
-        <li>Rating: {{ review.rating }}</li>
-        <li>Komentar: {{ review.comment }}</li>
-        <br>
-        {% endfor %}
-    </ul>
 
 
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-    <!-- Footer -->
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3"
-                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Headline</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Login</a></li>
-            </ul>
-            <p class="text-center text-body-secondary"
-                style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                © 2023 Balidest</p>
-        </footer>
-    </div>
+        <!-- Footer -->
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3"
+                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Headline</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Login</a></li>
+                </ul>
+                <p class="text-center text-body-secondary"
+                    style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
+                    © 2023 Balidest</p>
+            </footer>
+        </div>
 </body>
 
 </html>
