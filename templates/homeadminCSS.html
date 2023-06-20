@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMINISTRATOR PAGE | Balidest</title>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='LogoBalidest.ico') }}" type="image/x-icon" />
+    <meta property="og:title" content="Balidest" />
+    <meta property="og:description"
+        content="Website ini bertujuan sebagai sumber informasi tentang destinasi wisata di Bali. Nama Balidest merupakan kependekan dari Bali Destinasi. Balidest menyediakan informasi dan ulasan dari para wisatawan yang telah mengunjungi destinasi yang ditampilkan." />
+    <meta property="og:image" content="{{ url_for('static', filename='nav.png') }}" />
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
