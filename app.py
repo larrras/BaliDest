@@ -20,15 +20,15 @@ import logging
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-# MONGODB_URI = os.environ.get("MONGODB_URI")
-# DB_NAME =  os.environ.get("DB_NAME")
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
 
-# client = MongoClient(MONGODB_URI)
+client = MongoClient(MONGODB_URI)
 
-# db = client[DB_NAME]
+db = client[DB_NAME]
 
-client = MongoClient('mongodb+srv://randhyar955:Ardiansyah955@cluster0.vr2df0r.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbbalidest
+# client = MongoClient('mongodb+srv://randhyar955:Ardiansyah955@cluster0.vr2df0r.mongodb.net/?retryWrites=true&w=majority')
+# db = client.dbbalidest
 
 app=Flask(__name__)
 
