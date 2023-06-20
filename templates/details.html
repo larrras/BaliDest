@@ -36,7 +36,7 @@
             color: rgb(247, 125, 81);
             padding: 7px 7px;
             border-radius: 7px;
-            border: 2px solid rgb(89, 89, 239);
+            border: 2px solid whitesmoke;
             font-size: 15px;
         }
 
@@ -186,7 +186,7 @@
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 28px;
         }
 
         .review-item p {
@@ -234,6 +234,12 @@
         #review-section button[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .rview {
+            font-family: 'Bitter', serif;
+            font-family: 'Shantell Sans', cursive;
+            font-family: 'Tilt Neon', cursive;
+        }
     </style>
 
     <script>
@@ -243,9 +249,6 @@
         function close_box() {
             $('#post-box').hide()
         }
-
-
-
     </script>
 
 </head>
@@ -274,13 +277,11 @@
                 <li class="nav-item"><a href="#" class="nav-link"
                         style="font-size: 17px; color:darkblue"><b>Headline</b></a>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link"
-                        style="font-size: 17px; color:darkblue"><b>About</b></a></li>
                 <span>
                     <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
                         <a href="/logout" class="log" style="font-size: 17px;">
                             <i class='fas'>&#xf2bd;
-                            </i><b>Welcome {{user_info}}</b>
+                            </i><b>Welcome, {{ nickname }}</b>
                         </a>
                     </li>
                 </span>
@@ -355,6 +356,7 @@
 
                                 <div class="mypost" id="post-box">
                                     <p class="txt">Berikan review terbaikmu!</p>
+
                                     <div class="input-group mb-3">
                                         <input type="hidden" name="user_id" id="user_id" value="{{ data.id }}">
 
@@ -367,6 +369,11 @@
                                             <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
                                             <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
                                         </select>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input id="url" type="text" class="form-control" placeholder="judul"
+                                            name="judul">
+                                        <label>Judul Review</label>
                                     </div>
                                     <div class="form-floating">
                                         <textarea id="comment" class="form-control" placeholder="Leave a comment here"
@@ -383,31 +390,26 @@
                         </section>
 
 
-                        <section id="review-section">
-                            <h2>Review Strangers</h2>
-                        
+                        <p
+                            style="font-size: 30px; font-weight: 800; padding-top: 60px; padding-bottom: 10px; color: darkblue;">
+                            Review Destinasi</p>
+                        <section id="review-section" class="rview">
                             <!-- Tampilkan review yang telah ditambahkan -->
                             {% if review %}
                             {% for review_item in review %}
                             {% if review_item.review_id == data._id %}
                             <div class="review-item">
-                                <p>User ID: {{ review_item.user_id }}</p>
-                                <p>Rating: {{ review_item.rating }}</p>
-                                <p>Comment: {{ review_item.comment }}</p>
-                                <p>Time: {{ review_item.time }}</p>
+                                <p style="font-size: 20px;">{{ review_item.rating }}</p>
+                                <p style="font-weight: 850;"> {{ review_item.judul}} </p>
+                                <p>{{ review_item.comment }}</p>
+                                <p style="font-size: 11px;">{{ review_item.time }}</p>
                             </div>
                             {% endif %}
-                            {% endfor %}
                             {% else %}
-                            <p>Belum ada review untuk destinasi ini.</p>
+                            <p style="font-size: 18px;">Belum ada review untuk destinasi ini.</p>
+                            {% endfor %}
                             {% endif %}
-
-                            
                         </section>
-                        
-
-
-
                     </div>
                 </div>
             </div>

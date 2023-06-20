@@ -4,7 +4,7 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 
-from flask import Flask, render_template, request, jsonify, redirect,url_for, make_response
+from flask import Flask, session, render_template, request, jsonify, redirect,url_for, make_response
 from pymongo import MongoClient
 from bson import ObjectId
 from bson.objectid import ObjectId
@@ -83,7 +83,7 @@ def api_login():
 # route ke logout
 @app.route('/logout')
 def logout():
-    response = make_response(render_template('login.html', msg='Logout berhasil'))
+    response = make_response(render_template('login.html', msg='Logout berhasil!'))
     response.set_cookie('mytoken', '', expires=0)  # Menghapus cookie token
     return response
 
@@ -180,6 +180,7 @@ def admin():
         })
         return redirect(url_for('admin_login', id_give=id_receive))
     return render_template('loginadmin.html')
+
 
 # login api admin
 @app.route('/api/admin', methods=['POST'])
@@ -307,13 +308,7 @@ def daftar_user():
     users = db.user.find()  # Mengambil semua data user dari koleksi 'user'
     return render_template('daftar_user.html', users=users)
 
-# Lihat Daftar Review
-@app.route('/daftar_review')
-def daftar_review():
-    users = db.user.find()  # Mengambil semua data user dari koleksi 'user'
-    return render_template('daftar_review.html', users=users)
 
-# details dari destinasi
 # details dari destinasi
 @app.route('/details')
 def details():
@@ -347,6 +342,7 @@ def add_review():
         user_info = db.user.find_one({'id': payload['id']})
         if user_info:
             if request.method == 'POST':
+                judul = request.form.get('judul')
                 rating = request.form.get('rating')
                 comment = request.form.get('comment')
                 review_id = request.form.get('review_id')
@@ -357,6 +353,7 @@ def add_review():
                 # Simpan review ke dalam database
                 review = {
                     'user_id': user_info['id'],
+                    'judul': judul,
                     'rating': rating,
                     'comment': comment,
                     'time': time,
@@ -380,9 +377,20 @@ def add_review():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login', msg="Silakan Login"))
 
-        
 
-        
+# Lihat Daftar Review
+@app.route('/daftar_review')
+def daftar_review():
+    reviews = list(db.reviews.find()) # Mengambil semua review user dari koleksi 'reviews'
+    return render_template('daftar_review.html', reviews=reviews)
+
+@app.route('/delete_review', methods=['POST'])
+def delete_review():
+    review_id = request.form["review_id"]
+    db.reviews.delete_one({"_id": ObjectId(review_id)})
+    return redirect('/daftar_review')
+
+
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD
     app.run('0.0.0.0',port=5000,debug=True)
