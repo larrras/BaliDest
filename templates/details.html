@@ -281,7 +281,7 @@
                     <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
                         <a href="/logout" class="log" style="font-size: 17px;">
                             <i class='fas'>&#xf2bd;
-                            </i><b>Welcome, {{ nickname }}</b>
+                            </i><b>Welcome, {{ user_info.id }}</b>
                         </a>
                     </li>
                 </span>
@@ -353,15 +353,12 @@
 
                             <form action="/add_review" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="review_id" value="{{ data._id }}">
-
                                 <div class="mypost" id="post-box">
                                     <p class="txt">Berikan review terbaikmu!</p>
-
                                     <div class="input-group mb-3">
                                         <input type="hidden" name="user_id" id="user_id" value="{{ data.id }}">
-
                                         <label class="input-group-text" for="star">Rating</label>
-                                        <select class="form-select" id="star" name="rating">
+                                        <select class="form-select" id="star" name="rating" required>
                                             <option selected disabled>-- Select a star--</option>
                                             <option value="⭐">⭐</option>
                                             <option value="⭐⭐">⭐⭐</option>
@@ -372,12 +369,12 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input id="url" type="text" class="form-control" placeholder="judul"
-                                            name="judul">
-                                        <label>Judul Review</label>
+                                            name="judul" required>
+                                        <label for="url">Judul Review</label>
                                     </div>
                                     <div class="form-floating">
                                         <textarea id="comment" class="form-control" placeholder="Leave a comment here"
-                                            name="comment"></textarea>
+                                            name="comment" required></textarea>
                                         <label for="comment">Tulis Review</label>
                                     </div>
                                     <div class="mybtns">
@@ -387,29 +384,29 @@
                                     </div>
                                 </div>
                             </form>
-                        </section>
 
 
-                        <p
-                            style="font-size: 30px; font-weight: 800; padding-top: 60px; padding-bottom: 10px; color: darkblue;">
-                            Review Destinasi</p>
-                        <section id="review-section" class="rview">
-                            <!-- Tampilkan review yang telah ditambahkan -->
-                            {% if review %}
-                            {% for review_item in review %}
-                            {% if review_item.review_id == data._id %}
-                            <div class="review-item">
-                                <p style="font-size: 20px;">{{ review_item.rating }}</p>
-                                <p style="font-weight: 850;"> {{ review_item.judul}} </p>
-                                <p>{{ review_item.comment }}</p>
-                                <p style="font-size: 11px;">{{ review_item.time }}</p>
-                            </div>
-                            {% endif %}
-                            {% else %}
-                            <p style="font-size: 18px;">Belum ada review untuk destinasi ini.</p>
-                            {% endfor %}
-                            {% endif %}
-                        </section>
+
+                            <p
+                                style="font-size: 30px; font-weight: 800; padding-top: 60px; padding-bottom: 10px; color: darkblue;">
+                                Review Destinasi</p>
+                            <section id="review-section" class="rview">
+                                <!-- Tampilkan review yang telah ditambahkan -->
+                                {% if review %}
+                                {% for review_item in review %}
+                                {% if review_item.review_id == data._id %}
+                                <div class="review-item">
+                                    <p style="font-size: 20px;">{{ review_item.rating }}</p>
+                                    <p style="font-weight: 850;"> {{ review_item.judul}} </p>
+                                    <p>{{ review_item.comment }}</p>
+                                    <p style="font-size: 11px;">{{ review_item.time }}</p>
+                                </div>
+                                {% endif %}
+                                {% else %}
+                                <p style="font-size: 18px;">Belum ada review untuk destinasi ini.</p>
+                                {% endfor %}
+                                {% endif %}
+                            </section>
                     </div>
                 </div>
             </div>

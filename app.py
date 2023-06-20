@@ -196,6 +196,14 @@ def admin_login():
     else:
         return jsonify({'result': 'failed', 'message': 'Login gagal'})
 
+# logout admin
+@app.route('/admin/logout')
+def admin_logout():
+    response = make_response(render_template('loginadmin.html',msg="LogOut Berhasil"))
+    response.set_cookie('admintoken', '', expires=0)
+    return response
+
+
 
 @app.route('/input_destinasi')
 def input_destinasi():
@@ -322,7 +330,7 @@ def details():
             review = db.reviews.find({"review_id": id})
             if data:
                 data["_id"] = str(data["_id"])
-                return render_template('details.html', data=data, review=review)
+                return render_template('details.html', data=data, review=review,user_info=user_info)
             else:
                 return "Destinasi tidak ditemukan"  # Tambahkan penanganan jika destinasi tidak ditemukan
         else:
