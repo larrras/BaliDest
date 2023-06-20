@@ -269,18 +269,18 @@
 
             <ul class="nav nav-pills"
                 style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
-                <li class="nav-item"><a href="#" class="nav-link"
+                <li class="nav-item"><a href="/" class="nav-link"
                         style="font-size: 17px; color:darkblue"><b>Home</b></a></li>
-                <li class="nav-item"><a href="#headline" class="nav-link"
+                <li class="nav-item"><a href="/userhomes" class="nav-link"
                         style="font-size: 17px; color:darkblue"><b>Headline</b></a>
                 </li>
-                <li class="nav-item"><a href="#about" class="nav-link"
+                <li class="nav-item"><a href="/userhomes" class="nav-link"
                         style="font-size: 17px; color:darkblue"><b>About</b></a></li>
                 <span>
                     <li class="nav-item" style="padding-top: 8px; padding-right: 12px; padding-left: 14px;">
-                        <a href="/login" class="log" style="font-size: 17px;">
+                        <a href="/logout" class="log" style="font-size: 17px;">
                             <i class='fas'>&#xf2bd;
-                            </i><b> {{nickname}}</b>
+                            </i><b>Welcome {{user_info}}</b>
                         </a>
                     </li>
                 </span>
@@ -384,7 +384,7 @@
 
 
                         <section id="review-section">
-                            <h2>Review</h2>
+                            <h2>Review Strangers</h2>
                         
                             <!-- Tampilkan review yang telah ditambahkan -->
                             {% if review %}
@@ -401,6 +401,8 @@
                             {% else %}
                             <p>Belum ada review untuk destinasi ini.</p>
                             {% endif %}
+
+                            
                         </section>
                         
 
