@@ -19,6 +19,12 @@
         rel="stylesheet">
 
     <title>HOME | Balidest</title>
+
+    <meta property="og:title" content="Balidest" />
+    <meta property="og:description"
+        content="Website ini bertujuan sebagai sumber informasi tentang destinasi wisata di Bali. Nama Balidest merupakan kependekan dari Bali Destinasi. Balidest menyediakan informasi dan ulasan dari para wisatawan yang telah mengunjungi destinasi yang ditampilkan." />
+    <meta property="og:image" content="{{ url_for('static', filename='LogoBalidest.ico') }}" />
+
     <!-- Link icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -54,7 +60,9 @@
             height: 72px;
             position: fixed;
             width: 100%;
-            z-index: 99
+            z-index: 99;
+            padding: 20px;
+            padding-bottom: 40px;
         }
 
         .col {
@@ -141,6 +149,22 @@
             border-radius: 25px;
             width: 150px;
         }
+
+        .logo-image {
+            display: inline-flex;
+            width: 210px;
+            /* Sesuaikan ukuran gambar */
+            height: 60px;
+            /* Sesuaikan ukuran gambar */
+            background-image: url('../static/nav.png');
+            /* Ganti dengan URL gambar Anda */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            object-fit: contain;
+            position: absolute;
+            top: -0.5px;
+        }
     </style>
 
 
@@ -156,11 +180,8 @@
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap" />
                 </svg>
-                <span class="fs-4 text-nav fw-bold"
-                    style="font-family: 'Bitter', serif;
-                font-family: 'Shantell Sans', cursive; font-size: 20px; color: darkblue; font-weight: 800;">BaliDest</span>
+                <span class="logo-image"></span>
             </a>
-
             <ul class="nav nav-pills"
                 style="font-family: 'Bitter', serif; font-family: 'Shantell Sans', cursive; font-family: 'Tilt Neon', cursive;">
                 <li class="nav-item"><a href="#" class="nav-link"
